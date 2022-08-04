@@ -29,9 +29,8 @@ export class SignupComponent implements OnInit {
   }
   
   handleSignup(): void {
-    console.log("Gender : ",this.Signup.gender);
-    console.log("Role : ",this.Signup.userRole);
-    
+    // console.log("Gender : ",this.Signup.gender);
+    // console.log("Role : ",this.Signup.userRole);
     
     if(this.Signup.userRole==='Renter'){
       this.authService.renterSingnup(this.Signup).subscribe(response=>{
