@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class MyClass {
+
+	public static void main(String[] args) {
+		student s;
+		Scanner scan=new Scanner(System.in);
+		student arr[]=new student[2];
+		for(int i=0;i<2;i++) {
+			int tam=scan.nextInt();
+			int eng=scan.nextInt();
+			arr[i]=new student(tam,eng);
+		}
+		total t=new total();
+		int markdetail[]=t.getTotal(arr);
+		for(int a:markdetail) {
+			System.out.println(a);
+		}
+	}
+}
+class ranking{
+	
+}
+class total{
+	int studentMark[]=new int[2];
+	student s=new student();
+	public int[] getTotal(student[] arr) {
+		int mark=arr[0].getEng()+arr[0].getTam();
+		int mark1=arr[1].getEng()+arr[1].getTam();;
+		studentMark[0]=mark;
+		studentMark[1]=mark1;
+		return studentMark;
+	}
+	
+}
+class student{
+	private int tam;
+	private int eng;
+	public int getTam() {
+		return tam;
+	}
+	public void setTam(int tam) {
+		this.tam = tam;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public student(int tam, int eng) {
+		super();
+		this.tam = tam;
+		this.eng = eng;
+	}
+	public student() {
+		// TODO Auto-generated constructor stub
+	}
+}
