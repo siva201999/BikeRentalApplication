@@ -1,0 +1,43 @@
+<div class="container">
+    <h2 class="text-center pb-4">Admin dashboard</h2>
+    <div class="row ">
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-white rounded text-center align-items-center" id="card">
+            <img src="../../../../assets/images/icons/users_icon.jpg" class="rounded-circle" alt="..." height="170" width="150">
+            <div class="card-body pt-2">
+              <h6 class="card-title mb-4">Customer Registered : {{customerCount}}</h6> 
+              <p class="mb-1"><b>Click on the button to view the customer details</b></p>
+             <a routerLink="customerDetails"><button class="btn" id="userBtn">More details</button></a>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-white rounded text-center align-items-center" id="card">
+            <img src="../../../../assets/images/icons/renter_icon.png" class="rounded-circle" alt="..." height="170" width="150" >
+            <div class="card-body pt-2">
+              <h6 class="card-title mb-3">Renter Registered : {{renterCount}}</h6>
+              <p class="mb-1"><b>Click on the button to view renter details and his/her bikes details.</b></p>
+             <a routerLink="renterDetails"> <button class="btn" id="userBtn">More details</button></a>
+            </div>
+          </div>
+      </div>
+      <!-- <div class="col">
+        <div class="card shadow p-3 mb-5 bg-white rounded text-center" id="card" >
+            <img src="../../../../assets/images/icons/bikes_icon.jpg" class="rounded-circle"  alt="..." width="200" height="200"> 
+            <div class="card-body pt-5">
+              <h6 class="card-title mb-4">Bikes added by renters</h6>
+              <button class="btn btn-primary p-2" id="userBtn" routerLink="#">View bikes</button>
+            </div>
+          </div>
+      </div> -->
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-white rounded text-center" id="card">
+            <img src="../../../../assets/images/icons/booking_icon2.png" class="rounded-circle card-img-top" alt="..." height="200" >
+            <div class="card-body pt-2">
+              <h6 class="card-title mb-4">Booking History</h6>
+              <button class="btn btn-primary p-2" id="userBtn" routerLink="#">View bookings</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

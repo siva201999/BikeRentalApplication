@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("userId",JSON.stringify(this.userId));
             localStorage.setItem("userName",JSON.stringify(this.userName));
             localStorage.setItem("Email",JSON.stringify(this.Login.email));
-            setTimeout(()=>this.router.navigate(['admin/dashboard']),2000);
+            setTimeout(()=>this.router.navigate(['admin']),2000);
           }else{
             this.invalidLogin=true;
             this.loginSuccess=false;

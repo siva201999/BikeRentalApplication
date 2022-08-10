@@ -40,8 +40,13 @@ export class SignupComponent implements OnInit {
           this.invalidRegister=false;
           this.successMessage = "Register done successfully!!!";
           setTimeout(()=>this.router.navigate(['']),1000);
-        }else{
+        }
+        else if(response===null){
+          alert("Email already exist!!!");
+        }
+        else{
           this.invalidRegister=true;
+          
         }
       });
     }
@@ -53,7 +58,11 @@ export class SignupComponent implements OnInit {
           this.invalidRegister=false;
           this.successMessage = "Register done successfully!!!";
           setTimeout(()=>this.router.navigate(['']),1000);
-        }else{
+        }
+        else if(response===null){
+          alert("Email already exist!!!");
+        }
+        else{
           this.invalidRegister=true;
         }
       });

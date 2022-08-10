@@ -1,3 +1,4 @@
+<!-- <router-outlet></router-outlet> -->
 	<div class="container-limit">
 		<div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-60 p-b-54">
@@ -47,7 +48,7 @@
 						</div>
 					</div>
           <div *ngIf="userRole.userType==='renter' || userRole.userType==='customer'" class="m-t-13">
-            <span>Don't have an account? <a routerLink="signup">Click here</a></span>
+            <span>Don't have an account? <a routerLink='signup'>Click here</a></span>
           </div>
           
 						<!-- <div class="flex-col-c p-t-60">
@@ -58,6 +59,5 @@
 			</div>
 		</div>
 	</div>
-	
 
 	
