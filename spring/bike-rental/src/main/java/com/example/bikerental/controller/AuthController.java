@@ -25,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/renter/login")
-    public  Map<String,String> isRenterPresent(@RequestBody RenterModel data){
+    public  Map<String,Object> isRenterPresent(@RequestBody RenterModel data){
         return authService.isRenterPresent(data);
     }
 
@@ -35,7 +35,7 @@ public class AuthController {
     }
 
     @PostMapping("/customer/login")
-    public Map<String,String> isCustomerPresent(@RequestBody CustomerModel data){
+    public Map<String,Object> isCustomerPresent(@RequestBody CustomerModel data){
         return authService.isCustomerPresent(data);
     }
 
@@ -43,6 +43,8 @@ public class AuthController {
     public CustomerModel saveCustomer(@RequestBody CustomerModel data){
         return authService.saveCustomer(data);
     }
+
+    
     
     
 }

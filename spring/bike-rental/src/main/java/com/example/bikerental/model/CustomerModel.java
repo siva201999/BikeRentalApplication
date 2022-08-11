@@ -29,7 +29,8 @@ public class CustomerModel {
     private String image;
     @Column(name = "address")
     private String address;
-    
+    @Column(name = "isActive")
+    private String isActive;
     public Long getId() {
         return id;
     }
@@ -101,10 +102,16 @@ public class CustomerModel {
     public void setAddress(String address) {
         this.address = address;
     }
+    public String getIsActive() {
+        return isActive;
+    }
 
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
     
     public CustomerModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address) {
+            String userRole, String image, String address,String isActive) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -114,6 +121,7 @@ public class CustomerModel {
         this.userRole = userRole;
         this.image = image;
         this.address = address;
+        this.isActive = isActive;
     }
 
     public CustomerModel() {

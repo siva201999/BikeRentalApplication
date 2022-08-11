@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
     // console.log("Gender : ",this.Signup.gender);
     // console.log("Role : ",this.Signup.userRole);
     
-    if(this.Signup.userRole==='Renter'){
+    if(this.Signup.userRole==='Renter') {
       this.authService.renterSingnup(this.Signup).subscribe(response=>{
         console.log(response);
         if(response){

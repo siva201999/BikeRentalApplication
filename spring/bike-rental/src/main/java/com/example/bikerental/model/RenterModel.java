@@ -31,6 +31,8 @@ public class RenterModel {
     private String address;
     @Column(name = "earnings", columnDefinition = "integer default 0")
     private int earnings;
+    @Column(name = "isActive")
+    private String isActive;
     
     public Long getId() {
         return id;
@@ -110,9 +112,16 @@ public class RenterModel {
    public void setEarnings(int earnings) {
         this.earnings = earnings;
     }
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
 
     public RenterModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-        String userRole, String image, String address, int earnings) {
+        String userRole, String image, String address, int earnings,String isActive) {
     this.id = id;
     this.email = email;
     this.password = password;
@@ -123,10 +132,13 @@ public class RenterModel {
     this.image = image;
     this.address = address;
     this.earnings = earnings;
+    this.isActive = isActive;
 }
 
     public RenterModel() {
     }
+
+    
 
     
     

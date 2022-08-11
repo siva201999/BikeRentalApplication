@@ -20,8 +20,9 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   loginSuccess = false;
   status!:string;
-  userId!:string;
+  userId!:number;
   userName!:string;
+  active!:string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit {
         console.log("After login",this.Login);
         console.log("response=",response);
         this.status=JSON.parse(JSON.stringify(response)).status;
-          if(this.status==="Success"){
+        this.active=JSON.parse(JSON.stringify(response)).active;
+          if(this.status==="Success" && this.active==="true"){
             this.invalidLogin=false;
             this.loginSuccess=true;
             this.successMessage='Login Successful.';
@@ -49,8 +51,12 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("userId",JSON.stringify(this.userId));
             localStorage.setItem("userName",JSON.stringify(this.userName));
             localStorage.setItem("Email",JSON.stringify(this.Login.email));
-            setTimeout(()=>this.router.navigate(['renter/dashboard']),2000);
-          }else{
+            setTimeout(()=>this.router.navigate(['renter']),2000);
+          }
+          else if(this.status==="Success" && this.active==="false"){
+            alert("Admin disabled your account!!!")
+          }
+          else{
             this.invalidLogin=true;
             this.loginSuccess=false;
             this.router.navigate(['']);
@@ -74,7 +80,11 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("userName",JSON.stringify(this.userName));
             localStorage.setItem("Email",JSON.stringify(this.Login.email));
             setTimeout(()=>this.router.navigate(['admin']),2000);
-          }else{
+          }
+          else if(this.status==="Success" && this.active==="false"){
+            alert("Admin disabled your account!!!")
+          }
+          else{
             this.invalidLogin=true;
             this.loginSuccess=false;
             this.router.navigate(['']);
@@ -85,7 +95,7 @@ export class LoginComponent implements OnInit {
     else if(this.userRole.userType === 'customer'){
       this.authService.isCustomerLogin(this.Login).subscribe(response => {
         this.status=JSON.parse(JSON.stringify(response)).status;
-          if(this.status==="Success"){
+          if(this.status==="Success" && this.active==="true"){
             this.invalidLogin=false;
             this.loginSuccess=true;
             this.successMessage='Login Successful.';

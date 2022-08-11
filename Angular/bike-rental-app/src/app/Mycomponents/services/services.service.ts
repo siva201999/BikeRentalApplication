@@ -24,4 +24,32 @@ export class ServicesService {
     return this.httpClient.get<Config["BikeObj"][]>(`${this.baseUrl}/renters/${id}`);
   }
 
+  isActiveRenter(id:any):Observable<any>{
+    return this.httpClient.put(`${this.baseUrl}/renters/${id}`,id);
+  }
+
+  isActiveCustomer(id:any):Observable<any>{
+    return this.httpClient.put(`${this.baseUrl}/customers/${id}`,id);
+  }
+  //============================================================renter services=====================================
+  getBikeById(id: number): Observable<any> {
+
+    return this.httpClient.get(`${this.baseUrl}/bike/${id}`);
+  }
+  
+  addBike(data: any): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/bike`, data);
+  }
+  
+  updateBike(id: number, value: any): Observable<Object> {
+    return this.httpClient.put(`${this.baseUrl}/bike/${id}`, value);
+  }
+  
+  deleteBike(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/bike/${id}`);
+  }
+  
+  getBike(): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/bike`);
+  }
 }

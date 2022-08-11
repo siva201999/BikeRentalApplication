@@ -82,15 +82,16 @@ public class AuthService {
         return result;
     }
 
-    public Map<String, String> isRenterPresent(RenterModel data){
+    public Map<String, Object> isRenterPresent(RenterModel data){
         List<RenterModel> renters = renterRepository.findAll();
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, Object> result = new HashMap<String, Object>();
         for(RenterModel renter:renters){
             if(renter.getEmail().equals(data.getEmail()) && renter.getPassword().equals(data.getPassword())){
-                result.put("userId", Long.toString(renter.getId()));
+                result.put("userId", renter.getId());
                 result.put("username", renter.getUserName());
                 result.put("email", renter.getEmail());
                 result.put("status","Success");
+                result.put("active",renter.getIsActive());
                 break;
             }
             else{
@@ -101,15 +102,16 @@ public class AuthService {
        
     }
 
-    public Map<String, String> isCustomerPresent(CustomerModel data){
+    public Map<String, Object> isCustomerPresent(CustomerModel data){
         List<CustomerModel> customers = customerRepository.findAll();
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, Object> result = new HashMap<String, Object>();
         for(CustomerModel customer:customers){
             if(customer.getEmail().equals(data.getEmail()) && customer.getPassword().equals(data.getPassword())){
-                result.put("userId", Long.toString(customer.getId()));
+                result.put("userId", customer.getId());
                 result.put("username", customer.getUserName());
                 result.put("email", customer.getEmail());
                 result.put("status","Success");
+                result.put("active",customer.getIsActive());
                 break;
             }
             else{

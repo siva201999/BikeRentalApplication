@@ -11,7 +11,9 @@ declare var $:any;
 export class AllCustomersComponent implements OnInit {
 
   public customerObj!:Config["CustomerObj"][];
-  
+  activeMessage="";
+  active=true;
+  activeStatus:any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,7 +34,25 @@ export class AllCustomersComponent implements OnInit {
       });
     });
   }
-    
+  
+  isActiveRenter(id:any) {
+    this.service.isActiveRenter(id).subscribe(response=>{
+      console.log(response);
+      if(response!==null){
+        this.active=this.active+id;
+        this.active=false;
+        this.activeMessage="Customer mark an inactive!!!";
+
+        setTimeout(function(){
+          $('#alertActive').fadeOut('slow');
+        },2000)
+
+      // $("#inactive"+id).attr("disabled", true);
+      }else{
+        alert("Customer is already mark as inactive!");
+      }
+    });
+  }
 
   
 }

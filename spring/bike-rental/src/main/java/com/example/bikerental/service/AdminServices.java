@@ -59,7 +59,7 @@ public class AdminServices {
 
     public List<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
-        System.out.println(renter.get().toString());
+        // System.out.println(renter.get().toString());
 
         if(renter.isPresent()){
             return getRenterBikes(renter.get());
@@ -67,7 +67,25 @@ public class AdminServices {
         return null;
     }
 
-    
+    public RenterModel isRenterActive(Long id){
+        RenterModel renter=renterRepository.findById(id).get();
+        if(!renter.getIsActive().equals("false")){
+            renter.setIsActive("false");
+            renter=renterRepository.save(renter);
+            return renter ;
+        }
+        return null;
+    }
+
+    public CustomerModel isCustomerActive(Long id){
+        CustomerModel customer=customerRepository.findById(id).get();
+        if(!customer.getIsActive().equals("false")){
+            customer.setIsActive("false");
+            customer=customerRepository.save(customer);
+            return customer;
+        }
+        return null;
+    }
 
     
 

@@ -1,4 +1,4 @@
-export class Config  {
+export class Config {
     Login={
         email:"",
         password:""
@@ -18,21 +18,12 @@ export class Config  {
         userRole:"",
         image!:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSAUZ37P2k0ugD36-kOgGrAjK6gLMWKXnyw&usqp=CAU",
         address:"",
-        earnings!:0
+        earnings!:0,
+        isActive!:"true"
     }
 
     CustomerObj={
-        email:"",
-        password:"",
-        mobileNumber:"",
-        userName:"",
-        gender:"",
-        userRole:"",
-        image!:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSAUZ37P2k0ugD36-kOgGrAjK6gLMWKXnyw&usqp=CAU",
-        address:"", 
-    }
-    RenterObj={
-        id:"",
+        id:0,
         email:"",
         password:"",
         mobileNumber:"",
@@ -41,19 +32,33 @@ export class Config  {
         userRole:"",
         image!:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSAUZ37P2k0ugD36-kOgGrAjK6gLMWKXnyw&usqp=CAU",
         address:"",
-        earnings!:0
+        isActive!:"true" 
+    }
+    RenterObj={
+        id:0,
+        email:"",
+        password:"",
+        mobileNumber:"",
+        userName:"",
+        gender:"",
+        userRole:"",
+        image!:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSAUZ37P2k0ugD36-kOgGrAjK6gLMWKXnyw&usqp=CAU",
+        address:"",
+        earnings!:0,
+        isActive!:"true"
     }
 
     BikeObj={
-        id!:"",
-        bikeImage!:"",
-        bikeNumber!:"",
-        brandName!:"",
-        description!:"",
-        modelName!:"",
-        pickUpLocation!:"",
-        rentAmount!:"",
-        renterId!:""
+        id:"",
+        bikeImage:"",
+        bikeNumber:"",
+        brandName:"",
+        description:"",
+        modelName:"",
+        pickUpLocation:"",
+        rentAmount:"",
+        renterId:localStorage.getItem('userId'),
+        availability:"",
     }
 
   static Login: object;

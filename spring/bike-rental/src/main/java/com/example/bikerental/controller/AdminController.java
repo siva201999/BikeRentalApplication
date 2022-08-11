@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
@@ -38,4 +41,15 @@ public class AdminController {
         return adminServices.getRenterById(renterId);
     }
     
+    @PutMapping("/renters/{id}")
+    public RenterModel isRenterActive(@PathVariable Long id){
+        return adminServices.isRenterActive(id);
+    }
+
+    @PutMapping("/customers/{id}")
+    public CustomerModel isCustomerActive(@PathVariable Long id){
+        return adminServices.isCustomerActive(id);
+    }
+
+
 }
