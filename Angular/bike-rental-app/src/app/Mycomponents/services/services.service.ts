@@ -32,13 +32,13 @@ export class ServicesService {
     return this.httpClient.put(`${this.baseUrl}/customers/${id}`,id);
   }
   //============================================================renter services=====================================
-  getBikeById(id: number): Observable<any> {
+  getBikeById(id: any): Observable<any> {
 
     return this.httpClient.get(`${this.baseUrl}/bike/${id}`);
   }
   
-  addBike(data: any): Observable<Object> {
-    return this.httpClient.post(`${this.baseUrl}/bike`, data);
+  addBike(id:number,data: any): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/bike/${id}`, data);
   }
   
   updateBike(id: number, value: any): Observable<Object> {
@@ -49,7 +49,7 @@ export class ServicesService {
     return this.httpClient.delete(`${this.baseUrl}/bike/${id}`);
   }
   
-  getBike(): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/bike`);
+  getBike(id:any): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/renter/${id}`);
   }
 }

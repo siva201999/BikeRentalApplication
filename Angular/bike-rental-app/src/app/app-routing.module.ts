@@ -11,6 +11,8 @@ import { BikeDetailsComponent } from './Mycomponents/admin/bike-details/bike-det
 import { RenterDashboardComponent } from './Mycomponents/Renter/renter-dashboard/renter-dashboard.component';
 import { RenterDashboardContentComponent } from './Mycomponents/Renter/renter-dashboard-content/renter-dashboard-content.component';
 import { AddBikesComponent } from './Mycomponents/Renter/add-bikes/add-bikes.component';
+import { EditBikesComponent } from './Mycomponents/Renter/edit-bikes/edit-bikes.component';
+import { BikeDetailComponent } from './Mycomponents/Renter/bike-detail/bike-detail.component';
 
 const routes: Routes = [
  
@@ -30,7 +32,9 @@ const routes: Routes = [
   children:[
           { path: 'dashboard', component:RenterDashboardContentComponent},
           {path:'', redirectTo:'dashboard', pathMatch: 'full'},
-          {path:'addBikes', component:AddBikesComponent}
+          {path:'addBikes', component:AddBikesComponent},
+          {path:'editBike/:id', component:EditBikesComponent},
+          {path:'bike/:id,', component:BikeDetailComponent}
   ]
 },
 

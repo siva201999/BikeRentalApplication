@@ -17,10 +17,7 @@ export class AllCustomersComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service:ServicesService) {
-     
-     
-    }
+    private service:ServicesService) {}
 
   ngOnInit(): void {
     this.service.getAllCustomers().subscribe(response=>{
@@ -35,21 +32,18 @@ export class AllCustomersComponent implements OnInit {
     });
   }
   
-  isActiveRenter(id:any) {
-    this.service.isActiveRenter(id).subscribe(response=>{
+  isActiveCustomer(id:any) {
+    this.service.isActiveCustomer(id).subscribe(response=>{
       console.log(response);
-      if(response!==null){
-        this.active=this.active+id;
-        this.active=false;
-        this.activeMessage="Customer mark an inactive!!!";
-
-        setTimeout(function(){
-          $('#alertActive').fadeOut('slow');
-        },2000)
-
-      // $("#inactive"+id).attr("disabled", true);
+      if(JSON.parse(JSON.stringify(response)).isActive==='true'){
+        this.activeMessage="Customer mark an active!!!"
+        alert(this.activeMessage);
+        window.location.reload();
+           
       }else{
-        alert("Customer is already mark as inactive!");
+        this.activeMessage="Customer mark an inactive!!!"
+        alert(this.activeMessage);
+        window.location.reload();
       }
     });
   }

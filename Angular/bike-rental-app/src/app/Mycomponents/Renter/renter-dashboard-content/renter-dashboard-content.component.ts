@@ -13,7 +13,7 @@ export class RenterDashboardContentComponent implements OnInit {
   parentMessage:any;
   error:any;
   bike: any=[];
-
+id=JSON.parse(localStorage.getItem('userId')!);
   constructor(private renterService:ServicesService,private router:Router){}
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class RenterDashboardContentComponent implements OnInit {
   }
 
   reloadData() {
-     this.renterService.getBike().subscribe(bikes=>this.bike=bikes);
+     this.renterService.getBike(this.id).subscribe(bikes=>this.bike=bikes);
   }
 
   deleteBike(id: any) {
@@ -35,11 +35,12 @@ export class RenterDashboardContentComponent implements OnInit {
   }
 
   getBikeById(id: any){
-    this.router.navigate(['displayBike', id]);
+    this.router.navigate(['renter/bike/', id]);
   }
 
   updateBike(id: any){
-    this.router.navigate(['update', id]);
+    this.router.navigate(['renter/editBike/', id]);
   }
 
+  
 }

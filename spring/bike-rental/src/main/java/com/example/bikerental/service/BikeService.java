@@ -2,9 +2,14 @@ package com.example.bikerental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import com.example.bikerental.model.BikeModel;
+import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.BikeRepository;
+import com.example.bikerental.repository.RenterRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +20,8 @@ public class BikeService {
 
     @Autowired
 	private BikeRepository bikeRepository;
+	@Autowired
+	private RenterRepository renterRepository;
 	
 //fetch all bikes
 	public ResponseEntity<List<BikeModel>> getAllBikes() {
@@ -32,19 +39,25 @@ public class BikeService {
 	}
 	
 //adding new bikes
-	public ResponseEntity<?> addBikes(BikeModel bike) {
-		try {
-			if(bikeRepository.existsByBikeNumber(bike.getBikeNumber())) {
-				 return new ResponseEntity<>(HttpStatus.CONFLICT);
-			}
-			else
-			   return new ResponseEntity<>(bikeRepository.save(bike),HttpStatus.OK);
-		}
-		catch (Exception e) {
-		      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		    }	
+public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
+	try {
+	if(bikeRepository.existsByBikeNumber(bike.getBikeNumber())) {
+	return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
-//edit bikes
+	else if(renterRepository.findById(id).isPresent()) {
+		renterRepository.findById(id).map(bikeDetail->
+		bikeDetail.getBike().add(bike));
+		return new ResponseEntity<>(bikeRepository.save(bike),HttpStatus.OK);
+	}
+	else {
+	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	 }
+	catch (Exception e) {
+		 return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	   }
+	}
+	//edit bikes
 	public ResponseEntity<?> updateBike(Long id, BikeModel bike) {
 		try {
             if(bikeRepository.findById(id).isPresent()) {
@@ -85,7 +98,7 @@ public class BikeService {
 		    }		
     }
 
-	public ResponseEntity<BikeModel> getBikeById(long id) {
+	public ResponseEntity<BikeModel> getBikeById(Long id) {
 		try {
 			if(bikeRepository.findById(id).isPresent()) {	
 				return new ResponseEntity<>(bikeRepository.getReferenceById(id),HttpStatus.OK);
@@ -98,4 +111,21 @@ public class BikeService {
 			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }	
     }
+
+ //get renter bike by id
+
+	public Set<BikeModel> getRenterBikes(Set<BikeModel> set){
+        return set;
+    }
+
+    public Set<BikeModel> getRenterById(Long id){
+        Optional<RenterModel> renter=renterRepository.findById(id);
+        // System.out.println(renter.get().toString());
+
+        if(renter.isPresent()){
+            return getRenterBikes(renter.get().getBike());
+        }
+        return null;
+    }
+
 }

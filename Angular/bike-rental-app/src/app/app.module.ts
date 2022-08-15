@@ -16,12 +16,12 @@ import { AllCustomersComponent } from './Mycomponents/admin/all-customers/all-cu
 import { RenterDetailsComponent } from './Mycomponents/admin/renter-details/renter-details.component';
 import { BikeDetailsComponent } from './Mycomponents/admin/bike-details/bike-details.component';
 import { AddBikesComponent } from './Mycomponents/Renter/add-bikes/add-bikes.component';
-import { EarningsComponent } from './Mycomponents/Renter/earnings/earnings.component';
 import { EditBikesComponent } from './Mycomponents/Renter/edit-bikes/edit-bikes.component';
 import { RenterDashboardComponent } from './Mycomponents/Renter/renter-dashboard/renter-dashboard.component';
 import { RenterProfileComponent } from './Mycomponents/Renter/renter-profile/renter-profile.component';
 import { RenterSidenavComponent } from './Mycomponents/Renter/renter-sidenav/renter-sidenav.component';
 import { RenterDashboardContentComponent } from './Mycomponents/Renter/renter-dashboard-content/renter-dashboard-content.component';
+import { BikeDetailComponent } from './Mycomponents/Renter/bike-detail/bike-detail.component';
 
 
 @NgModule({
@@ -38,12 +38,12 @@ import { RenterDashboardContentComponent } from './Mycomponents/Renter/renter-da
     RenterDetailsComponent,
     BikeDetailsComponent,
     AddBikesComponent,
-    EarningsComponent,
     EditBikesComponent,
     RenterDashboardComponent,
     RenterProfileComponent,
     RenterSidenavComponent,
     RenterDashboardContentComponent,
+    BikeDetailComponent,
   
   ],
 

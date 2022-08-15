@@ -1,10 +1,16 @@
 package com.example.bikerental.model;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,10 +39,15 @@ public class RenterModel {
     private int earnings;
     @Column(name = "isActive")
     private String isActive;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "renter_id")
+    private Set<BikeModel> bike = new HashSet<>();
+   
     
+
     public Long getId() {
-        return id;
-    }
+            return id;
+        }
 
     public void setId(Long id) {
         this.id = id;
@@ -119,9 +130,21 @@ public class RenterModel {
     public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
+    public Set<BikeModel> getBike() {
+        return bike;
+        }
+        
+    public void setBike(Set<BikeModel> bike) {
+    this.bike = bike;
+    }
+ 
+
+    public RenterModel() {
+    }
 
     public RenterModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-        String userRole, String image, String address, int earnings,String isActive) {
+    String userRole, String image, String address, int earnings, String isActive, Set<BikeModel> bike) {
+   
     this.id = id;
     this.email = email;
     this.password = password;
@@ -133,18 +156,24 @@ public class RenterModel {
     this.address = address;
     this.earnings = earnings;
     this.isActive = isActive;
-}
-
-    public RenterModel() {
+    this.bike = bike;
     }
 
-    
+    @Override
+    public String toString() {
+        return "RenterModel [address=" + address + ", bike=" + bike + ", earnings=" + earnings + ", email=" + email
+                + ", gender=" + gender + ", id=" + id + ", image=" + image + ", isActive=" + isActive
+                + ", mobileNumber=" + mobileNumber + ", password=" + password + ", userName=" + userName + ", userRole="
+                + userRole + "]";
+    }
 
-    
-    
+   
 
-    
+   
+   
 
-    
-    
+   
+
+   
+   
 }

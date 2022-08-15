@@ -14,7 +14,7 @@ export class AddBikesComponent implements OnInit {
   bike:Config['BikeObj'] = new Config().BikeObj;
   base64code!:any;
   submitted = false;
-
+  id=JSON.parse(localStorage.getItem('userId')!);
   constructor(private renterService:ServicesService ,
   private router: Router) { }
   
@@ -23,8 +23,9 @@ export class AddBikesComponent implements OnInit {
   }
 
 save() {
-  this.renterService.addBike(this.bike).subscribe(data => {
+  this.renterService.addBike(this.id,this.bike).subscribe(data => {
     console.log(data)
+    console.log(this.id);
     this.goto();
   }, 
   error => console.log(error));

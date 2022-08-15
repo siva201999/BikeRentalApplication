@@ -1,6 +1,7 @@
 package com.example.bikerental.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,7 +38,7 @@ public class AdminController {
     }
 
     @GetMapping("/renters/{renterId}")
-    public List<BikeModel> getRenterById(@PathVariable Long renterId){
+    public Set<BikeModel> getRenterById(@PathVariable Long renterId){
         return adminServices.getRenterById(renterId);
     }
     

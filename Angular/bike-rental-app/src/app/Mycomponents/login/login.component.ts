@@ -95,6 +95,7 @@ export class LoginComponent implements OnInit {
     else if(this.userRole.userType === 'customer'){
       this.authService.isCustomerLogin(this.Login).subscribe(response => {
         this.status=JSON.parse(JSON.stringify(response)).status;
+        this.active=JSON.parse(JSON.stringify(response)).active;
           if(this.status==="Success" && this.active==="true"){
             this.invalidLogin=false;
             this.loginSuccess=true;

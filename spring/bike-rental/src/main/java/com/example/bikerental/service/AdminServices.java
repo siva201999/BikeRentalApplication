@@ -3,7 +3,7 @@ package com.example.bikerental.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,37 +32,18 @@ public class AdminServices {
         return renterRepository.findAll();
     }
 
-    public List<RenterModel> getRenters(String email){
-        List<RenterModel> renters=getAllRenters();
-        List<RenterModel> renterBikes=new ArrayList<>();
-        for(RenterModel renter:renters){
-            if(renter.getEmail().equals(email)){
-                renterBikes.add(renter);
-            }
-        }
-        return renterBikes;
+  
+
+    public Set<BikeModel> getRenterBikes(Set<BikeModel> set){
+        return set;
     }
 
-    public List<BikeModel> getRenterBikes(RenterModel renter){
-        List<BikeModel> bikes=bikeRepository.findAll();
-        List<RenterModel> renters=getRenters(renter.getEmail());
-        List<BikeModel> renterBikes=new ArrayList<BikeModel>();
-        for(RenterModel renterList:renters){
-            for(BikeModel bike:bikes){
-                    if(bike.getId().equals(renterList.getId())){
-                        renterBikes.add(bike);
-                }
-            }
-        }
-        return renterBikes;
-    }
-
-    public List<BikeModel> getRenterById(Long id){
+    public Set<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
         // System.out.println(renter.get().toString());
 
         if(renter.isPresent()){
-            return getRenterBikes(renter.get());
+            return getRenterBikes(renter.get().getBike());
         }
         return null;
     }
@@ -72,9 +53,13 @@ public class AdminServices {
         if(!renter.getIsActive().equals("false")){
             renter.setIsActive("false");
             renter=renterRepository.save(renter);
-            return renter ;
+            
         }
-        return null;
+        else if(!renter.getIsActive().equals("true")){
+            renter.setIsActive("true");
+            renter=renterRepository.save(renter);
+        }
+        return renter;
     }
 
     public CustomerModel isCustomerActive(Long id){
@@ -82,9 +67,14 @@ public class AdminServices {
         if(!customer.getIsActive().equals("false")){
             customer.setIsActive("false");
             customer=customerRepository.save(customer);
-            return customer;
+            
         }
-        return null;
+        else if(!customer.getIsActive().equals("true")){
+            customer.setIsActive("true");
+            customer=customerRepository.save(customer);
+            
+        }
+        return customer;
     }
 
     

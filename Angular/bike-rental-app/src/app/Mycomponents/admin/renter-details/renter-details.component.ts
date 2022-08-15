@@ -13,10 +13,9 @@ export class RenterDetailsComponent implements OnInit {
 
   public renterObj!:Config['RenterObj'][];
   public bikeObj!:Config['BikeObj'][];
-  renterActive!:Config['RenterObj'][];
+  // renterActive!:Config['RenterObj'][];
   activeMessage="";
-  active=true;
-  activeStatus:any;
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private service:ServicesService) {
@@ -34,23 +33,25 @@ export class RenterDetailsComponent implements OnInit {
     })
     
   }
-
+  
   isActiveRenter(id:any) {
     this.service.isActiveRenter(id).subscribe(response=>{
       console.log(response);
-      if(response!==null){
-        this.active=this.active+id;
-        this.active=false;
-        this.activeMessage="Renter mark an inactive!!!"
-        setTimeout(function(){
-          $('#alertActive').fadeOut('slow');
-        },2000);
-      // $("#inactive"+id).attr("disabled", true)
+      
+      if(JSON.parse(JSON.stringify(response)).isActive==='true'){
+        this.activeMessage="Renter mark an active!!!"
+        alert(this.activeMessage);
+        window.location.reload();
+           
       }else{
-        alert("renter is already mark as inactive!");
+        this.activeMessage="Renter mark an inactive!!!"
+        alert(this.activeMessage);
+        window.location.reload();
       }
     });
   }
+
+
       
   getRenterBikes(id:any){
     this.service.getRenterBikes(id).subscribe(response=>{

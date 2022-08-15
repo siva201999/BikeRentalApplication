@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h3 class="text-center pb-2">Customer Details</h3>
-  <div class="alert alert-warning text-center" id="alertActive" *ngIf='!active'>{{activeMessage}}</div>
+ 
     <div class="row d-flex">
         <div class="col-lg-12">
             <div class="card shadow p-2 mb-4 bg-white rounded" style="overflow-x:auto;">
@@ -13,23 +13,29 @@
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Gender</th>
-                        <th scope="col">User Role</th>
+                        <!-- <th scope="col">User Role</th> -->
                         <th scope="col">Active</th>
                       </tr>
                     </thead>
                   
                   <tbody>
                     <tr *ngFor="let customer of customerObj; index as i">
-                        <td>{{i+1}}</td>
+                        <td>{{customer.id}}</td>
                         <td><img src="{{customer.image}}" class="rounded-circle" height="40" width="40" style="background:grey" alt=""></td>
                         <td>{{ customer.userName}}</td>
                         <td>{{ customer.email}}</td>
                         <td>{{ customer.mobileNumber}}</td>
                         <td>{{ customer.gender}}</td>
-                        <td>{{ customer.userRole}}</td>
-                        <td><button class="btn btn-danger" id="inactive{{customer.id}}" (click)="isActiveRenter(customer.id)" >Mark as inactive</button></td>
-                     
-                      </tr>
+                        <!-- <td>{{ customer.userRole}}</td> -->
+                       <td>
+                        <div *ngIf="customer.isActive==='false'; else elseBlock">
+                          <button class="btn btn-danger" (click)="isActiveCustomer(customer.id)" >Mark as active</button>
+                        </div>
+                        <ng-template #elseBlock>
+                          <button class="btn btn-danger" (click)="isActiveCustomer(customer.id)" >Mark as inactive</button>
+                        </ng-template>
+                      </td>
+                    </tr>
                   </tbody> 
               </table>
             </div>

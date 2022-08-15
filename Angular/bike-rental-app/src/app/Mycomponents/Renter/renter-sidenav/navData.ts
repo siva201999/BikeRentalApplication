@@ -13,10 +13,6 @@ export const navbarData=[
         routerLink:'addBikes',
         icon:'fal fa-plus-square',
         label:'Add Bikes'
-    },
-    {
-        routerLink:'earnings',
-        icon:'fal fa-hand-holding-usd',
-        label:'Earnings'
     }
+    
     ];

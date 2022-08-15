@@ -50,14 +50,24 @@ export class Config {
 
     BikeObj={
         id:"",
-        bikeImage:"",
-        bikeNumber:"",
         brandName:"",
-        description:"",
         modelName:"",
-        pickUpLocation:"",
+        bikeNumber:"",
+        bikeImage:"",
+        description:"",
         rentAmount:"",
-        renterId:localStorage.getItem('userId'),
+        pickUpLocation:"",
+        availability:"",
+    }
+    BikeByIdObj={
+        id:0,
+        brandName:"",
+        modelName:"",
+        bikeNumber:"",
+        bikeImage:"",
+        description:"",
+        rentAmount:"",
+        pickUpLocation:"",
         availability:"",
     }
 
