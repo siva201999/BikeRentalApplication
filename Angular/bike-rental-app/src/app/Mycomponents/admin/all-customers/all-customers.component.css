@@ -1,0 +1,30 @@
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+   
+  }
+  
+
+  /* .card{
+    position: relative;
+     display: flex;
+     flex-direction: column;
+     min-width: 0;
+     word-wrap: break-word;
+  }
+  @media only screen and (max-width: 836px) {
+    th {
+      font-size:12px;
+    }
+  }
+  @media only screen and (max-width: 713px) {
+    th {
+      font-size:10px;
+    }
+  }
+  @media only screen and (max-width: 591px) {
+    th {
+      font-size:8px;
+    }
+  } */

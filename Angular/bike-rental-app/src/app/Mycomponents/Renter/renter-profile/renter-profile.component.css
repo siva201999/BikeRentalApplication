@@ -1,0 +1,11 @@
+.card-img-top{
+    width: auto;
+    height: auto;
+}
+.row{
+    padding: 15px;
+}
+.btn{
+    display: table-cell;
+    margin: 10px;
+}
