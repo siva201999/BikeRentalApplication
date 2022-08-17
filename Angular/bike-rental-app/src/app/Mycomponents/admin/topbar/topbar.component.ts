@@ -11,6 +11,7 @@ export class TopbarComponent implements OnInit {
   config:Config["Signup"]=new Config().Signup;
   profileLogo=this.config.image;
   localItem=localStorage.getItem("Email");
+  name=JSON.parse(localStorage.getItem('userName')!);
   constructor(private router:Router) { }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
-<h1>Edit Bike</h1>
-
+<div class="card shadow-lg p-3 mb-5 bg-body rounded col-sm-6 offset-sm-3">
+  <h3 style="width: auto;" class="text-center">Edit Bikes</h3>
 
 
 <div class="container">
@@ -80,14 +80,17 @@
         </span>
       </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Submit</button>
-    </form>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success mt-2" [disabled]="!editForm.form.valid">Submit</button>
+      </div>
+     </form>
   </div>
+</div>
 
   <div [hidden]="!submitted">
     <h4>You edited successfully!</h4>
   </div>
-
+</div>
 
     <!-- <div class="form-group">
         <label for="name">Bike Image</label>

@@ -62,7 +62,7 @@ public class AuthService {
         return null;
     }
 
-    //==================================LOGIN===========================
+    //==================================LOGIN=======================================
     public Map<String, String> isAdminPresent(AdminModel data){
         List<AdminModel> admins = adminRepository.findAll();
         Map<String, String> result = new HashMap<String, String>();
@@ -90,6 +90,7 @@ public class AuthService {
                 result.put("userId", renter.getId());
                 result.put("username", renter.getUserName());
                 result.put("email", renter.getEmail());
+                result.put("role", renter.getUserRole());
                 result.put("status","Success");
                 result.put("active",renter.getIsActive());
                 break;
@@ -110,6 +111,7 @@ public class AuthService {
                 result.put("userId", customer.getId());
                 result.put("username", customer.getUserName());
                 result.put("email", customer.getEmail());
+                result.put("role", customer.getUserRole());
                 result.put("status","Success");
                 result.put("active",customer.getIsActive());
                 break;

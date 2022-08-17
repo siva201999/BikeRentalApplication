@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Renter")
 public class RenterModel {
@@ -39,10 +41,19 @@ public class RenterModel {
     private int earnings;
     @Column(name = "isActive")
     private String isActive;
+    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "renter_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
     private Set<BikeModel> bike = new HashSet<>();
-   
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "renter_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+    private Set<Booking> booking = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "renter_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+    private Set<Comments> newComment = new HashSet<>();
     
 
     public Long getId() {
@@ -137,13 +148,27 @@ public class RenterModel {
     public void setBike(Set<BikeModel> bike) {
     this.bike = bike;
     }
- 
+    public Set<Booking> getBooking() {
+        return booking;
+    }
 
+    public void setBooking(Set<Booking> booking) {
+        this.booking = booking;
+    }
+
+    public Set<Comments> getNewComment() {
+        return newComment;
+    }
+
+    public void setNewComment(Set<Comments> newComment) {
+        this.newComment = newComment;
+    }
+    
     public RenterModel() {
     }
 
     public RenterModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-    String userRole, String image, String address, int earnings, String isActive, Set<BikeModel> bike) {
+    String userRole, String image, String address, int earnings, String isActive, Set<BikeModel> bike,Set<Booking> booking,Set<Comments> newComment) {
    
     this.id = id;
     this.email = email;
@@ -157,6 +182,8 @@ public class RenterModel {
     this.earnings = earnings;
     this.isActive = isActive;
     this.bike = bike;
+    this.booking =booking;
+    this.newComment = newComment;
     }
 
     @Override
@@ -166,6 +193,10 @@ public class RenterModel {
                 + ", mobileNumber=" + mobileNumber + ", password=" + password + ", userName=" + userName + ", userRole="
                 + userRole + "]";
     }
+
+   
+
+    
 
    
 

@@ -1,0 +1,56 @@
+<div class="card shadow-lg p-3 mb-5 bg-body rounded col-sm-6 offset-sm-3">
+    <h3 style="width: auto;" class="text-center">Edit Profile</h3>
+  <div class="container">
+    <div [hidden]="submitted">
+      <form  #editForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group" [class.has-error]="control.invalid">
+          <label for="name" class="control-label">User Name</label>
+          <input type="text" class="form-control" id="userName" required  [(ngModel)]="renter.userName" name="userName" #control="ngModel">
+         
+          <span class="help-block" *ngIf="control.invalid && control.touched" style="color: red;"> 
+            User Name is Required
+          </span>
+        </div>
+  
+        <div class="form-group" [class.has-error]="mobileNumbercontrol.invalid">
+          <label for="bikeNumber" class="control-label">Mobile Number</label>
+          <input type="text" class="form-control" id="mobileNumber" required  [(ngModel)]="renter.mobileNumber" name="bikeNumber" #mobileNumbercontrol="ngModel">
+        
+          <span class="help-block" *ngIf="mobileNumbercontrol.invalid && mobileNumbercontrol.touched" style="color: red;"> 
+             mobile Number is Required
+          </span>
+        </div>
+  
+        <div class="form-group" [class.has-error]="gendercontrol.invalid">
+          <label for="pickUpLocation" class="control-label">Gender</label>
+          <input type="text" class="form-control" id="gender" required [(ngModel)]="renter.gender" name="gender" #gendercontrol="ngModel">
+        
+          <span class="help-block" *ngIf="gendercontrol.invalid && gendercontrol.touched" style="color: red;"> 
+            gender is Required
+          </span>
+        </div>
+        <div class="form-group" [class.has-error]="addresscontrol.invalid">
+          <label for="availability" class="control-label">Address</label>
+          <input type="text" class="form-control" id="address" required  [(ngModel)]="renter.address" name="address" #addresscontrol="ngModel">
+       
+          <span class="help-block" *ngIf="addresscontrol.invalid && addresscontrol.touched" style="color: red;"> 
+            Address is Required
+          </span>
+        </div>
+  
+        <div class="m-b-23 pb-4">
+          <span class="label-input100">Upload Profile Image </span>
+          <input type="file" class="form-control mt-2" id="image" (change)="onChange($event)" name="image"  placeholder="Upload your profile image" >
+          <!-- <span class="focus-input100" data-symbol="&#xf14c;"></span> -->
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success mt-2" [disabled]="!editForm.form.valid">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  
+    <div [hidden]="!submitted">
+      <h4>You edited successfully!</h4>
+    </div>
+  </div>

@@ -13,6 +13,10 @@ import { RenterDashboardContentComponent } from './Mycomponents/Renter/renter-da
 import { AddBikesComponent } from './Mycomponents/Renter/add-bikes/add-bikes.component';
 import { EditBikesComponent } from './Mycomponents/Renter/edit-bikes/edit-bikes.component';
 import { BikeDetailComponent } from './Mycomponents/Renter/bike-detail/bike-detail.component';
+import { BookingHistoryComponent } from './Mycomponents/admin/booking-history/booking-history.component';
+import { RenterProfileComponent } from './Mycomponents/Renter/renter-profile/renter-profile.component';
+import { EditProfileComponent } from './Mycomponents/Renter/edit-profile/edit-profile.component';
+import { CommentsComponent } from './Mycomponents/Renter/comments/comments.component';
 
 const routes: Routes = [
  
@@ -25,7 +29,8 @@ const routes: Routes = [
             {path:'', redirectTo:'dashboard', pathMatch: 'full'},
             {path:'dashboard/customerDetails',component:AllCustomersComponent},
             {path:'dashboard/renterDetails',component:RenterDetailsComponent},
-            {path:'dashboard/bikeDetails/:id',component:BikeDetailsComponent}
+            {path:'dashboard/bikeDetails/:id',component:BikeDetailsComponent},
+            {path:'dashboard/booking',component:BookingHistoryComponent},
     ] 
   },
   {path:'renter',component:RenterDashboardComponent,
@@ -34,7 +39,10 @@ const routes: Routes = [
           {path:'', redirectTo:'dashboard', pathMatch: 'full'},
           {path:'addBikes', component:AddBikesComponent},
           {path:'editBike/:id', component:EditBikesComponent},
-          {path:'bike/:id,', component:BikeDetailComponent}
+          {path:'bike/:id', component:BikeDetailComponent},
+          {path:'profile',component:RenterProfileComponent},
+          {path:'editProfile/:id', component:EditProfileComponent},
+          {path:'comments', component:CommentsComponent}
   ]
 },
 

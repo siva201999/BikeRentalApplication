@@ -1,11 +1,10 @@
-<h1 style="align-items: left; width: auto;">Add Bikes</h1>
-
+<div class="card shadow-lg p-3 mb-5 bg-body rounded col-sm-6 offset-sm-3">
+  <h3 style="width: auto;" class="text-center">Add Bikes</h3>
 <div class="container">
   <div [hidden]="submitted">
-    <!-- <h1>Hero Form</h1> -->
     <form  #addForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group" [class.has-error]="control.invalid">
-        <label for="name" class="control-label">Brand Name</label>
+        <label for="name" class="control-label"><i class="fal fa-motorcycle"></i> Brand Name</label>
         <input type="text" class="form-control" id="brandName" required  [(ngModel)]="bike.brandName" name="brandName" #control="ngModel">
        
         <span class="help-block" *ngIf="control.invalid && control.touched" style="color: red;"> 
@@ -14,7 +13,7 @@
       </div>
 
       <div class="form-group" [class.has-error]="modelcontrol.invalid">
-        <label for="modelName" class="control-label">Model Name</label>
+        <label for="modelName" class="control-label"><i class="fal fa-motorcycle"></i> Model Name</label>
         <input type="text" class="form-control" id="modelName" required [(ngModel)]="bike.modelName" name="modelName" #modelcontrol="ngModel">
        
         <span class="help-block" *ngIf="modelcontrol.invalid && modelcontrol.touched" style="color: red;"> 
@@ -56,7 +55,7 @@
           Image Url is Required
         </span>
       </div> -->
-      <div class="wrap-input100 m-b-23 pb-4">
+      <div class="form-group">
         <span class="label-input100">Upload Profile Image </span>
         <input type="file" class="form-control mt-2" id="bikeImage" (change)="onChange($event)" name="bikeImage"  placeholder="Upload your profile image" >
         <!-- <span class="focus-input100" data-symbol="&#xf14c;"></span> -->
@@ -78,15 +77,17 @@
           Description is Required
         </span>
       </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="!addForm.form.valid">Submit</button>
+  <div class="text-center">
+      <button type="submit" class="btn btn-success mt-2" [disabled]="!addForm.form.valid">Submit</button>
+    </div>
     </form>
   </div>
+</div>
 
-  <div [hidden]="!submitted">
-    <h4>You submitted successfully!</h4>
+  <div [hidden]="!submitted" class="text-center">
+    <h4>Bike Added Successfully!</h4>
   </div>
-
+</div>
 
     <!-- <div class="form-group">
         <label for="name">Bike Image</label>

@@ -9,29 +9,20 @@ import { ServicesService } from '../../services/services.service';
   styleUrls: ['./bike-detail.component.css']
 })
 export class BikeDetailComponent implements OnInit {
-
   id!: number;
-  bike!: any;
-
+  bikes:Config['BikeObj']=new Config().BikeObj;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private renterService: ServicesService) { }
-
-  ngOnInit() {
-    this.bike= new Config().BikeByIdObj;
-
-    this.id = this.route.snapshot.params['id'];
-    
-    this.renterService.getBikeById(this.id).subscribe(data => {
-        console.log(data)
-        this.bike= data;
-      }, error => console.log(error));
-  }
-
   
-
+  ngOnInit(): void {
+    this.id=this.route.snapshot.params['id'];
+    console.log(this.id)
+    this.renterService.getBikeById(this.id).subscribe(data=>{
+      this.bikes=data;
+    },error=>console.log(error));
+  }
   goto(){
     this.router.navigate(['renter/dashboard']);
   }
-
 }

@@ -1,6 +1,5 @@
 package com.example.bikerental.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -9,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
+import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.BikeRepository;
+import com.example.bikerental.repository.BookingRepository;
 import com.example.bikerental.repository.CustomerRepository;
 import com.example.bikerental.repository.RenterRepository;
 
@@ -23,31 +24,33 @@ public class AdminServices {
     RenterRepository renterRepository;
     @Autowired
     BikeRepository bikeRepository;
+    @Autowired
+    BookingRepository bookingRepository;
 
+    //==========Fetch all customers====================
     public List<CustomerModel> getAllCustomers(){
         return customerRepository.findAll();
     }
 
+    //===========Fetch all renters======================
     public List<RenterModel> getAllRenters(){
         return renterRepository.findAll();
     }
 
-  
-
-    public Set<BikeModel> getRenterBikes(Set<BikeModel> set){
-        return set;
+    //===========Fetch renter bikes======================
+    public Set<BikeModel> getRenterBikes(Set<BikeModel> bike){
+        return bike;
     }
 
     public Set<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
-        // System.out.println(renter.get().toString());
-
         if(renter.isPresent()){
             return getRenterBikes(renter.get().getBike());
         }
         return null;
     }
 
+    //============Check if renter is active or not=================
     public RenterModel isRenterActive(Long id){
         RenterModel renter=renterRepository.findById(id).get();
         if(!renter.getIsActive().equals("false")){
@@ -62,6 +65,7 @@ public class AdminServices {
         return renter;
     }
 
+    //============Check if customer is active or not=================
     public CustomerModel isCustomerActive(Long id){
         CustomerModel customer=customerRepository.findById(id).get();
         if(!customer.getIsActive().equals("false")){
@@ -77,7 +81,10 @@ public class AdminServices {
         return customer;
     }
 
-    
+    //========================customer booking=======================
+    public List<Booking> getAllBookings(){
+        return bookingRepository.findAll();
+    }  
 
     
 }

@@ -14,9 +14,9 @@ export const navbarData=[
         icon:'fal fa-user-tie',
         label:'Renter details'
     },
-    // {
-    //     routerLink:'dashboard/bikeDetails/${id}',
-    //     icon:'fal fa-hand-holding-usd',
-    //     label:'Earnings'
-    // }
+    {
+        routerLink:'dashboard/booking',
+        icon:'fal fa-history',
+        label:'Bookings'
+    }
     ];

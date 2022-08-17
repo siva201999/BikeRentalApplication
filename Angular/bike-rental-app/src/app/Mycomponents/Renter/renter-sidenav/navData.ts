@@ -13,6 +13,11 @@ export const navbarData=[
         routerLink:'addBikes',
         icon:'fal fa-plus-square',
         label:'Add Bikes'
+    },
+    {
+        routerLink:'comments',
+        icon:'fal fa-comment-alt-check',
+        label:'comments'
     }
     
     ];

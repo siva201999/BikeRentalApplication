@@ -22,6 +22,10 @@ import { RenterProfileComponent } from './Mycomponents/Renter/renter-profile/ren
 import { RenterSidenavComponent } from './Mycomponents/Renter/renter-sidenav/renter-sidenav.component';
 import { RenterDashboardContentComponent } from './Mycomponents/Renter/renter-dashboard-content/renter-dashboard-content.component';
 import { BikeDetailComponent } from './Mycomponents/Renter/bike-detail/bike-detail.component';
+import { BookingHistoryComponent } from './Mycomponents/admin/booking-history/booking-history.component';
+import { bikeFilterPipe } from './Mycomponents/Renter/renter-dashboard-content/bikeFilter.pipe';
+import { EditProfileComponent } from './Mycomponents/Renter/edit-profile/edit-profile.component';
+import { CommentsComponent } from './Mycomponents/Renter/comments/comments.component';
 
 
 @NgModule({
@@ -44,6 +48,10 @@ import { BikeDetailComponent } from './Mycomponents/Renter/bike-detail/bike-deta
     RenterSidenavComponent,
     RenterDashboardContentComponent,
     BikeDetailComponent,
+    BookingHistoryComponent,
+    bikeFilterPipe,
+    EditProfileComponent,
+    CommentsComponent,
   
   ],
 

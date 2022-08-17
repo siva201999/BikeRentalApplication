@@ -97,7 +97,7 @@ public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
 		      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		    }		
     }
-
+//get bike by id
 	public ResponseEntity<BikeModel> getBikeById(Long id) {
 		try {
 			if(bikeRepository.findById(id).isPresent()) {	
@@ -120,8 +120,6 @@ public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
 
     public Set<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
-        // System.out.println(renter.get().toString());
-
         if(renter.isPresent()){
             return getRenterBikes(renter.get().getBike());
         }

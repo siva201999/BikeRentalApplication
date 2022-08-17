@@ -31,12 +31,14 @@ export class ServicesService {
   isActiveCustomer(id:any):Observable<any>{
     return this.httpClient.put(`${this.baseUrl}/customers/${id}`,id);
   }
-  //============================================================renter services=====================================
-  getBikeById(id: any): Observable<any> {
 
+  getBooking():Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/customer/bookings`);
+  }
+  //============================================================renter services=====================================
+  getBikeById(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/bike/${id}`);
   }
-  
   addBike(id:number,data: any): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/bike/${id}`, data);
   }
@@ -51,5 +53,20 @@ export class ServicesService {
   
   getBike(id:any): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}/renter/${id}`);
+  }
+  getRenterEarning(id:number): Observable<Object>{
+    return this.httpClient.get(`${this.baseUrl}/renterEarning/${id}`);
+  }
+
+  getRenterById(id:any):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/renterDetail/${id}`);
+  }
+
+  updateProfile(id: number, value: any): Observable<Object> {
+    return this.httpClient.put(`${this.baseUrl}/renterProfile/${id}`, value);
+  }
+
+  addComment(id:number,data: any): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/comments/${id}`, data);
   }
 }

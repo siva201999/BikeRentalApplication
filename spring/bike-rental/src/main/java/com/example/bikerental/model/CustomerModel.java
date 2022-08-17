@@ -1,10 +1,17 @@
 package com.example.bikerental.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +38,10 @@ public class CustomerModel {
     private String address;
     @Column(name = "isActive")
     private String isActive;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "customer_id")
+    private Set<Booking> booking = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -110,8 +121,16 @@ public class CustomerModel {
         this.isActive = isActive;
     }
     
+    public Set<Booking> getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Set<Booking> booking) {
+        this.booking = booking;
+    }
+
     public CustomerModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address,String isActive) {
+            String userRole, String image, String address,String isActive,Set<Booking> booking) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -122,10 +141,14 @@ public class CustomerModel {
         this.image = image;
         this.address = address;
         this.isActive = isActive;
+        this.booking =booking;
     }
 
     public CustomerModel() {
     }
+
+    
+    
 
     
 

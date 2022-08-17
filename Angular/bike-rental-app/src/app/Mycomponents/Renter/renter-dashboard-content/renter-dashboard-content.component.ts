@@ -13,7 +13,13 @@ export class RenterDashboardContentComponent implements OnInit {
   parentMessage:any;
   error:any;
   bike: any=[];
-id=JSON.parse(localStorage.getItem('userId')!);
+  bikes:Config['BikeObj']=new Config().BikeObj;
+  renter:Config['RenterObj']=new Config().RenterObj;
+  id=JSON.parse(localStorage.getItem('userId')!);
+  earnings!:any;
+
+  SearchValue:string;
+
   constructor(private renterService:ServicesService,private router:Router){}
 
   ngOnInit() {
@@ -22,23 +28,28 @@ id=JSON.parse(localStorage.getItem('userId')!);
 
   reloadData() {
      this.renterService.getBike(this.id).subscribe(bikes=>this.bike=bikes);
+     this.renterService.getRenterEarning(this.id).subscribe(earning=>this.earnings=earning);
   }
 
   deleteBike(id: any) {
+    if(confirm('Are you sure to delete the Record?'))
     this.renterService.deleteBike(id)
       .subscribe(
         data => {
           console.log(data);
+          alert('record deleted Successfully')
           this.reloadData();
         },
         error => console.log(error));
   }
 
   getBikeById(id: any){
+    console.log(id);
     this.router.navigate(['renter/bike/', id]);
   }
 
   updateBike(id: any){
+    console.log(id);
     this.router.navigate(['renter/editBike/', id]);
   }
 

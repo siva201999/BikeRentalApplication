@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.model.BikeModel;
+import com.example.bikerental.model.Booking;
 import com.example.bikerental.service.AdminServices;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -52,5 +53,9 @@ public class AdminController {
         return adminServices.isCustomerActive(id);
     }
 
+    @GetMapping("/customer/bookings")
+    public List<Booking> getAllBookings(){
+        return adminServices.getAllBookings();
+    }
 
 }

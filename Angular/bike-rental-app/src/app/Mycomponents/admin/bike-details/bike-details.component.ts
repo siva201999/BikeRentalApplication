@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Config } from 'src/app/config';
 import { ServicesService } from '../../services/services.service';
-
+declare var $: any;
 @Component({
   selector: 'app-bike-details',
   templateUrl: './bike-details.component.html',
@@ -19,6 +19,11 @@ export class BikeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.bikeDetails = JSON.parse(localStorage.getItem('RenterBikes') as any);
     // console.log(this.bikeDetails);
+    $(document).ready(function(){
+      $('#bikeTable').DataTable({
+        lengthMenu: [5, 10, 20, 50, 100]
+      });
+    });
   }
 }
 
