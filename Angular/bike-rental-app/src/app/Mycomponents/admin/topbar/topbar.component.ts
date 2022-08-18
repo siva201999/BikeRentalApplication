@@ -9,12 +9,27 @@ import { Config } from 'src/app/config';
 })
 export class TopbarComponent implements OnInit {
   config:Config["Signup"]=new Config().Signup;
+  renter:Config['RenterObj']=new Config().RenterObj;
+  customer:Config['CustomerObj']=new Config().CustomerObj;
   profileLogo=this.config.image;
   localItem=localStorage.getItem("Email");
   name=JSON.parse(localStorage.getItem('userName')!);
+  role=JSON.parse(localStorage.getItem('Role')!);
+  
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    console.log(this.role);
+    // if(this.role==='renter'){
+    //   this.profileLogo=this.renter.image;
+    //   console.log(this.profileLogo);
+    // }
+    // else if(this.role==='customer'){
+    //   this.profileLogo=this.customer.image;
+    // }
+    // else{
+    //   this.profileLogo=this.config.image;
+    // }
   }
 
   logout(){

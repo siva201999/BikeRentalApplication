@@ -18,6 +18,11 @@ export const navbarData=[
         routerLink:'comments',
         icon:'fal fa-comment-alt-check',
         label:'comments'
+    },
+    {
+        routerLink:'bookingHistory',
+        icon:'fal fa-comment-alt-check',
+        label:'Booking history'
     }
     
     ];

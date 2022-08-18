@@ -17,6 +17,14 @@ import { BookingHistoryComponent } from './Mycomponents/admin/booking-history/bo
 import { RenterProfileComponent } from './Mycomponents/Renter/renter-profile/renter-profile.component';
 import { EditProfileComponent } from './Mycomponents/Renter/edit-profile/edit-profile.component';
 import { CommentsComponent } from './Mycomponents/Renter/comments/comments.component';
+import { CustomerDashboardComponent } from './Mycomponents/Customer/customer-dashboard/customer-dashboard.component';
+import { CustomerDashboardContentComponent } from './Mycomponents/Customer/customer-dashboard-content/customer-dashboard-content.component';
+import { UpdateCustomerProfileComponent } from './Mycomponents/Customer/update-customer-profile/update-customer-profile.component';
+import { CustomerProfileComponent } from './Mycomponents/Customer/customer-profile/customer-profile.component';
+import { BikeDataComponent } from './Mycomponents/Customer/bike-data/bike-data.component';
+import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-booking-history/renter-booking-history.component';
+import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.component';
+import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
 
 const routes: Routes = [
  
@@ -42,9 +50,22 @@ const routes: Routes = [
           {path:'bike/:id', component:BikeDetailComponent},
           {path:'profile',component:RenterProfileComponent},
           {path:'editProfile/:id', component:EditProfileComponent},
-          {path:'comments', component:CommentsComponent}
+          {path:'comments', component:CommentsComponent},
+          {path:'bookingHistory', component:RenterBookingHistoryComponent},
   ]
 },
+  {path:'customer',component:CustomerDashboardComponent,
+  children: [
+            {path:'dashboard', component:CustomerDashboardContentComponent},
+            {path:'', redirectTo:'dashboard', pathMatch: 'full'},
+            {path:'profile', component:CustomerProfileComponent},
+            {path:'editProfile/:id', component:UpdateCustomerProfileComponent},
+            {path:'bikeDetails/:id', component:BikeDataComponent},
+            {path:'rentBike',component:RentBikeComponent},
+            {path:'bookingHistory',component:CustomerBookingHistoryComponent},
+  ]
+
+  }
 
  
  

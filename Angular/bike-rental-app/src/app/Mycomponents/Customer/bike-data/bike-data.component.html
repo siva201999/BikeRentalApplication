@@ -1,0 +1,37 @@
+<h2>{{bike.brandName}} {{bike.modelName}} detail</h2> 
+
+<hr/>
+
+<div *ngIf="bike">
+  <div class="card">
+    <div class="row">
+      <div class="col">
+          <img src="{{bike.bikeImage}}" class="card-img-top" alt="{{bike.brandName}} {{bike.modelName}}"/>
+      </div>
+      
+      <div class="col">  
+          <div class="card-body">
+            <h3 class="card-title">{{bike.brandName}}</h3>
+            <h4>{{bike.modelName}}</h4>
+          <table> 
+            <tr><td> Bike Number  : {{bike.bikeNumber}}</td></tr> <br>
+            <tr><td>Rent Amount : {{bike.rentAmount}}</td></tr> <br>
+            <tr> <td>Pickup Location : {{bike.pickUpLocation}}</td></tr><br>
+            <tr> <td>Availability : {{bike.availability}}</td></tr><br>
+            <tr> <td>Description : {{bike.description}}</td></tr><br>
+          </table>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+<br>
+<br>
+
+<div class="d-grid gap-3 d-md-flex" >
+    <button type="button" class="btn btn-primary " (click)="gotoBuyNow(bike.id)">Rent Now</button>
+    <button type="button" class="btn btn-warning" (click)="Back()">Back</button>
+ </div>
+<!-- <button type="button" class="btn btn-primary" (click)="goto(bike.bikeId)">Buynow</button> -->
+<!-- <button (click)="goto1()" class="btn btn-primary">Back</button><br> -->

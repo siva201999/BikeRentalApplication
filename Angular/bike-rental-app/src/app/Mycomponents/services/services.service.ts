@@ -69,4 +69,18 @@ export class ServicesService {
   addComment(id:number,data: any): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/comments/${id}`, data);
   }
+//============================================================customer services=====================================
+  getCustomerBike(): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/customer`);
+  }
+
+  updateCustomerProfile(id:number ,customer: Config['CustomerObj']):Observable<Object>
+ {
+  console.log(customer);
+  return this.httpClient.put(`${this.baseUrl}/customer/${id}`,customer);
+ }
+
+  getCustomerById(id:number):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/customer/${id}`);
+  }
 }

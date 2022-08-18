@@ -1,0 +1,83 @@
+<div class="container" >
+    
+      <div class="d-flex">
+        <input class="form-control me-2 mb-4" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchedValue">
+      </div> 
+    
+    
+    
+    
+    
+    <!-- <table class="table table-sm table-striped table-dark  col-md-8">
+      <thead>
+        <tr align="center">
+          <th scope="col">ID</th>
+          <th scope="col">Model Name</th>
+          <th scope="col">Brand Name</th>
+          <th scope="col">PickUp Location</th>
+          <th scope="col">Availability</th>
+          <th scope="col">Bike Number</th>
+          <th scope="col">Rent Amount</th>
+          <th scope="col">Renter ID</th>
+          <th> Click Here </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of bikess | filter:searchedValue"  align="center">
+            <td>{{b.bikeId}}</td>
+            <td>{{b.modelName}}</td>
+            <td>{{b.brandName}}</td>
+            <td>{{b.pickUpLocation}}</td>
+            <td>{{b.availability}}</td>
+            <td>{{b.bikeNumber}}</td>
+            <td>{{b.rentAmount}}</td>
+            <td>{{b.renterId}}</td>
+            <td><input type="button" [routerLink]="['/bikedata/'b.bikeId]">Book</td>
+            <td><button name="button" (click)="goto(b.bikeId)">Book Now</button></td>
+            <td><button name="button" [disabled]="((b.availability==true))? false:true" (click)="goto(b.bikeId)">Book Now</button></td>
+        </tr> 
+      </tbody>
+    </table> -->
+    
+    
+    
+    
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let fd of bikess | filter:searchedValue">
+      
+        <div class="card h-100 w-80">
+          <img src="{{fd.bikeImage}}" class="card-img-top" alt="{{fd.brandName}} {{fd.modelName}}"/>
+          <div class="card-body">
+            <h3 class="card-title">{{fd.brandName}}</h3>
+            <h4>{{fd.modelName}}</h4>
+           
+          <table> 
+            <tr><td>Rent Amount:     {{fd.rentAmount}}</td></tr> <br>
+            <tr> <td>Pickup Location: {{fd.pickUpLocation}}</td></tr><br>
+            <tr> <td>Availability:    {{fd.availability}}</td></tr><br>
+            </table>
+            <div class="btn-group-justified">
+           
+              <button type="button" (click)="goto(fd.id)" class="btn btn-primary btn-sm">view details</button>
+              <!-- <button type="button" (click)='updateBike(fd.id)' class="btn btn-warning btn-sm">Edit</button>
+              <button type="button" (click)='deleteBike(fd.id)' class="btn btn-danger btn-sm">Delete</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div> 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- <td><button name="button" [disabled]="((b.availability==true))? false:true" (click)="goto(b.bikeId)">Book Now</button></td> -->
