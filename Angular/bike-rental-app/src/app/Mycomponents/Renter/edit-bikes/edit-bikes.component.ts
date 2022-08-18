@@ -26,14 +26,16 @@ export class EditBikesComponent implements OnInit {
     this.renterService.getBikeById(this.id).subscribe(data=>{
       console.log(data)
       this.bikes=data;
-    },error=>console.log(error));
+    },error=>alert("User not found...."));
+    ;
   }
   editBike(){
     this.renterService.updateBike(this.id,this.bikes).subscribe(data=>{
       console.log(data);
       // this.bikes=new Bikes();
       this.goto();
-    },error=>console.log(error));
+    },error=>alert("Sorry details are not updated"));
+
   }
   onSubmit() {
     this.submitted = false;

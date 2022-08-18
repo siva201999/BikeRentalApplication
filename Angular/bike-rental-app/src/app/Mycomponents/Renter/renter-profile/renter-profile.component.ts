@@ -19,7 +19,7 @@ export class RenterProfileComponent implements OnInit {
    console.log(this.id)
     this.renterService.getRenterById(this.id).subscribe(data=>{
       this.renter=data;
-    },error=>console.log(error));
+    },error=>alert("User not found.."));
   }
   editProfile(id:any){
       this.router.navigate(['renter/editProfile',this.id]);

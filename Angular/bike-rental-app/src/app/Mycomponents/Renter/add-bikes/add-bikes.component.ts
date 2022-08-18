@@ -27,8 +27,8 @@ save() {
     console.log(data)
     console.log(this.id);
     this.goto();
-  }, 
-  error => console.log(error));
+  },error=>alert("Sorry bikes details are not added!"));
+
 }
 onSubmit() {
   this.submitted = true;

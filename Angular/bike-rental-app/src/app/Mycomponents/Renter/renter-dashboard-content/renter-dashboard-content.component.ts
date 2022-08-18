@@ -39,8 +39,7 @@ export class RenterDashboardContentComponent implements OnInit {
           console.log(data);
           alert('record deleted Successfully')
           this.reloadData();
-        },
-        error => console.log(error));
+        },error=>alert("Bike not found.."));
   }
 
   getBikeById(id: any){

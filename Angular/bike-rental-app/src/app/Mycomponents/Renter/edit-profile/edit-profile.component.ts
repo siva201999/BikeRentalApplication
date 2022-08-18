@@ -26,14 +26,16 @@ export class EditProfileComponent implements OnInit {
     console.log(this.id)
     this.renterService.getRenterById(this.id).subscribe(data=>{
       this.renter=data;
-    },error=>console.log(error));
+    },error=>alert("User not found.."));
+
   }
   editProfile(){
     this.renterService.updateProfile(this.id,this.renter).subscribe(data=>{
       console.log(data);
       // this.bikes=new Bikes();
       this.goto();
-    },error=>console.log(error));
+    },error=>alert("Sorry details are not updated"));
+
   }
   onSubmit() {
     this.submitted = true;

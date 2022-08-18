@@ -23,8 +23,7 @@ save() {
   this.Service.addComment(this.id,this.comment).subscribe(data => {
     console.log(data)
     this.goto();
-  }, 
-  error => console.log(error));
+  }, error=>alert("Sorry comments not added..."));
 }
 onSubmit() {
   this.submitted = true;
