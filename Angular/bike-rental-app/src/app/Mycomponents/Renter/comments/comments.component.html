@@ -1,0 +1,45 @@
+<div class="card shadow-lg p-3 mb-5 bg-body rounded col-sm-6 offset-sm-3">
+    <h3 style="width: auto;" class="text-center">Add Bikes</h3>
+  <div class="container">
+    <div [hidden]="submitted">
+      <form  #addForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group" [class.has-error]="control.invalid">
+          <label for="name" class="control-label"><i class="fal fa-motorcycle"></i> Email</label>
+          <input type="text" class="form-control" id="email" required  [(ngModel)]="comment.email" name="email" #control="ngModel">
+         
+          <span class="help-block" *ngIf="control.invalid && control.touched" style="color: red;"> 
+            Email is Required
+          </span>
+        </div>
+  
+        <div class="form-group" [class.has-error]="namecontrol.invalid">
+          <label for="modelName" class="control-label"><i class="fal fa-motorcycle"></i> Name</label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="comment.name" name="name" #namecontrol="ngModel">
+         
+          <span class="help-block" *ngIf="namecontrol.invalid && namecontrol.touched" style="color: red;"> 
+            Name is Required
+          </span>
+        </div>
+
+        <div class="form-group" [class.has-error]="commentControl.invalid">
+            <label for="modelName" class="control-label">comment</label>
+            <input type="text-area" class="form-control" id="comment" required [(ngModel)]="comment.feedback" name="comment" #commentControl="ngModel">
+            <span class="help-block" *ngIf="namecontrol.invalid && namecontrol.touched" style="color: red;"> 
+              comment is Required
+            </span>
+          </div>
+       
+    <div class="text-center">
+        <button type="submit" class="btn btn-success mt-2" [disabled]="!addForm.form.valid">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  
+    <div [hidden]="!submitted" class="text-center">
+      <h4>Comments Added Successfully!</h4>
+    </div>
+  </div>
+  
+     
