@@ -33,7 +33,9 @@ export class EditProfileComponent implements OnInit {
     this.renterService.updateProfile(this.id,this.renter).subscribe(data=>{
       console.log(data);
       // this.bikes=new Bikes();
+     
       this.goto();
+      
     },error=>alert("Sorry details are not updated"));
 
   }
@@ -42,7 +44,10 @@ export class EditProfileComponent implements OnInit {
     this.editProfile();    
   }
 goto(){
-  this.router.navigate(['renter/profile']);
+  this.router.navigate(['renter/profile']).then(() => {
+    window.location.reload();
+  });
+ 
 }
 
 

@@ -21,7 +21,7 @@ export const navbarData=[
     },
     {
         routerLink:'bookingHistory',
-        icon:'fal fa-comment-alt-check',
+        icon:'fas fa-history',
         label:'Booking history'
     }
     

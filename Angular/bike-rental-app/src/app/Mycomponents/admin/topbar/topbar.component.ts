@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Config } from 'src/app/config';
+import { ServicesService } from '../../services/services.service';
 
 @Component({
   selector: 'app-topbar',
@@ -8,28 +9,40 @@ import { Config } from 'src/app/config';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
+  id!: number;
   config:Config["Signup"]=new Config().Signup;
   renter:Config['RenterObj']=new Config().RenterObj;
   customer:Config['CustomerObj']=new Config().CustomerObj;
-  profileLogo=this.config.image;
+  profileLogo!: string;
   localItem=localStorage.getItem("Email");
   name=JSON.parse(localStorage.getItem('userName')!);
   role=JSON.parse(localStorage.getItem('Role')!);
   
-  constructor(private router:Router) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private service: ServicesService) { }
 
   ngOnInit(): void {
     console.log(this.role);
-    // if(this.role==='renter'){
-    //   this.profileLogo=this.renter.image;
-    //   console.log(this.profileLogo);
-    // }
-    // else if(this.role==='customer'){
-    //   this.profileLogo=this.customer.image;
-    // }
-    // else{
-    //   this.profileLogo=this.config.image;
-    // }
+    this.id=JSON.parse(localStorage.getItem("userId")!);
+    console.log(this.id)
+   
+    if(this.role==='renter'){
+      this.service.getRenterById(this.id).subscribe(data => {
+        this.profileLogo=JSON.parse(JSON.stringify(data)).image;
+        // window.location.reload();
+      })
+     
+    }
+    else if(this.role==='customer'){
+      this.service.getCustomerById(this.id).subscribe(data => {
+        this.profileLogo=JSON.parse(JSON.stringify(data)).image;
+      })
+     
+    }
+    else{
+      this.profileLogo=this.config.image;
+    }
   }
 
   logout(){

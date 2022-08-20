@@ -42,7 +42,9 @@ export class UpdateCustomerProfileComponent implements OnInit {
 
    }
   goto(){
-      this.router.navigate(['customer/profile']);
+      this.router.navigate(['customer/profile']).then(() => {
+        window.location.reload();
+      });
     }
 
    onChange($event:Event ){

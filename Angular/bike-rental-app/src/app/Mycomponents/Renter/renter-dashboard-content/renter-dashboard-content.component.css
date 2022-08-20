@@ -12,3 +12,19 @@
   margin: 10px;
  
 }
+
+.card{
+  border-radius:16px !important;
+}
+
+td{
+  padding-bottom:8px;
+}
+
+#bikeCard{
+  height:100%;
+}
+
+button{
+  width: 66px !important;
+}

@@ -4,10 +4,10 @@
 <hr/>
 
 <div *ngIf="bikes">
-  <div class="card">
+  <div class="card shadow-sm p-3 mb-5 bg-body rounded">
     <div class="row">
-      <div class="col">
-          <img src="{{bikes.bikeImage}}" class="card-img-top" alt="{{bikes.brandName}} {{bikes.modelName}}"/>
+      <div class="col text-center">
+          <img src="{{bikes.bikeImage}}" style="height:350px;" alt="{{bikes.brandName}} {{bikes.modelName}}"/>
       </div>
       
       <div class="col">  
@@ -15,17 +15,14 @@
             <h3 class="card-title">{{bikes.brandName}}</h3>
             <h4>{{bikes.modelName}}</h4>
           <table> 
-            <tr><td> Bike Number  : {{bikes.bikeNumber}}</td></tr> <br>
-            <tr><td>Rent Amount : {{bikes.rentAmount}}</td></tr> <br>
-            <tr> <td>Pickup Location : {{bikes.pickUpLocation}}</td></tr><br>
-            <tr> <td>Availability : {{bikes.availability}}</td></tr><br>
-            <tr> <td>Description : {{bikes.description}}</td></tr><br>
+            <tr><td><b>Bike Number  : </b>{{bikes.bikeNumber}}</td></tr> <br>
+            <tr><td><b>Rent Amount : </b>{{bikes.rentAmount}}</td></tr> <br>
+            <tr> <td><b>Pickup Location : </b>{{bikes.pickUpLocation}}</td></tr><br>
+            <tr> <td><b>Availability : </b>{{bikes.availability}}</td></tr><br>
+            <tr> <td><b>Description : </b> {{bikes.description}}</td></tr><br>
           </table>
           </div>
         </div>
       </div>
 </div>
-
-<br>
-<br>
 <button (click)="goto()" class="btn btn-primary">Back to Dashboard</button><br>

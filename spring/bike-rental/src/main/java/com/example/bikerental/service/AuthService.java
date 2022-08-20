@@ -23,6 +23,8 @@ public class AuthService {
     RenterRepository renterRepository;
     @Autowired
     CustomerRepository customerRepository;
+    @Autowired
+    PasswordConfig passwordConfig;
     //==================================SIGN-UP=========================
     //============================Renter================================
     public RenterModel setCurrentRenter(RenterModel data){
@@ -38,6 +40,8 @@ public class AuthService {
     public RenterModel saveRenter(RenterModel data){
         RenterModel currentRenter=setCurrentRenter(data);
         if(currentRenter==null){
+            String hash=passwordConfig.hashPassword(data.getPassword());
+            data.setPassword(hash);
             return renterRepository.save(data);
         }
         return null;
@@ -57,6 +61,8 @@ public class AuthService {
     public CustomerModel saveCustomer(CustomerModel data){
         CustomerModel currentCustomer=setCurrentCustomer(data);
         if(currentCustomer==null){
+            String hash=passwordConfig.hashPassword(data.getPassword());
+            data.setPassword(hash);
             return customerRepository.save(data);
         }
         return null;
@@ -66,7 +72,6 @@ public class AuthService {
     public Map<String, String> isAdminPresent(AdminModel data){
         List<AdminModel> admins = adminRepository.findAll();
         Map<String, String> result = new HashMap<String, String>();
-        
         for(AdminModel admin: admins){
             if(admin.getEmail().equals(data.getEmail()) && admin.getPassword().equals(data.getPassword())){
                 result.put("userId", Long.toString(admin.getId()));
@@ -86,7 +91,7 @@ public class AuthService {
         List<RenterModel> renters = renterRepository.findAll();
         Map<String, Object> result = new HashMap<String, Object>();
         for(RenterModel renter:renters){
-            if(renter.getEmail().equals(data.getEmail()) && renter.getPassword().equals(data.getPassword())){
+            if(renter.getEmail().equals(data.getEmail()) && passwordConfig.checkPass(data.getPassword(),renter.getPassword())){
                 result.put("userId", renter.getId());
                 result.put("username", renter.getUserName());
                 result.put("email", renter.getEmail());
@@ -107,7 +112,7 @@ public class AuthService {
         List<CustomerModel> customers = customerRepository.findAll();
         Map<String, Object> result = new HashMap<String, Object>();
         for(CustomerModel customer:customers){
-            if(customer.getEmail().equals(data.getEmail()) && customer.getPassword().equals(data.getPassword())){
+            if(customer.getEmail().equals(data.getEmail()) && passwordConfig.checkPass(data.getPassword(),customer.getPassword())){
                 result.put("userId", customer.getId());
                 result.put("username", customer.getUserName());
                 result.put("email", customer.getEmail());

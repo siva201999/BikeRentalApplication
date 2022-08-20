@@ -1,30 +1,37 @@
-<h2> {{renter.userName}} Detail</h2> 
-
-<hr/>
-
+<h2> {{renter.userName}} Detail</h2>
+<hr />
 <div *ngIf="renter">
-  <div class="card">
-  <div class="row">
-    <div class="col">
-      <img src="{{renter.image}}" class="card-img-top" alt="{{renter.userName}}"/>
-  </div>
-    <div class="col">  <!-- <h3 class="card-title">{{renter.userName}}</h3> -->
-      <table> 
-         <tr><td>  Email Id  : {{renter.email}}</td></tr> <br>
-         <tr><td>  Mobile Number : {{renter.mobileNumber}}</td></tr> <br>
-         <tr> <td> Gender : {{renter.gender}}</td></tr><br>
-         <tr> <td> Address : {{renter.address}}</td></tr><br>
-         <tr> <td> Total Earnings: {{renter.earnings}}</td></tr><br>
-      </table>
+  <div class="card shadow p-3 mb-5 bg-body rounded" id="profileCard">
+    <div class="row">
+      <div class="col text-center">
+        <img src="{{renter.image}}" class="" style="height:350px;" alt="{{renter.userName}}" />
+      </div>
+      <div class="col pt-3">
+        <!-- <h3 class="card-title">{{renter.userName}}</h3> -->
+        <table class="table table-responsive">
+          <tr>
+            <td><b>Email Id : </b>{{renter.email}}</td>
+          </tr> <br>
+          <tr>
+            <td><b>Mobile Number : </b>{{renter.mobileNumber}}</td>
+          </tr> <br>
+          <tr>
+            <td><b> Gender : </b> {{renter.gender}}</td>
+          </tr><br>
+          <tr>
+            <td><b> Address : </b>{{renter.address}}</td>
+          </tr><br>
+          <tr>
+            <td><b>Total Earnings : </b>{{renter.earnings}}</td>
+          </tr><br>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-
 <br>
 <br>
 <div class="btn-group-justified d-grid gap-3 d-md-flex">
-<button (click)="goto()" class="btn btn-primary" >Back to Dashboard</button>
-<button (click)="editProfile(id)" class="btn btn-warning">Edit Profile</button>
+  <button (click)="goto()" class="btn btn-primary">Back to Dashboard</button>
+  <button (click)="editProfile(id)" class="btn btn-warning">Edit Profile</button>
 </div>
