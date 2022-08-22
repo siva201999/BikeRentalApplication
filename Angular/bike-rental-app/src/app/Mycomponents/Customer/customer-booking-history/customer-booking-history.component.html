@@ -1,1 +1,44 @@
-<p>customer-booking-history works!</p>
+<div *ngIf="error">
+    {{error.error.message | json}}
+</div>
+<br>
+<br>
+<div>
+  <p>History Works</p>
+</div>
+
+
+<div class="container-sm">
+<div id="bookingtable" >
+  <form class="d-flex">
+    <input class="form-control me-2 mb-4" type="search" placeholder="Search" aria-label="Search">
+  </form>
+<div *ngIf="!error" class = "row justify content-md-left">
+    <div *ngFor="let customer of customers" class ="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="assets/img/Bike.png" alt="Card image cap">
+            <div class="card-body">
+              
+            <p class="card-text">BookingId: {{customer.bookingId}}</p>
+            <p class="card-text">RenterName : {{customer.renterName}}</p>
+            <p class="card-text">Bike Number: {{customer.bikeNumber}}</p>
+              <p class="card-text">NoOfDay: {{customer.noOfDay}}</p>
+              <p class="card-text">TotalAmount : {{customer.totalAmount}}</p>
+              
+              
+            </div>
+          </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- <div *ngFor="let post of posts" class ="col-md-4">
+<div class = "well hoverwell thumbnail">
+<div class ="bold">User ID : {{post?.userId}}</div>
+<div>Id : {{post?.id}} </div>
+<div>Title : {{post?.title}}</div>
+<div> Body : {{post?.body}}</div>
+</div>
+</div> -->
+

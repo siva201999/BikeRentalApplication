@@ -73,6 +73,15 @@ export class Config {
         feedback:"",
     }
 
+CardDetails={
+    name:"",
+    cardType:"",
+    cardNumber:"",
+    cvv!:"",
+    expiryMM:"",
+    expiryYY:""
+
+}
   static Login: object;
   static CustomerObj: [];
   static RenterObj: [];

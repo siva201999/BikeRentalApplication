@@ -83,4 +83,9 @@ export class ServicesService {
   getCustomerById(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/customer/${id}`);
   }
+
+  addCardDetails(cardNumber:number,data: any): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/payment/${cardNumber}`, data);
+  }
+
 }
