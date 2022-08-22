@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Config } from 'src/app/config';
 import { ServicesService } from '../../services/services.service';
+import { CustomerBookingHistoryComponent } from '../customer-booking-history/customer-booking-history.component';
 
 @Component({
   selector: 'app-customer-payment',
@@ -15,24 +16,37 @@ export class CustomerPaymentComponent implements OnInit {
    submitted = false;
    cardDetails:Config['CardDetails']=new Config().CardDetails;
  
-   constructor(private cardService:ServicesService ,
-     private router: Router) { }
+   constructor(private cardService:ServicesService , 
+     private router: Router,private route: ActivatedRoute) { }
  
+     id!: number;
+     booking!: Config['BookingObj'];
+     bike!: Config['BikeObj'];
 
-   ngOnInit(): void {
+   
+     ngOnInit() {
+       this.booking= new Config().BookingObj;
+   
+       this.id = this.route.snapshot.params['id'];
 
-   }
-     // this.customer=new Customer();
-     // this.submitted = false;
-     // this.renterId=this.route.snapshot.params['id'];
+       this.cardService.addBookingHistory(this.id,this.booking).subscribe(data => {
+        console.log(data)
+        this.booking != data;
+      }, error => console.log(error));
+     }
+    // this.customer=new Customer();
+    // this.submitted = false;
+    // this.renterId=this.route.snapshot.params['id'];
   
     validateCredentials(): void{
-      if(confirm('Are you sure to delete the Record?'))
+      if(confirm('Are you sure to proceed to payment?'))
       console.log(this.cardDetails)
       this.cardService.validatePayment(this.cardDetails).subscribe(
-      data => {this.cardDetails = data;
+      data => {this.cardDetails != data;
       alert("Payment successfull");
-      this.goto()
+      this.bike = new Config().BikeObj;
+      this.bike.availability = "false";
+      this.goto();
        } ,error=>alert("Payment unsuccessfull"));
         
       }
@@ -40,6 +54,13 @@ export class CustomerPaymentComponent implements OnInit {
       goto(){
         this.router.navigate(['renter/dashboard']);
       }
+
+      // this.renterService.getBikeById(this.id).subscribe(data => {
+      //   console.log(data)
+      //   this.bike= data;
+      // }, error => console.log(error));
+
+
   
      
  

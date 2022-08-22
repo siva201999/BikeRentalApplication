@@ -27,7 +27,7 @@ export class BikeDataComponent implements OnInit {
   }
 
   gotoBuyNow(value: any){
-    this.router.navigate(['customer/buyNow']);
+    this.router.navigate(['rentBike/buyNow']);
   }
   Back(){
     this.router.navigate(['customer/dashboard']);

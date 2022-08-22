@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
+import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.repository.BikeRepository;
 import com.example.bikerental.repository.CustomerRepository;
@@ -88,7 +89,8 @@ public class CustomerService {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-          
+
+  
         
   
 }

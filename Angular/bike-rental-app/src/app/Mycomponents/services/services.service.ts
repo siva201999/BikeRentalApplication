@@ -84,8 +84,13 @@ export class ServicesService {
     return this.httpClient.get(`${this.baseUrl}/customer/${id}`);
   }
 
-  validatePayment(cardDetails:Config['CardDetails']):Observable<any>{
-    return this.httpClient.post(`${this.baseUrl}/payment/`,cardDetails );
+//============================================================card services=====================================
+
+validatePayment(cardDetails:Config['CardDetails']):Observable<any>{
+  return this.httpClient.post(`${this.baseUrl}/payment/`,cardDetails );
+}
+  addBookingHistory(id:number,data: any): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/booking/${id}`, data);
   }
 
 }
