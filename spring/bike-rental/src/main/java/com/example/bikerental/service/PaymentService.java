@@ -2,7 +2,7 @@ package com.example.bikerental.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Objects;
 import com.example.bikerental.model.PaymentModel;
 import com.example.bikerental.repository.PaymentRepository;
 import org.springframework.http.HttpStatus;
@@ -24,8 +24,49 @@ public class PaymentService {
 
 	public ResponseEntity<PaymentModel> saveBookingHistory(PaymentModel paymentModel) {
 
-		return null;
+		List<PaymentModel> paymentList = new ArrayList<PaymentModel>();
+		paymentList = getAllAccounts();
+//        for (PaymentModel p: paymentList) {
+//			if(p.getCardNumber() == paymentModel.getCardNumber() && 
+//			   p.getCardType() == paymentModel.getCardType()&&
+//			   p.getExpiryMM() == paymentModel.getExpiryMM() &&
+//			   p.getExpiryYY() == paymentModel.getExpiryYY() &&
+//			   p.getName() == paymentModel.getName()) 
+//			{
+//				return new ResponseEntity<>(HttpStatus.OK);
+//			}
+//
+//		}
+
+		
+			PaymentModel p = paymentRepository.findByCardNumber(paymentModel.getCardNumber());
+			if (Objects.isNull(p)) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+		
+			else {
+		    if(p.getCardNumber() == paymentModel.getCardNumber() &&
+		    	   p.getCardType().equals(paymentModel.getCardType())&&
+				   p.getExpiryMM() == paymentModel.getExpiryMM() &&
+				   p.getExpiryYY() == paymentModel.getExpiryYY() &&
+				   p.getName().equals(paymentModel.getName())&&
+				   p.getCvv() == paymentModel.getCvv()
+				   )
+				
+					{
+				      return new ResponseEntity<>(HttpStatus.OK);
+					}
+			else {
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+			}
+		
+
+		
+ 
+
 	}
+	
 	
 	public List<PaymentModel> getAllAccounts(){
 		

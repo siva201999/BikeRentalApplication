@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PaymentRepository extends JpaRepository<PaymentModel, Long>{
 
-	boolean existsBycardNumber(long cardNumber);
-
+	
+//	boolean existsBycardType(String cardType);
+//	boolean existsByexpiryMM(int expiryMM);
+//	boolean existsByexpiryYY(int expiryYY);
+//	boolean existsBycvv(int cvv);
+//	boolean existsByname(String name);
+	
+	PaymentModel findByCardNumber(long cardNumber);
 }

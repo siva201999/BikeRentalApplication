@@ -20,8 +20,9 @@ public class PaymentController {
 
 		//getAllBikes
 
-	 	@PostMapping("/")
+	 	@PostMapping("/payment")
 		public ResponseEntity<PaymentModel> saveBookingHistory(@RequestBody PaymentModel paymentModel){
 	 		return paymentService.saveBookingHistory(paymentModel);
 	 	}
+	 	
 }
