@@ -25,6 +25,7 @@ import { BikeDataComponent } from './Mycomponents/Customer/bike-data/bike-data.c
 import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-booking-history/renter-booking-history.component';
 import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.component';
 import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
+import { CustomerPaymentComponent } from './Mycomponents/Customer/customer-payment/customer-payment.component';
 
 const routes: Routes = [
  
@@ -63,6 +64,7 @@ const routes: Routes = [
             {path:'bikeDetails/:id', component:BikeDataComponent},
             {path:'rentBike',component:RentBikeComponent},
             {path:'bookingHistory',component:CustomerBookingHistoryComponent},
+            {path:'payment',component:CustomerPaymentComponent}
   ]
 
   }

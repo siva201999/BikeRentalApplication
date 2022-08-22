@@ -18,15 +18,29 @@ export class CustomerPaymentComponent implements OnInit {
    constructor(private cardService:ServicesService ,
      private router: Router) { }
  
-   ngOnInit(): void {}
+
+   ngOnInit(): void {
+
+   }
      // this.customer=new Customer();
      // this.submitted = false;
      // this.renterId=this.route.snapshot.params['id'];
- 
-     // 
- 
-     
- 
+  
+    validateCredentials(): void{
+      if(confirm('Are you sure to delete the Record?'))
+      console.log(this.cardDetails)
+      this.cardService.validatePayment(this.cardDetails).subscribe(
+      data => {this.cardDetails = data;
+      alert("Payment successfull");
+      this.goto()
+       } ,error=>alert("Payment unsuccessfull"));
+        
+      }
+  
+      goto(){
+        this.router.navigate(['renter/dashboard']);
+      }
+  
      
  
 

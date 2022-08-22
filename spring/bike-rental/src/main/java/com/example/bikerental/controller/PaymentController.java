@@ -22,7 +22,9 @@ public class PaymentController {
 
 	 	@PostMapping("/payment")
 		public ResponseEntity<PaymentModel> saveBookingHistory(@RequestBody PaymentModel paymentModel){
+	 		System.out.println(paymentModel.toString());
 	 		return paymentService.saveBookingHistory(paymentModel);
+	 		
 	 	}
 	 	
 }

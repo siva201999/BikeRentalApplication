@@ -84,5 +84,8 @@ export class ServicesService {
     return this.httpClient.get(`${this.baseUrl}/customer/${id}`);
   }
 
+  validatePayment(cardDetails:Config['CardDetails']):Observable<any>{
+    return this.httpClient.post(`${this.baseUrl}/payment/`,cardDetails );
+  }
 
 }

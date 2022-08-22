@@ -26,17 +26,6 @@ public class PaymentService {
 
 		List<PaymentModel> paymentList = new ArrayList<PaymentModel>();
 		paymentList = getAllAccounts();
-//        for (PaymentModel p: paymentList) {
-//			if(p.getCardNumber() == paymentModel.getCardNumber() && 
-//			   p.getCardType() == paymentModel.getCardType()&&
-//			   p.getExpiryMM() == paymentModel.getExpiryMM() &&
-//			   p.getExpiryYY() == paymentModel.getExpiryYY() &&
-//			   p.getName() == paymentModel.getName()) 
-//			{
-//				return new ResponseEntity<>(HttpStatus.OK);
-//			}
-//
-//		}
 
 		
 			PaymentModel p = paymentRepository.findByCardNumber(paymentModel.getCardNumber());

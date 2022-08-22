@@ -15,5 +15,10 @@ export const navbarData=[
         label:'Booking History'
     },
     
+    {
+        routerLink:'payment',
+        icon:'fal fa-address-card',
+        label:'Payment Page'
+    }
     
 ];

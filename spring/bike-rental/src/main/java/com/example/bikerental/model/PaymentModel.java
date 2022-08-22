@@ -69,6 +69,11 @@ public class PaymentModel {
 	public PaymentModel() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "PaymentModel [cardNumber=" + cardNumber + ", name=" + name + ", cardType=" + cardType + ", cvv=" + cvv
+				+ ", expiryMM=" + expiryMM + ", expiryYY=" + expiryYY + "]";
+	}
 
 
 	
