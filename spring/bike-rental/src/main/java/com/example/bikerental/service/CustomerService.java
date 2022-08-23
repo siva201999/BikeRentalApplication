@@ -2,15 +2,23 @@ package com.example.bikerental.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
+import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.CustomerModel;
+import com.example.bikerental.model.Payment;
 import com.example.bikerental.repository.BikeRepository;
+import com.example.bikerental.repository.BookingRepository;
 import com.example.bikerental.repository.CustomerRepository;
+import com.example.bikerental.repository.PaymentRepository;
 
 
 
@@ -22,7 +30,11 @@ public class CustomerService {
     @Autowired
     private BikeRepository bikeRepository;
 
+	@Autowired
+	private PaymentRepository paymentRepository;
 
+	@Autowired
+	private BookingRepository bookingRepository;
 	//To fetch all Customers
 	public ResponseEntity<List<BikeModel>> getCustomerBike()   
 	{  
@@ -89,6 +101,25 @@ public class CustomerService {
 		}
 	}
           
-        
+	public ResponseEntity<Payment> validatePayment(Payment payment) {
+		Payment p = paymentRepository.findByCardNumber(payment.getCardNumber());
+		if (p==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			if(p.getCardNumber() == payment.getCardNumber() && p.getCardType().equals(payment.getCardType()) &&
+				p.getExpiryMM() == payment.getExpiryMM() &&	p.getExpiryYY() == payment.getExpiryYY() &&	
+				p.getName().equals(payment.getName()) && p.getCvv() == payment.getCvv()){
+					return new ResponseEntity<>(HttpStatus.OK);
+			}
+			else {
+				
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+		}
+	}
+	
+	public ResponseEntity<?> saveBookingHistory(Booking data) {
+		return new ResponseEntity<>(bookingRepository.save(data),HttpStatus.OK);
+	}
   
 }

@@ -83,4 +83,12 @@ export class ServicesService {
   getCustomerById(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/customer/${id}`);
   }
+
+  validatePayment(cardDetails:Config['CardDetails']):Observable<any>{
+    return this.httpClient.post(`${this.baseUrl}/payment/`,cardDetails );
+  }
+
+  saveBookingHistory(booking:Config['BookingObj']):Observable<any>{
+    return this.httpClient.post(`${this.baseUrl}/booking/`,booking);
+  }
 }

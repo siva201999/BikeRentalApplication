@@ -18,6 +18,8 @@ public class Booking {
     private Date bookingDate;
     private Date endDate;
     private String renterName;
+    private String customerName;
+    
     public Long getBooking_id() {
         return booking_id;
     }
@@ -48,15 +50,23 @@ public class Booking {
     public void setRenterName(String renterName) {
         this.renterName = renterName;
     }
-    public Booking(Long booking_id, Double totalAmount, Date bookingDate, Date endDate, String renterName) {
+    public String getCustomerName() {
+        return customerName;
+    }
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+    public Booking(Long booking_id, Double totalAmount, Date bookingDate, Date endDate, String renterName,String customerName) {
         this.booking_id = booking_id;
         this.totalAmount = totalAmount;
         this.bookingDate = bookingDate;
         this.endDate = endDate;
         this.renterName = renterName;
+        this.customerName = customerName;
     }
     public Booking() {
     }
+    
     
     
 }

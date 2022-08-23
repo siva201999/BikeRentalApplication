@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bikerental.model.BikeModel;
+import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.CustomerModel;
+import com.example.bikerental.model.Payment;
 import com.example.bikerental.service.CustomerService;
 
 @RestController
@@ -47,4 +49,17 @@ public class CustomerController {
     public ResponseEntity<?> getCustomerById(@PathVariable("id")long id){
         return customerService.getCustomerById(id);
     }
+
+	//payment validation
+	@PostMapping("/payment")
+	public ResponseEntity<Payment> validatePayment(@RequestBody Payment paymentModel){
+		
+		return customerService.validatePayment(paymentModel);
+		
+	}
+
+	@PostMapping("/booking")
+	public ResponseEntity<?> saveBookingHistory(@RequestBody Booking booking){
+		return customerService.saveBookingHistory(booking);
+	}
 }

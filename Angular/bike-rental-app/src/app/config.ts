@@ -58,13 +58,15 @@ export class Config {
         rentAmount:"",
         pickUpLocation:"",
         availability:"",
+        ownerName:JSON.parse(localStorage.getItem('userName')!)
     }
     BookingObj={
         booking_id:0,
         totalAmount:0.0,
         bookingDate:"",
         endDate:"",
-        renterName:""
+        renterName:"",
+        customerName:JSON.parse(localStorage.getItem('userName')!)
     }
     Comments={
         id:"",
@@ -73,6 +75,14 @@ export class Config {
         feedback:"",
     }
 
+    CardDetails={
+        name:"",
+        cardType:"",
+        cardNumber:"",
+        cvv!:"",
+        expiryMM:"",
+        expiryYY:""
+    }
   static Login: object;
   static CustomerObj: [];
   static RenterObj: [];

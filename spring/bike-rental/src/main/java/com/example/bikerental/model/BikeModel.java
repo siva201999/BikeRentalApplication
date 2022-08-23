@@ -32,7 +32,8 @@ public class BikeModel {
     private String pickUpLocation;
     @Column(name="availability")
     private String availability;
-    
+    @Column(name="ownerName")
+    private String ownerName;
 
     public Long getId() {
         return id;
@@ -123,17 +124,18 @@ public class BikeModel {
         this.availability = availability;
     }
 
-    // public RenterModel getRenter() {
-    //     return renter;
-    // }
+    public String getOwnerName() {
+        return ownerName;
+    }
 
 
-    // public void setRenter(RenterModel renter) {
-    //     this.renter = renter;
-    // }
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
 
     public BikeModel(Long id, String brandName, String modelName, String bikeNumber, String bikeImage,
-            String description, String rentAmount, String pickUpLocation, String availability) {
+            String description, String rentAmount, String pickUpLocation, String availability,String ownerName) {
         this.id = id;
         this.brandName = brandName;
         this.modelName = modelName;
@@ -143,7 +145,7 @@ public class BikeModel {
         this.rentAmount = rentAmount;
         this.pickUpLocation = pickUpLocation;
         this.availability = availability;
-        // this.renter = renter;
+        this.ownerName= ownerName;
     }
 
 
@@ -158,6 +160,8 @@ public class BikeModel {
                 + modelName + ", pickUpLocation=" + pickUpLocation + ", rentAmount=" + rentAmount + "]";
     }
 
+
+    
 
     
 

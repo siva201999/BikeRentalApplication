@@ -1,29 +1,34 @@
-<h2> {{customer.userName}} Detail</h2> 
+<h2> {{customer.userName}} Detail</h2>
 
-<hr/>
+<hr />
 
 <div *ngIf="customer">
-  <div class="card">
-  <div class="row">
-    <div class="col">
-      <img src="{{customer.image}}" class="card-img-top" alt="{{customer.userName}}"/>
-  </div>
-    <div class="col pt-3">  <!-- <h3 class="card-title">{{customer.userName}}</h3> -->
-      <table> 
-         <tr><td>  Email Id  : {{customer.email}}</td></tr> <br>
-         <tr><td>  Mobile Number : {{customer.mobileNumber}}</td></tr> <br>
-         <tr> <td> Gender : {{customer.gender}}</td></tr><br>
-         <tr> <td> Address : {{customer.address}}</td></tr><br>
-      </table>
+  <div class="card shadow p-3 mb-5 bg-body rounded">
+    <div class="row">
+      <div class="col text-center">
+        <img src="{{customer.image}}" class="rounded img-fluid img-thumbnail mx-auto d-block" style="height:350px;" alt="{{customer.userName}}" />
+      </div>
+      <div class="col pt-3">
+        <!-- <h3 class="card-title">{{customer.userName}}</h3> -->
+        <table class="">
+          <tr>
+            <td><b>Email Id : </b>  {{customer.email}}</td>
+          </tr>
+          <tr>
+            <td><b> Mobile Number : </b> {{customer.mobileNumber}}</td>
+          </tr>
+          <tr>
+            <td><b>Gender : </b>  {{customer.gender}}</td>
+          </tr>
+          <tr>
+            <td> <b>Address : </b> {{customer.address}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-
-<br>
-<br>
 <div class="btn-group-justified d-grid gap-3 d-md-flex">
-<button (click)="goto()" class="btn btn-primary ">Back to Dashboard</button>
-<button (click)="editProfile(id)" class="btn btn-warning">Edit Profile</button>
+  <button (click)="goto()" class="btn btn-primary ">Back to Dashboard</button>
+  <button (click)="editProfile(id)" class="btn btn-warning">Edit Profile</button>
 </div>

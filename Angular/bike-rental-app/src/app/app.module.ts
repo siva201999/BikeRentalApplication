@@ -36,6 +36,7 @@ import { CustomerProfileComponent } from './Mycomponents/Customer/customer-profi
 import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.component';
 import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
 import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-booking-history/renter-booking-history.component';
+import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-book
     RentBikeComponent,
     CustomerBookingHistoryComponent,
     RenterBookingHistoryComponent,
+    PaymentComponent,
     
   ],
 

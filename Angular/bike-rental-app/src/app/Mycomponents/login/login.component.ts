@@ -81,11 +81,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("userName",JSON.stringify(this.userName));
             localStorage.setItem("Email",JSON.stringify(this.Login.email));
             setTimeout(()=>this.router.navigate(['admin']),1000);
-          }
-          else if(this.status==="Success" && this.active==="false"){
-            alert("Admin disabled your account!!!")
-          }
-          else{
+          }else{
             this.invalidLogin=true;
             this.loginSuccess=false;
             this.router.navigate(['']);
@@ -108,7 +104,11 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("Email",JSON.stringify(this.Login.email));
             localStorage.setItem("Role",JSON.stringify(this.userRole.userType));
             setTimeout(()=>this.router.navigate(['customer/dashboard']),1000);
-          }else{
+          }
+          else if(this.status==="Success" && this.active==="false"){
+            alert("Admin disabled your account!!!")
+          }
+          else{
             this.invalidLogin=true;
             this.loginSuccess=false;
             this.router.navigate(['']);

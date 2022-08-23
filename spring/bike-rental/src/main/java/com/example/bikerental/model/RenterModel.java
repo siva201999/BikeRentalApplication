@@ -41,7 +41,6 @@ public class RenterModel {
     private int earnings;
     @Column(name = "isActive")
     private String isActive;
-    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "renter_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 

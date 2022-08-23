@@ -1,1 +1,51 @@
-<p>rent-bike works!</p>
+<div *ngIf="error">
+    {{error.error.message | json}}
+</div>
+<br>
+<br>
+<div class="row d-flex justify-content-center">
+<div class="card text-white bg-dark mb-3" style="max-width: 19rem;">
+
+
+    <br>
+    <div class="form-group mx-sm-3 mb-2">
+        <!-- <p>Start Date :</p> -->
+        <label for="inputStartDate" class="sr-only">Start Date</label>
+        <input type="date" [(ngModel)] = "startdate" class="form-control" id="inputPassword2" placeholder="Start Date">
+      </div>
+      <br>
+    <div class="form-group mx-sm-3 mb-2">
+        <!-- <p>End Date :</p> -->
+        <label for="inputEndDate" class="sr-only">End Date :</label>
+      <input type="date" [(ngModel)] = "enddate" class="form-control" id="inputPassword2" placeholder="End Date">
+    </div>
+    <br>
+    <div class="btn-group-justified text-center" style = "color:blue;" >
+      <button type="submit" (click)="diff()" class="btn btn-primary mb-2 " >Fetch Amount</button>
+    </div>
+<br>
+</div>
+</div>
+
+<div class="row d-flex justify-content-center">
+  <div class="card text-white bg-dark mb-3" style="max-width: 19rem;">
+    <br>
+    <div class="form-group mx-sm-3 mb-2">
+      <p>Price Breakout : </p>
+
+      <p style = "color:white;" class="text-center"> {{dayssubracted}}</p>
+    </div>
+
+    <div class="btn-group-justified text-center" style = "color:blue;">
+      <button type="submit" (click)="diff()" class="btn btn-primary mb-2 " >Proceed</button>
+</div>
+<br>
+  </div>
+</div>
+
+
+<!-- Start date : <input type="date" [(ngModel)] = "startdate">
+End Date : <input type="date" [(ngModel)] = "enddate">
+<button (click)="diff()"> Fetch Date </button>
+Number of Days : <p>{{dayssubracted}}</p> -->
+<!-- End date : <input type="date"> -->

@@ -43,7 +43,7 @@ export class RenterDashboardContentComponent implements OnInit {
   }
 
   getBikeById(id: any){
-    console.log(id);
+    // console.log(id);
     this.router.navigate(['renter/bike/', id]);
   }
 
