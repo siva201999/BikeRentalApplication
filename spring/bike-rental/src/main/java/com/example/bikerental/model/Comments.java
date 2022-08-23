@@ -19,7 +19,8 @@ public class Comments {
     private String email;
     private String name;
     private String feedback;
-    
+    private String userRole;
+	
 	public Long getId() {
 		return id;
 	}
@@ -44,12 +45,21 @@ public class Comments {
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
-	public Comments(Long id, String email, String name, String feedback) {
+
+	public String getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
+	public Comments(Long id, String email, String name, String feedback,String userRole) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.name = name;
 		this.feedback = feedback;
+		this.userRole = userRole;
 	}
 	public Comments() {
 		super();
@@ -59,5 +69,6 @@ public class Comments {
 	public String toString() {
 		return "Comments [id=" + id + ", email=" + email + ", name=" + name + ", feedback=" + feedback + "]";
 	}
+	
 
 }

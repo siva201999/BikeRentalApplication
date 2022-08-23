@@ -72,6 +72,7 @@ export class Config {
         id:"",
         email:"",
         name:"",
+        userRole:JSON.parse(localStorage.getItem('Role')!),
         feedback:"",
     }
 

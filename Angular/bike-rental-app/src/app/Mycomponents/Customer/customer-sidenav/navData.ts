@@ -14,6 +14,11 @@ export const navbarData=[
         icon:'fal fa-address-card',
         label:'Booking History'
     },
+    {
+        routerLink:'customerComments',
+        icon:'fas fa-comment-alt-dots',
+        label:'Feedback'
+    }
     
     
 ];

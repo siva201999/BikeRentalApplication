@@ -37,6 +37,8 @@ import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.c
 import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
 import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-booking-history/renter-booking-history.component';
 import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
+import { FeedbackComponent } from './Mycomponents/admin/feedback/feedback.component';
+import { CustomerCommentsComponent } from './Mycomponents/Customer/customer-comments/customer-comments.component';
 
 
 @NgModule({
@@ -73,6 +75,8 @@ import { PaymentComponent } from './Mycomponents/Customer/payment/payment.compon
     CustomerBookingHistoryComponent,
     RenterBookingHistoryComponent,
     PaymentComponent,
+    FeedbackComponent,
+    CustomerCommentsComponent,
     
   ],
 

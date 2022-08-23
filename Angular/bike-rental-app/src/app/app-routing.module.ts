@@ -26,6 +26,8 @@ import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-book
 import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.component';
 import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
 import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
+import { FeedbackComponent } from './Mycomponents/admin/feedback/feedback.component';
+import { CustomerCommentsComponent } from './Mycomponents/Customer/customer-comments/customer-comments.component';
 
 const routes: Routes = [
  
@@ -40,6 +42,7 @@ const routes: Routes = [
             {path:'dashboard/renterDetails',component:RenterDetailsComponent},
             {path:'dashboard/bikeDetails/:id',component:BikeDetailsComponent},
             {path:'dashboard/booking',component:BookingHistoryComponent},
+            {path:'dashboard/feedback',component:FeedbackComponent},
     ] 
   },
   {path:'renter',component:RenterDashboardComponent,
@@ -64,7 +67,8 @@ const routes: Routes = [
             {path:'bikeDetails/:id', component:BikeDataComponent},
             {path:'rentBike',component:RentBikeComponent},
             {path:'bookingHistory',component:CustomerBookingHistoryComponent},
-            {path:'payment',component:PaymentComponent}
+            {path:'payment',component:PaymentComponent},
+            {path:'customerComments',component:CustomerCommentsComponent}
   ]
 
   }

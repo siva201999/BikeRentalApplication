@@ -35,6 +35,11 @@ export class ServicesService {
   getBooking():Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/customer/bookings`);
   }
+
+  getComment():Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/feedback`);
+  }
+
   //============================================================renter services=====================================
   getBikeById(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/bike/${id}`);

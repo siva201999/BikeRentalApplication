@@ -18,5 +18,10 @@ export const navbarData=[
         routerLink:'dashboard/booking',
         icon:'fal fa-history',
         label:'Bookings'
+    },
+    {
+        routerLink:'dashboard/feedback',
+        icon:'fas fa-comment-alt-dots',
+        label:'Feedback'
     }
     ];

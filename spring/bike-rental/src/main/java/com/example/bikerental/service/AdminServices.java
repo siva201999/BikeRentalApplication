@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.Booking;
+import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.BikeRepository;
 import com.example.bikerental.repository.BookingRepository;
+import com.example.bikerental.repository.CommentRepository;
 import com.example.bikerental.repository.CustomerRepository;
 import com.example.bikerental.repository.RenterRepository;
 
@@ -26,6 +28,8 @@ public class AdminServices {
     BikeRepository bikeRepository;
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
     //==========Fetch all customers====================
     public List<CustomerModel> getAllCustomers(){
@@ -86,5 +90,8 @@ public class AdminServices {
         return bookingRepository.findAll();
     }  
 
-    
+    //========================getFeedback===========================
+    public List<Comments> getAllComments(){
+        return commentRepository.findAll();
+    }
 }
