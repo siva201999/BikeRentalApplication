@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.Booking;
+import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.Payment;
 import com.example.bikerental.service.CustomerService;
@@ -58,8 +59,9 @@ public class CustomerController {
 		
 	}
 
-	@PostMapping("/booking")
-	public ResponseEntity<?> saveBookingHistory(@RequestBody Booking booking){
-		return customerService.saveBookingHistory(booking);
+	@PostMapping("/booking/{id}")
+	public ResponseEntity<?> saveBookingHistory(@PathVariable("id")long id,@RequestBody Booking booking){
+		return customerService.saveBookingHistory(id,booking);
 	}
+
 }

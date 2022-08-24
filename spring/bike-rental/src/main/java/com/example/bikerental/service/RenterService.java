@@ -4,14 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.RenterModel;
+import com.example.bikerental.repository.CommentRepository;
 import com.example.bikerental.repository.RenterRepository;
 
 @Service
 public class RenterService {
 	@Autowired
 	private RenterRepository renterRepository;
-	
+	@Autowired
+	private CommentRepository commentRepository;
 	//Get Renter Earninngs
 	public double getRenterEarning(Long renterId) {
 		return renterRepository.getReferenceById(renterId).getEarnings();
@@ -53,5 +57,8 @@ public class RenterService {
 		      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		    }	
 	}
+
+	
+
     
 }

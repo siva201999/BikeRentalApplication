@@ -19,6 +19,8 @@ public class AdminModel {
     private String email;
     @Column(name = "password")
     private String password;
+    private double earnings;
+    
 
     public Long getId() {
         return id;
@@ -44,15 +46,22 @@ public class AdminModel {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public AdminModel(Long id, String UserName, String email, String password) {
+    public double getEarnings() {
+        return earnings;
+    }
+    public void setEarnings(double earnings) {
+        this.earnings = earnings;
+    }
+    public AdminModel(Long id, String UserName, String email, String password,double earnings) {
         this.id = id;
         this.userName = UserName;
         this.email = email;
         this.password = password;
+        this.earnings= earnings;
     }
     public AdminModel() {
     }
+    
     
     
 }

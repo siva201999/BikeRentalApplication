@@ -16,6 +16,9 @@ import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.Comments;
 import com.example.bikerental.service.AdminServices;
+
+import ch.qos.logback.core.read.ListAppender;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -39,7 +42,7 @@ public class AdminController {
     }
 
     @GetMapping("/renters/{renterId}")
-    public Set<BikeModel> getRenterById(@PathVariable Long renterId){
+    public List<BikeModel> getRenterById(@PathVariable Long renterId){
         return adminServices.getRenterById(renterId);
     }
     

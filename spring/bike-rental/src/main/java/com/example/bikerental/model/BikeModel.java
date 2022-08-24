@@ -3,10 +3,15 @@ package com.example.bikerental.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -34,6 +39,13 @@ public class BikeModel {
     private String availability;
     @Column(name="ownerName")
     private String ownerName;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JsonIgnore
+	@JoinColumn(nullable = false, name = "renter_id")
+	private RenterModel renter;
+
+
 
     public Long getId() {
         return id;
@@ -133,10 +145,21 @@ public class BikeModel {
         this.ownerName = ownerName;
     }
 
+    public RenterModel getRenter() {
+        return renter;
+    }
 
-    public BikeModel(Long id, String brandName, String modelName, String bikeNumber, String bikeImage,
+    public void setRenter(RenterModel renter) {
+        this.renter = renter;
+    }
+    public BikeModel(RenterModel renter) {
+        super();
+        this. renter = renter;
+    }
+
+    public BikeModel(String brandName, String modelName, String bikeNumber, String bikeImage,
             String description, String rentAmount, String pickUpLocation, String availability,String ownerName) {
-        this.id = id;
+        // this.id = id;
         this.brandName = brandName;
         this.modelName = modelName;
         this.bikeNumber = bikeNumber;
@@ -153,20 +176,18 @@ public class BikeModel {
     }
 
 
-    @Override
-    public String toString() {
-        return "BikeModel [availability=" + availability + ", bikeImage=" + bikeImage + ", bikeNumber=" + bikeNumber
-                + ", brandName=" + brandName + ", description=" + description + ", id=" + id + ", modelName="
-                + modelName + ", pickUpLocation=" + pickUpLocation + ", rentAmount=" + rentAmount + "]";
-    }
-
-
     
 
     
-
-    
-
     
 
 }
+    
+
+    
+
+    
+
+    
+
+

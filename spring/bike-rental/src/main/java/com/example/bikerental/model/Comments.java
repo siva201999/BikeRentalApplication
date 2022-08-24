@@ -1,12 +1,15 @@
 package com.example.bikerental.model;
 
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -21,6 +24,7 @@ public class Comments {
     private String feedback;
     private String userRole;
 	
+		
 	public Long getId() {
 		return id;
 	}
@@ -53,9 +57,10 @@ public class Comments {
 		this.userRole = userRole;
 	}
 
-	public Comments(Long id, String email, String name, String feedback,String userRole) {
+	
+	public Comments(String email, String name, String feedback,String userRole) {
 		super();
-		this.id = id;
+		// this.id = id;
 		this.email = email;
 		this.name = name;
 		this.feedback = feedback;
@@ -65,10 +70,16 @@ public class Comments {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	
 	@Override
 	public String toString() {
 		return "Comments [id=" + id + ", email=" + email + ", name=" + name + ", feedback=" + feedback + "]";
 	}
+	public void setComment(CustomerModel customerModel) {
+	}
+	
 	
 
 }

@@ -50,9 +50,9 @@ export class BikeDataComponent implements OnInit {
   this.booking.renterName=this.bike.ownerName;
   }
 
-  saveBookingHistory(booking: any){
-    console.log(booking);
-    this.router.navigate(['customer/payment',this.booking]);
+  saveBookingHistory(){
+    
+    this.router.navigate(['customer/payment']);
   }
 
   Back(){

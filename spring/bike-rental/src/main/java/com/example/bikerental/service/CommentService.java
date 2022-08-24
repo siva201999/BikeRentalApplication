@@ -17,9 +17,10 @@ public class CommentService {
     @Autowired
 	private RenterRepository renterRepository;
     
-	public ResponseEntity<?> addComments(Long id, Comments comments) {	
-		renterRepository.findById(id).map(ac->
-		ac.getNewComment().add(comments));
+	public ResponseEntity<?> addComments(Comments comments) {	
+		// renterRepository.findById(id).map(ac->
+		// ac.getNewComment().add(comments));
+		
 		return new ResponseEntity<>(commentRepository.save(comments),HttpStatus.OK);
 	}
 

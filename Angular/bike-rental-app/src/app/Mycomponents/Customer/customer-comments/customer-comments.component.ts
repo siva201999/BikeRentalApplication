@@ -20,7 +20,7 @@ export class CustomerCommentsComponent implements OnInit {
   }
 
 save() {
-  this.Service.addComment(this.id,this.comment).subscribe(data => {
+  this.Service.addComment(this.comment).subscribe(data => {
     console.log(data)
     this.goto();
   }, error=>alert("Sorry comments not added..."));

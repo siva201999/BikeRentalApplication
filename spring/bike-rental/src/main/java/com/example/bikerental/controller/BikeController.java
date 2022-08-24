@@ -47,7 +47,7 @@ public class BikeController {
 	}
 
 	@GetMapping("/renter/{renterId}")
-    public Set<BikeModel> getRenterById(@PathVariable Long renterId){
+    public List<BikeModel> getRenterById(@PathVariable Long renterId){
         return bikeService.getRenterById(renterId);
     }
 }

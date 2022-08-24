@@ -19,8 +19,8 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@PostMapping("/comments/{id}")
-	public ResponseEntity<?> addBikes(@PathVariable("id") Long id,@RequestBody Comments comments){
-		return commentService.addComments(id,comments);
+	@PostMapping("/comments")
+	public ResponseEntity<?> addComments(@RequestBody Comments comments){
+		return commentService.addComments(comments);
 	}
 }

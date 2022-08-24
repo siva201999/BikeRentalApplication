@@ -1,4 +1,5 @@
 package com.example.bikerental.model;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,10 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Renter")
@@ -41,27 +46,25 @@ public class RenterModel {
     private int earnings;
     @Column(name = "isActive")
     private String isActive;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "renter_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-    private Set<BikeModel> bike = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "renter_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-    private Set<Booking> booking = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "renter_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-    private Set<Comments> newComment = new HashSet<>();
-    
+
+    @OneToMany(mappedBy = "renter", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE,orphanRemoval = true)
+	@JsonIgnore
+	private List<BikeModel> bike = new ArrayList<>();
+
+    @OneToMany(mappedBy = "renter", fetch = FetchType.LAZY,cascade = CascadeType.ALL , orphanRemoval = true)
+	@JsonIgnore
+	private List<Booking> booking = new ArrayList<>();
+
+      
 
     public Long getId() {
-            return id;
-        }
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getEmail() {
         return email;
     }
@@ -110,6 +113,7 @@ public class RenterModel {
         this.userRole = userRole;
     }
 
+
     public String getImage() {
         return image;
     }
@@ -117,6 +121,7 @@ public class RenterModel {
     public void setImage(String image) {
         this.image = image;
     }
+
 
     public String getAddress() {
         return address;
@@ -130,9 +135,11 @@ public class RenterModel {
         return earnings;
     }
 
-   public void setEarnings(int earnings) {
+
+    public void setEarnings(int earnings) {
         this.earnings = earnings;
     }
+
     public String getIsActive() {
         return isActive;
     }
@@ -140,59 +147,57 @@ public class RenterModel {
     public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
-    public Set<BikeModel> getBike() {
+
+
+    public List<BikeModel> getBike() {
         return bike;
-        }
-        
-    public void setBike(Set<BikeModel> bike) {
-    this.bike = bike;
     }
-    public Set<Booking> getBooking() {
+
+
+    public void setBike(List<BikeModel> bike) {
+        this.bike = bike;
+    }
+
+
+    public List<Booking> getBooking() {
         return booking;
     }
 
-    public void setBooking(Set<Booking> booking) {
+
+    public void setBooking(List<Booking> booking) {
         this.booking = booking;
     }
 
-    public Set<Comments> getNewComment() {
-        return newComment;
+
+  
+
+    public RenterModel(Long id) {
+        this.id = id;
     }
 
-    public void setNewComment(Set<Comments> newComment) {
-        this.newComment = newComment;
+    public RenterModel(String email, String password, String mobileNumber, String userName, String gender,
+            String userRole, String image, String address, int earnings, String isActive) {
+        this.email = email;
+        this.password = password;
+        this.mobileNumber = mobileNumber;
+        this.userName = userName;
+        this.gender = gender;
+        this.userRole = userRole;
+        this.image = image;
+        this.address = address;
+        this.earnings = earnings;
+        this.isActive = isActive;
+        
     }
-    
+
+  
+
     public RenterModel() {
     }
 
-    public RenterModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-    String userRole, String image, String address, int earnings, String isActive, Set<BikeModel> bike,Set<Booking> booking,Set<Comments> newComment) {
-   
-    this.id = id;
-    this.email = email;
-    this.password = password;
-    this.mobileNumber = mobileNumber;
-    this.userName = userName;
-    this.gender = gender;
-    this.userRole = userRole;
-    this.image = image;
-    this.address = address;
-    this.earnings = earnings;
-    this.isActive = isActive;
-    this.bike = bike;
-    this.booking =booking;
-    this.newComment = newComment;
-    }
+    
 
-    @Override
-    public String toString() {
-        return "RenterModel [address=" + address + ", bike=" + bike + ", earnings=" + earnings + ", email=" + email
-                + ", gender=" + gender + ", id=" + id + ", image=" + image + ", isActive=" + isActive
-                + ", mobileNumber=" + mobileNumber + ", password=" + password + ", userName=" + userName + ", userRole="
-                + userRole + "]";
-    }
-
+    
    
 
     

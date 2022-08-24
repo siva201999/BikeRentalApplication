@@ -71,8 +71,8 @@ export class ServicesService {
     return this.httpClient.put(`${this.baseUrl}/renterProfile/${id}`, value);
   }
 
-  addComment(id:number,data: any): Observable<Object> {
-    return this.httpClient.post(`${this.baseUrl}/comments/${id}`, data);
+  addComment(data: any): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/comments`, data);
   }
 //============================================================customer services=====================================
   getCustomerBike(): Observable<any> {

@@ -4,11 +4,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.service.RenterService;
 
@@ -32,4 +33,6 @@ public class RenterController {
 		public ResponseEntity<?> updateProfile(@PathVariable("id")long id,@RequestBody RenterModel renter){
 			return renterService.updateProfile(id,renter);
 		}
+
+	
 }

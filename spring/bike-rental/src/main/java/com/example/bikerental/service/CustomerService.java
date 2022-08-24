@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.Booking;
+import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.Payment;
 import com.example.bikerental.repository.BikeRepository;
 import com.example.bikerental.repository.BookingRepository;
+import com.example.bikerental.repository.CommentRepository;
 import com.example.bikerental.repository.CustomerRepository;
 import com.example.bikerental.repository.PaymentRepository;
 
@@ -35,6 +37,9 @@ public class CustomerService {
 
 	@Autowired
 	private BookingRepository bookingRepository;
+
+	@Autowired
+	private CommentRepository commentRepository;
 	//To fetch all Customers
 	public ResponseEntity<List<BikeModel>> getCustomerBike()   
 	{  
@@ -118,8 +123,12 @@ public class CustomerService {
 		}
 	}
 	
-	public ResponseEntity<?> saveBookingHistory(Booking data) {
-		return new ResponseEntity<>(bookingRepository.save(data),HttpStatus.OK);
+
+	public ResponseEntity<?> saveBookingHistory(Long id,Booking data) {
+		System.out.println("this id : "+id);
+		Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName());
+  		booking.setCustomer(new CustomerModel(id));
+		return new ResponseEntity<>(bookingRepository.save(booking),HttpStatus.OK);
 	}
   
 }

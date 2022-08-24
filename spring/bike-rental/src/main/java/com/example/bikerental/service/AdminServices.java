@@ -42,17 +42,18 @@ public class AdminServices {
     }
 
     //===========Fetch renter bikes======================
-    public Set<BikeModel> getRenterBikes(Set<BikeModel> bike){
-        return bike;
-    }
+    // public Set<BikeModel> getRenterBikes(Set<BikeModel> bike){
+    //     return bike;
+    // }
 
-    public Set<BikeModel> getRenterById(Long id){
+    public List<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
         if(renter.isPresent()){
-            return getRenterBikes(renter.get().getBike());
+            return renter.get().getBike();
         }
         return null;
     }
+
 
     //============Check if renter is active or not=================
     public RenterModel isRenterActive(Long id){

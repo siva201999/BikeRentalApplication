@@ -1,6 +1,8 @@
 package com.example.bikerental.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 @Table(name = "Customer")
@@ -38,9 +44,12 @@ public class CustomerModel {
     private String address;
     @Column(name = "isActive")
     private String isActive;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "customer_id")
-    private Set<Booking> booking = new HashSet<>();
+    
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,cascade = CascadeType.ALL , orphanRemoval = true)
+	@JsonIgnore
+	private List<Booking> booking = new ArrayList<>();
+
+    
 
     public Long getId() {
         return id;
@@ -121,17 +130,19 @@ public class CustomerModel {
         this.isActive = isActive;
     }
     
-    public Set<Booking> getBooking() {
+    public List<Booking> getBooking() {
         return booking;
     }
 
-    public void setBooking(Set<Booking> booking) {
+    public void setBooking(List<Booking> booking) {
         this.booking = booking;
     }
 
-    public CustomerModel(Long id, String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address,String isActive,Set<Booking> booking) {
-        this.id = id;
+    
+
+    public CustomerModel(String email, String password, String mobileNumber, String userName, String gender,
+            String userRole, String image, String address,String isActive,List<Booking> booking) {
+        // this.id = id;
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
@@ -144,8 +155,13 @@ public class CustomerModel {
         this.booking =booking;
     }
 
+    public CustomerModel(Long id){
+        this.id=id;
+    }
     public CustomerModel() {
     }
+
+    
 
     
     
