@@ -26,4 +26,17 @@ export class CustomerBookingHistoryComponent implements OnInit {
     //  });
    }
 
+   cancelBike(id: any){
+    if(confirm('Are you sure to cancel the Booking?'))
+    this._customerService.deleteBookingId(id)
+    .subscribe(
+      data => {
+        console.log(data);
+        alert('Booking cancelled Successfully')
+      },error=>alert("Cancellation unsuccessfull"));
+   }
+
+
+
+
 }

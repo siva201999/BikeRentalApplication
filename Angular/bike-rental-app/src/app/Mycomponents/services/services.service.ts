@@ -93,4 +93,8 @@ validatePayment(cardDetails:Config['CardDetails']):Observable<any>{
     return this.httpClient.post(`${this.baseUrl}/booking/${id}`, data);
   }
 
+  deleteBookingId(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/booking/${id}`);
+  }
+
 }

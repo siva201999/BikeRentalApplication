@@ -32,4 +32,5 @@ public class RenterController {
 		public ResponseEntity<?> updateProfile(@PathVariable("id")long id,@RequestBody RenterModel renter){
 			return renterService.updateProfile(id,renter);
 		}
+	 
 }
