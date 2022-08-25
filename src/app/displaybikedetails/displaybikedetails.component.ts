@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bikes } from '../bikes';
-import { RenterserviceService } from '../renterservice.service';
+import { RentalService } from '../renterservice.service';
+import { CustomerService } from '../customer.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
@@ -16,7 +17,7 @@ export class DisplaybikedetailsComponent implements OnInit {
   bike!: Bikes;
   bikess!: Bikes[];
   id: any;
-  constructor(private route: ActivatedRoute,private router: Router,private renterService: RenterserviceService) { }
+  constructor(private route: ActivatedRoute,private router: Router,private renterService: RentalService) { }
 
   ngOnInit() {
     this.bike= new Bikes();
@@ -26,7 +27,7 @@ export class DisplaybikedetailsComponent implements OnInit {
     this.renterService.getBike().subscribe(data => {
         console.log(data)
         this.bikess= data;
-      }, error => console.log(error));
+      }, (error: any) => console.log(error));
 
       id:Number;
       this.id = this.route.snapshot.params['id'];

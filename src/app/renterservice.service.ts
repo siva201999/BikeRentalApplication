@@ -1,35 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Bikes } from './bikes';
+import { HttpClient } from '@angular/common/http';
+import { ListResponseModel } from './listresponsemodel';
+import { ResponseModel } from './responsemodel';
+import { Rental } from './rental';
+
 @Injectable({
-  providedIn: 'root'
+   providedIn: 'root'
 })
-export class RenterserviceService {
- baseUrl:string="http://localhost:8090/bike"
 
-constructor( private httpClient:HttpClient) { }
+export class RentalService {
+  getBikeById(id: number): Observable<ListResponseModel<Rental>>{
+    //let newPath = this.baseURL + 'get-rental-by-BikeId?carId=' + bikeId;
+      return this.httpClient.get<ListResponseModel<Rental>>(this.baseURL);
+  }
 
+  baseURL="http://localhost:8090/rentals";
+   rentingBike!: Rental;
 
-getBikeById(id: number): Observable<any> {
-  return this.httpClient.get(`${this.baseUrl}/${id}`);
-}
+   constructor(private httpClient: HttpClient) {
+      this.getRentals();
+   }
 
-// addBike(data: any): Observable<Object> {
-//   return this.http.post(`${this.baseUrl}`, data);
-// }
+   getRentals(): Observable<ListResponseModel<Rental>> {
+      return this.httpClient.get<ListResponseModel<Rental>>(this.baseURL);
+   }
 
-// updateBike(id: number, value: any): Observable<Object> {
-//   return this.http.put(`${this.baseUrl}/${id}`, value);
-// }
+   getRentalsByBikeId(bikeId: number): Observable<ListResponseModel<Rental>> {
+      let newPath = this.baseURL + 'get-rental-by-BikeId?carId=' + bikeId;
+      return this.httpClient.get<ListResponseModel<Rental>>(newPath);
+   }
 
-// deleteBike(id: number): Observable<any> {
-//   return this.http.delete(`${this.baseUrl}/${id}`);
-// }
+   setRentingBike(rental: Rental) {
+      this.rentingBike = rental;
+   }
 
-getBike(): Observable<Bikes[]> {
-  console.log(Bikes)
-  return this.httpClient.get<Bikes[]>(this.baseUrl);
-}
+   getRentingBike() {
+      return this.rentingBike;
+   }
 
+ 
+
+   add(rental: Rental): Observable<ResponseModel> {
+      return this.httpClient.post<ResponseModel>(this.baseURL, rental);
+   }
 }

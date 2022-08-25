@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bikes } from '../bikes';
-import { RenterserviceService } from '../renterservice.service';
+import { RentalService } from '../renterservice.service';
 
 @Component({
   selector: 'app-bikedata',
@@ -13,7 +13,7 @@ export class BikedataComponent implements OnInit {
   id!: number;
   bike!: Bikes;
 
-  constructor(private route: ActivatedRoute,private router: Router,private renterService: RenterserviceService) { }
+  constructor(private route: ActivatedRoute,private router: Router,private renterService: RentalService) { }
 
   ngOnInit() {
     this.bike= new Bikes();

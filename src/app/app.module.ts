@@ -12,6 +12,7 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { DisplaybikedetailsComponent } from './displaybikedetails/displaybikedetails.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BikedataComponent } from './bikedata/bikedata.component';
+import { RentalComponent } from './rentnow/rentnow.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { BikedataComponent } from './bikedata/bikedata.component';
     SidenavComponent,
     TopbarComponent,
     DisplaybikedetailsComponent,
-    BikedataComponent
+    BikedataComponent,
+    RentalComponent
   ],
   imports: [
     BrowserModule,
