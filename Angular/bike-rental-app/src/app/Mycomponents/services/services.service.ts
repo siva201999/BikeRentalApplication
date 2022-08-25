@@ -87,6 +87,11 @@ export class ServicesService {
   addComment(data: any): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/comments`, data);
   }
+
+  getRenterBooking(id:number):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/renterBookings/${id}`);
+  }
+
 //============================================================customer services=====================================
   getCustomerBike(): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}/customer`);
@@ -111,7 +116,10 @@ export class ServicesService {
   }
 
   getCustomerBooking(id:number):Observable<any>{
-    return this.httpClient.get(`${this.baseUrl}/bookings/${id}`);
+    return this.httpClient.get(`${this.baseUrl}/customerBookings/${id}`);
   }
 
+  deleteBookingId(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/booking/${id}`);
+  }
 }

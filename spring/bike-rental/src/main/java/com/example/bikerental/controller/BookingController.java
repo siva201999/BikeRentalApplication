@@ -34,8 +34,20 @@ public class BookingController {
         return bookingService.getAllBookings();
     }
 
-    @GetMapping("/bookings/{id}")
+    @GetMapping("/customerBookings/{id}")
     public ResponseEntity<List<Booking>> getCustomerBooking(@PathVariable("id") long id){
         return bookingService.getCustomerBooking(id);
     }
+
+    @GetMapping("/renterBookings/{id}")
+    public ResponseEntity<List<Booking>> getRenterBooking(@PathVariable("id") long id){
+        return bookingService.getRenterBooking(id);
+    }
+
+    @DeleteMapping("/booking/{id}")
+	public ResponseEntity<?> deleteBookingById(@PathVariable("id")long id){
+		return bookingService.deleteBookingById(id);
+	}
+
+
 }

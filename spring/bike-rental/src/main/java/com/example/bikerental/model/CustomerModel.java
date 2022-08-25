@@ -161,6 +161,13 @@ public class CustomerModel {
     public CustomerModel() {
     }
 
+    @Override
+    public String toString() {
+        return "CustomerModel [address=" + address + ", booking=" + booking + ", email=" + email + ", gender=" + gender
+                + ", id=" + id + ", image=" + image + ", isActive=" + isActive + ", mobileNumber=" + mobileNumber
+                + ", password=" + password + ", userName=" + userName + ", userRole=" + userRole + "]";
+    }
+
     
 
     

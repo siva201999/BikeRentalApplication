@@ -6,21 +6,25 @@
                 <table class="table table-striped table-hover table-responsive" id="bookingTable">
                       <thead class="table-dark text-nowrap">
                         <tr class="text-center">
-                          <th scope="col">S.No</th>
+                            <th scope="col">S.No</th>
+                          <th scope="col">Booking Id</th>
                           <th scope="col">Renter name</th>
                           <th scope="col">Booking Date</th>
                           <th scope="col">Booking end date</th>
                           <th scope="col">Total amount</th>
+                          <th scope="col">Status</th>
                         </tr>
                       </thead>
                     
                     <tbody class="text-center">
                         <tr *ngFor="let booking of bookingObj; index as i" >
+                          <td>{{i+1}}</td>
                           <td>{{booking.booking_id}}</td>
                           <td>{{ booking.renterName}}</td>
                           <td>{{ booking.bookingDate}}</td>
                           <td>{{ booking.endDate}}</td>
                           <td>{{ booking.totalAmount}}</td>
+                          <td> <button type="button" (click)="cancelBike(booking.booking_id )" class="btn btn-danger btn-sm">Cancel</button> </td>
                         </tr>
                     </tbody> 
                 </table>

@@ -98,7 +98,7 @@ public class Booking {
     }
 
     public Booking(Double totalAmount, Date bookingDate, Date endDate, String renterName,String customerName) {
-        // this.booking_id = booking_id;
+        
         this.totalAmount = totalAmount;
         this.bookingDate = bookingDate;
         this.endDate = endDate;

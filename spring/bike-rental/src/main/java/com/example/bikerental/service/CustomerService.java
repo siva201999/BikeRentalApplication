@@ -124,11 +124,6 @@ public class CustomerService {
 	}
 	
 
-	public ResponseEntity<?> saveBookingHistory(Long id,Booking data) {
-		System.out.println("this id : "+id);
-		Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName());
-  		booking.setCustomer(new CustomerModel(id));
-		return new ResponseEntity<>(bookingRepository.save(booking),HttpStatus.OK);
-	}
+	
   
 }
