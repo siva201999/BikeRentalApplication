@@ -66,9 +66,10 @@ const routes: Routes = [
             {path:'editProfile/:id', component:UpdateCustomerProfileComponent},
             {path:'bikeDetails/:id', component:BikeDataComponent},
             {path:'rentBike',component:RentBikeComponent},
-            {path:'bookingHistory',component:CustomerBookingHistoryComponent},
+            // {path:'bookingHistory',component:CustomerBookingHistoryComponent},
             {path:'payment',component:PaymentComponent},
-            {path:'customerComments',component:CustomerCommentsComponent}
+            {path:'customerComments',component:CustomerCommentsComponent},
+            {path:'booking', component:CustomerBookingHistoryComponent}
   ]
 
   }

@@ -24,17 +24,17 @@ public class Booking {
     private Date endDate;
     private String renterName;
     private String customerName;
-    
+   
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JsonIgnore
-	@JoinColumn(nullable = false, name = "customer_id")
-	private CustomerModel customer;
+    @JsonIgnore
+    @JoinColumn(nullable = false, name = "customer_id")
+    private CustomerModel customer;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JsonIgnore
-	@JoinColumn(nullable = false, name = "renter_id")
-	private RenterModel renter;
-    
+    @JsonIgnore
+    @JoinColumn(nullable = false, name = "renter_id")
+    private RenterModel renter;
+   
     public Long getBooking_id() {
         return booking_id;
     }
@@ -79,10 +79,23 @@ public class Booking {
         this.customer = customer;
     }
 
+    public RenterModel getRenter() {
+        return renter;
+    }
+
+    public void setRenter(RenterModel renter) {
+        this.renter = renter;
+    }
+
     public Booking(CustomerModel customer) {
-		super();
-		this. customer =  customer;
-	}
+        super();
+        this. customer =  customer;
+    }
+
+    public Booking(RenterModel renter) {
+        super();
+        this. renter =  renter;
+    }
 
     public Booking(Double totalAmount, Date bookingDate, Date endDate, String renterName,String customerName) {
         // this.booking_id = booking_id;
@@ -92,8 +105,17 @@ public class Booking {
         this.renterName = renterName;
         this.customerName = customerName;
     }
+
     public Booking() {
     }
+
+    @Override
+    public String toString() {
+        return "Booking [booking_id=" + booking_id + ", totalAmount=" + totalAmount + ", bookingDate=" + bookingDate
+        + ", endDate=" + endDate + ", renterName=" + renterName + ", customerName=" + customerName
+        + ", customer=" + customer + ", renter=" + renter + "]";
+    }
+   
     
     
 

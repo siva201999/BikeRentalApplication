@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Config } from 'src/app/config';
 
 @Injectable({
@@ -10,6 +10,19 @@ export class ServicesService {
 
   private baseUrl="http://localhost:8081";
   constructor(private httpClient: HttpClient) { }
+
+  public shared = new Subject<Config['BookingObj']>();
+  book:Config['BookingObj']=new Config().BookingObj;
+  public getValue(): Observable<Config['BookingObj']> {
+    return this.shared;
+  }
+
+  public setValue(value: Config['BookingObj']): void {
+    console.log(value);
+    this.book=value;
+    this.shared.next(value);
+    console.log(this.shared);
+  }
 
   getAllCustomers():Observable<any>{
     return this.httpClient.get<Config["CustomerObj"][]>(`${this.baseUrl}/customers`);
@@ -32,8 +45,8 @@ export class ServicesService {
     return this.httpClient.put(`${this.baseUrl}/customers/${id}`,id);
   }
 
-  getBooking():Observable<any>{
-    return this.httpClient.get(`${this.baseUrl}/customer/bookings`);
+  getAllBooking():Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/bookings`);
   }
 
   getComment():Observable<any>{
@@ -93,7 +106,12 @@ export class ServicesService {
     return this.httpClient.post(`${this.baseUrl}/payment/`,cardDetails );
   }
 
-  saveBookingHistory(booking:Config['BookingObj']):Observable<any>{
-    return this.httpClient.post(`${this.baseUrl}/booking/`,booking);
+  saveBookingHistory(id:number,booking:Config['BookingObj']):Observable<any>{
+    return this.httpClient.post(`${this.baseUrl}/booking/${id}`,booking);
   }
+
+  getCustomerBooking(id:number):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/bookings/${id}`);
+  }
+
 }

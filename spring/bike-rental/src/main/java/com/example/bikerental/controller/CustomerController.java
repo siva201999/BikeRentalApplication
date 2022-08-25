@@ -59,9 +59,5 @@ public class CustomerController {
 		
 	}
 
-	@PostMapping("/booking/{id}")
-	public ResponseEntity<?> saveBookingHistory(@PathVariable("id")long id,@RequestBody Booking booking){
-		return customerService.saveBookingHistory(id,booking);
-	}
-
+	
 }

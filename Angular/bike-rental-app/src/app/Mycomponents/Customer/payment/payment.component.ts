@@ -11,6 +11,7 @@ import { ServicesService } from '../../services/services.service';
 export class PaymentComponent implements OnInit {
 
   renterId!: number;
+  id=JSON.parse(localStorage.getItem('userId')!);
   // customer:Customer;
    submitted = false;
    cardDetails:Config['CardDetails']=new Config().CardDetails;
@@ -20,23 +21,24 @@ export class PaymentComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
   ngOnInit(): void {
+    
+    this.booking=this.service.book;
     console.log(this.booking);
-    this.service.saveBookingHistory(this.booking).subscribe(data=>{
-      console.log(data);
-    })
   }
 
   validateCredentials(){
     if(confirm('Are you sure that you want to confirm  the payment?'))
     console.log(this.cardDetails)
     this.service.validatePayment(this.cardDetails).subscribe(data => {
-      // this.cardDetails = data;
+      
       console.log(this.cardDetails);
       alert("Payment successfull");
-      // this.bookingHistory();
+
+      this.service.saveBookingHistory(this.id,this.booking).subscribe(data=>{
+        console.log(data);
+      })
       this.goBack();
      } ,error=>alert("Payment unsuccessfull"));
-      
     }
 
   //  bookingHistory(){

@@ -7,5 +7,5 @@ import com.example.bikerental.model.RenterModel;
 
 @Repository
 public interface RenterRepository extends JpaRepository<RenterModel,Long>{
-    
+    RenterModel findByUserName(String userName);
 }

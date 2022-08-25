@@ -1,7 +1,6 @@
 package com.example.bikerental.controller;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +16,7 @@ import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.Comments;
 import com.example.bikerental.service.AdminServices;
 
-import ch.qos.logback.core.read.ListAppender;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -54,11 +53,6 @@ public class AdminController {
     @PutMapping("/customers/{id}")
     public CustomerModel isCustomerActive(@PathVariable Long id){
         return adminServices.isCustomerActive(id);
-    }
-
-    @GetMapping("/customer/bookings")
-    public List<Booking> getAllBookings(){
-        return adminServices.getAllBookings();
     }
 
     @GetMapping("/feedback")

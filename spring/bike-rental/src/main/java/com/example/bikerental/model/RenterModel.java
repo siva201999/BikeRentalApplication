@@ -43,19 +43,18 @@ public class RenterModel {
     @Column(name = "address")
     private String address;
     @Column(name = "earnings", columnDefinition = "integer default 0")
-    private int earnings;
+    private double earnings;
     @Column(name = "isActive")
     private String isActive;
 
     @OneToMany(mappedBy = "renter", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE,orphanRemoval = true)
-	@JsonIgnore
-	private List<BikeModel> bike = new ArrayList<>();
+    @JsonIgnore
+    private List<BikeModel> bike = new ArrayList<>();
 
     @OneToMany(mappedBy = "renter", fetch = FetchType.LAZY,cascade = CascadeType.ALL , orphanRemoval = true)
-	@JsonIgnore
-	private List<Booking> booking = new ArrayList<>();
-
-      
+    @JsonIgnore
+    private List<Booking> booking = new ArrayList<>();
+    
 
     public Long getId() {
         return id;
@@ -131,12 +130,12 @@ public class RenterModel {
         this.address = address;
     }
 
-    public int getEarnings() {
+    public double getEarnings() {
         return earnings;
     }
 
 
-    public void setEarnings(int earnings) {
+    public void setEarnings(double earnings) {
         this.earnings = earnings;
     }
 
@@ -168,15 +167,12 @@ public class RenterModel {
         this.booking = booking;
     }
 
-
-  
-
     public RenterModel(Long id) {
         this.id = id;
     }
 
     public RenterModel(String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address, int earnings, String isActive) {
+            String userRole, String image, String address, double earnings, String isActive) {
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
@@ -187,28 +183,9 @@ public class RenterModel {
         this.address = address;
         this.earnings = earnings;
         this.isActive = isActive;
-        
+       
     }
-
-  
-
     public RenterModel() {
-    }
-
-    
-
-    
-   
-
-    
-
-   
-
-   
-   
-
-   
-
-   
-   
+    }  
+  
 }

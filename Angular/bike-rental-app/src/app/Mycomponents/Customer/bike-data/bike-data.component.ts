@@ -21,7 +21,8 @@ export class BikeDataComponent implements OnInit {
   error:any;
   price: any;
   valid=false;
-  constructor(private route: ActivatedRoute,private router: Router,private renterService: ServicesService) { }
+  constructor(private route: ActivatedRoute,private router: Router,private renterService: ServicesService) { 
+  }
 
   ngOnInit() {
     this.bike= new Config().BikeObj;
@@ -36,7 +37,7 @@ export class BikeDataComponent implements OnInit {
       }, error => console.log(error));
      
   }
-
+  
   diff(){
   let date1 = new Date(this.startdate);
   let date2 = new Date(this.enddate);
@@ -44,19 +45,23 @@ export class BikeDataComponent implements OnInit {
   this.valid=true; 
   console.log("subracted days are  " + this.dayssubracted);
 
-  this.booking.bookingDate=String(new Date(this.startdate));
-  this.booking.endDate=String(new Date(this.enddate));
+  this.booking.bookingDate=this.startdate;
+  this.booking.endDate=this.enddate;
   this.booking.totalAmount=this.dayssubracted;
   this.booking.renterName=this.bike.ownerName;
+  
+// this.booking.renterId=this.bike.id;
   }
 
-  saveBookingHistory(){
-    
+  paymentNavigation(){
+    console.log(this.booking);
+   
+    this.renterService.setValue(this.booking);
+    //console.log(this.renterService.getValue().subscribe());
     this.router.navigate(['customer/payment']);
   }
 
   Back(){
     this.router.navigate(['customer/dashboard']);
   }
-
 }

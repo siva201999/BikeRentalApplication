@@ -14,7 +14,7 @@ export class BookingHistoryComponent implements OnInit {
     private service:ServicesService) { }
 
   ngOnInit(): void {
-    this.service.getBooking().subscribe(data =>{
+    this.service.getAllBooking().subscribe(data =>{
       this.bookingObj=data;
       console.log(this.bookingObj);
       $(document).ready(function(){

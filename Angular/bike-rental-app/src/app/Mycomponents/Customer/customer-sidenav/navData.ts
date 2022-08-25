@@ -10,8 +10,8 @@ export const navbarData=[
         label:'Profile'
     },
     {
-        routerLink:'customerBookingHistory',
-        icon:'fal fa-address-card',
+        routerLink:'booking',
+        icon:'fas fa-history',
         label:'Booking History'
     },
     {

@@ -86,11 +86,7 @@ public class AdminServices {
         return customer;
     }
 
-    //========================customer booking=======================
-    public List<Booking> getAllBookings(){
-        return bookingRepository.findAll();
-    }  
-
+    
     //========================getFeedback===========================
     public List<Comments> getAllComments(){
         return commentRepository.findAll();
