@@ -53,6 +53,9 @@ export class ServicesService {
     return this.httpClient.get(`${this.baseUrl}/feedback`);
   }
 
+  getAdminEarning(id:number):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/adminEarnings/${id}`);
+  }
   //============================================================renter services=====================================
   getBikeById(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/bike/${id}`);

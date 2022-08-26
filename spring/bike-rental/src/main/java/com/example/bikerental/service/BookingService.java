@@ -33,7 +33,7 @@ public class BookingService {
 
     public ResponseEntity<?> saveBookingHistory(Long id,Booking data) {
         System.out.println("this id : "+id);
-        Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName());
+        Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName(),data.getBrandName(),data.getModelName());
         booking.setCustomer(new CustomerModel(id));
 
         RenterModel renter=renterRepository.findByUserName(data.getRenterName());

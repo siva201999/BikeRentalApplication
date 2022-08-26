@@ -12,6 +12,8 @@ export class AdminDashboardContentComponent implements OnInit {
   public renterObj!:Config['RenterObj'][];
   customerCount=0;
   renterCount=0;
+  id=JSON.parse(localStorage.getItem('userId')!);
+  earnings!:any;
   constructor(private service:ServicesService) { }
 
   ngOnInit(): void {
@@ -24,7 +26,12 @@ export class AdminDashboardContentComponent implements OnInit {
       this.renterObj=response;
       this.renterCount=this.renterObj.length;
       
+    });
+
+    this.service.getAdminEarning(this.id).subscribe(response=>{
+      this.earnings=response;
     })
+
   }
    
     

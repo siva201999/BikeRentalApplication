@@ -66,7 +66,9 @@ export class Config {
         bookingDate:"",
         endDate:"",
         renterName:"",
-        customerName:JSON.parse(localStorage.getItem('userName')!)
+        customerName:JSON.parse(localStorage.getItem('userName')!),
+        brandName:"",
+        modelName:""
     }
     Comments={
         id:"",
@@ -80,7 +82,7 @@ export class Config {
         name:"",
         cardType:"",
         cardNumber:"",
-        cvv!:"",
+        cvv:"",
         expiryMM:"",
         expiryYY:""
     }

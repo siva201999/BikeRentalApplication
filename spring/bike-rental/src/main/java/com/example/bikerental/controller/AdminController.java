@@ -59,4 +59,9 @@ public class AdminController {
     public List<Comments> getAllComments(){
         return adminServices.getAllComments();
     }
+
+    @GetMapping("/adminEarnings/{adminId}")
+    public double getAdminEarnin(@PathVariable Long adminId){
+        return adminServices.getAdminEarning(adminId);
+    }
 }

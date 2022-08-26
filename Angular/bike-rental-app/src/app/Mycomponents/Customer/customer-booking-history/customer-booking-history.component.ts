@@ -21,7 +21,8 @@ export class CustomerBookingHistoryComponent implements OnInit {
       console.log(this.bookingObj);
       $(document).ready(function(){
         $('#bookingTable').DataTable({
-          lengthMenu: [5, 10, 20, 50, 100]
+          lengthMenu: [5, 10, 20, 50, 100],
+          
         });
       });
     })

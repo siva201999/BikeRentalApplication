@@ -91,4 +91,9 @@ public class AdminServices {
     public List<Comments> getAllComments(){
         return commentRepository.findAll();
     }
+
+    //========================Get Admin Earninngs========================
+	public double getAdminEarning(Long adminId) {
+		return renterRepository.getReferenceById(adminId).getEarnings();
+	}
 }

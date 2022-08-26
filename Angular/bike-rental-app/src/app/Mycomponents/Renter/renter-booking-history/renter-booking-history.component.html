@@ -26,6 +26,8 @@
                         <tr class="text-center">
                           <th scope="col">Booking Id</th>
                           <th scope="col">Customer name</th>
+                          <th scope="col">Brand name</th>
+                          <th scope="col">Model name</th>
                           <th scope="col">Booking Date</th>
                           <th scope="col">Booking end date</th>
                           <th scope="col">Total amount</th>
@@ -36,6 +38,8 @@
                         <tr *ngFor="let booking of bookingObj; index as i" >
                           <td>{{booking.booking_id}}</td>
                           <td>{{ booking.customerName}}</td>
+                          <td>{{ booking.brandName}}</td>
+                          <td>{{ booking.modelName}}</td>
                           <td>{{ booking.bookingDate}}</td>
                           <td>{{ booking.endDate}}</td>
                           <td>{{ booking.totalAmount}}</td>

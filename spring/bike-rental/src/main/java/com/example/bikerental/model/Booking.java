@@ -24,7 +24,10 @@ public class Booking {
     private Date endDate;
     private String renterName;
     private String customerName;
+    private String brandName;
+    private String modelName;
    
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonIgnore
     @JoinColumn(nullable = false, name = "customer_id")
@@ -87,6 +90,19 @@ public class Booking {
         this.renter = renter;
     }
 
+    public String getBrandName() {
+        return brandName;
+    }
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+    public String getModelName() {
+        return modelName;
+    }
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
     public Booking(CustomerModel customer) {
         super();
         this. customer =  customer;
@@ -97,13 +113,15 @@ public class Booking {
         this. renter =  renter;
     }
 
-    public Booking(Double totalAmount, Date bookingDate, Date endDate, String renterName,String customerName) {
+    public Booking(Double totalAmount, Date bookingDate, Date endDate, String renterName,String customerName,String brandName,String modelName) {
         
         this.totalAmount = totalAmount;
         this.bookingDate = bookingDate;
         this.endDate = endDate;
         this.renterName = renterName;
         this.customerName = customerName;
+        this.brandName = brandName;
+        this.modelName = modelName;
     }
 
     public Booking() {
