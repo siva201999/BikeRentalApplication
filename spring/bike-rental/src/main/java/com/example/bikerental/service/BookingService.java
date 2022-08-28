@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.AdminModel;
+import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.AdminRepository;
+import com.example.bikerental.repository.BikeRepository;
 import com.example.bikerental.repository.BookingRepository;
 import com.example.bikerental.repository.CustomerRepository;
 import com.example.bikerental.repository.RenterRepository;
@@ -21,10 +23,15 @@ import com.example.bikerental.repository.RenterRepository;
 public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
+
     @Autowired
     private RenterRepository renterRepository;
+
     @Autowired
     private AdminRepository adminRepository;
+
+    @Autowired
+    private BikeRepository bikeRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -33,9 +40,11 @@ public class BookingService {
 
     public ResponseEntity<?> saveBookingHistory(Long id,Booking data) {
         System.out.println("this id : "+id);
-        Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName(),data.getBrandName(),data.getModelName());
+        BikeModel bike=bikeRepository.getReferenceById(data.getBikeId());
+        Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName(),data.getBrandName(),data.getModelName(),data.getBikeId());
         booking.setCustomer(new CustomerModel(id));
-
+        bike.setAvailability("false");
+        bikeRepository.save(bike);
         RenterModel renter=renterRepository.findByUserName(data.getRenterName());
         // System.out.println(renter.toString());
         booking.setRenter(new RenterModel(renter.getId()));
@@ -112,6 +121,9 @@ public class BookingService {
 				Booking booking=bookingRepository.getReferenceById(id);
 				RenterModel renter=renterRepository.findByUserName(booking.getRenterName());
 				bookingRepository.deleteById(id);
+                BikeModel bike=bikeRepository.getReferenceById(booking.getBikeId());
+                bike.setAvailability("true");
+                bikeRepository.save(bike);
 				refund(renter.getId(),booking.getTotalAmount());
                 return new ResponseEntity<>(HttpStatus.OK);
 			}

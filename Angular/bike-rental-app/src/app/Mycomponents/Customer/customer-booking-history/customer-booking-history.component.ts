@@ -43,23 +43,22 @@ export class CustomerBookingHistoryComponent implements OnInit {
   forOngoing(bookingDate:string,returnDate:string) {
    
     console.log("booikgDate=",bookingDate<=this.date);
-    // this.bikeObj.availability = "false";
     if ((this.date >= bookingDate) && (this.date <= returnDate))
       return true;
     return false;
   }
 
   forCancel(bookingDate:string) {
-  
-    // this.bikeObj.availability = "false";
-    if (this.date < bookingDate) 
+      if (this.date < bookingDate) 
       return true;
     return false;
   }
 
   forCompleted(returnDate:string) {
-   
     // this.bikeObj.availability = "true";
+    // this.service.updateBike(this.bikeObj.id,this.bikeObj).subscribe(data =>{
+    //   console.log(data);
+    // });
     if (this.date > returnDate)
        return true;
     return false;

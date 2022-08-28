@@ -51,6 +51,7 @@ export class BikeDataComponent implements OnInit {
   this.booking.renterName=this.bike.ownerName;
   this.booking.brandName=this.bike.brandName;
   this.booking.modelName=this.bike.modelName;
+  this.booking.bikeId=this.bike.id;
   
 // this.booking.renterId=this.bike.id;
   }

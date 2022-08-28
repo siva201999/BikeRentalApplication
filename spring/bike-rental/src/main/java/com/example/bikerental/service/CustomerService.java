@@ -50,7 +50,13 @@ public class CustomerService {
 			{
 				for(RenterModel renter:renters){
 					if(renter.getIsActive().equals("true")){
-						bikes.addAll(renter.getBike());
+						List<BikeModel> bike = renter.getBike();
+						for(int i = 0; i<bike.size();i++){
+							if(bike.get(i).getAvailability().equals("true")){
+								bikes.add(bike.get(i));
+							}
+						}
+						
 					}
 				}
 				return new ResponseEntity<>(bikes,HttpStatus.OK);

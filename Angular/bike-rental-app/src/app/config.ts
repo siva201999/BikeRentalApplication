@@ -49,7 +49,7 @@ export class Config {
     }
 
     BikeObj={
-        id:"",
+        id:0,
         brandName:"",
         modelName:"",
         bikeNumber:"",
@@ -68,7 +68,8 @@ export class Config {
         renterName:"",
         customerName:JSON.parse(localStorage.getItem('userName')!),
         brandName:"",
-        modelName:""
+        modelName:"",
+        bikeId:0
     }
     Comments={
         id:"",

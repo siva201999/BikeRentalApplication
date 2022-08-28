@@ -26,6 +26,7 @@ public class Booking {
     private String customerName;
     private String brandName;
     private String modelName;
+    private Long bikeId;
    
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -37,6 +38,7 @@ public class Booking {
     @JsonIgnore
     @JoinColumn(nullable = false, name = "renter_id")
     private RenterModel renter;
+
    
     public Long getBooking_id() {
         return booking_id;
@@ -75,6 +77,14 @@ public class Booking {
         this.customerName = customerName;
     }
 
+    public Long getBikeId() {
+        return bikeId;
+    }
+
+    public void setBikeId(Long bikeId) {
+        this.bikeId = bikeId;
+    }
+
     public CustomerModel getCustomer() {
         return customer;
     }
@@ -89,10 +99,12 @@ public class Booking {
     public void setRenter(RenterModel renter) {
         this.renter = renter;
     }
-
+    
+    
     public String getBrandName() {
         return brandName;
     }
+
     public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
@@ -112,8 +124,9 @@ public class Booking {
         super();
         this. renter =  renter;
     }
-
-    public Booking(Double totalAmount, LocalDate  bookingDate, LocalDate  endDate, String renterName,String customerName,String brandName,String modelName) {
+    
+    
+    public Booking(Double totalAmount, LocalDate  bookingDate, LocalDate  endDate, String renterName,String customerName,String brandName,String modelName,Long bikeId) {
         
         this.totalAmount = totalAmount;
         this.bookingDate = bookingDate;
@@ -122,6 +135,7 @@ public class Booking {
         this.customerName = customerName;
         this.brandName = brandName;
         this.modelName = modelName;
+        this.bikeId= bikeId;
     }
 
     public Booking() {
@@ -133,6 +147,7 @@ public class Booking {
         + ", endDate=" + endDate + ", renterName=" + renterName + ", customerName=" + customerName
         + ", customer=" + customer + ", renter=" + renter + "]";
     }
+    
    
     
     
