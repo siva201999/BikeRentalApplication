@@ -37,7 +37,7 @@ public class BookingService {
         booking.setCustomer(new CustomerModel(id));
 
         RenterModel renter=renterRepository.findByUserName(data.getRenterName());
-        System.out.println(renter.toString());
+        // System.out.println(renter.toString());
         booking.setRenter(new RenterModel(renter.getId()));
         
         updateEarnings(renter.getId(),data.getTotalAmount());
@@ -47,13 +47,10 @@ public class BookingService {
 
     public void updateEarnings(Long id,double amount) {
         RenterModel renter=renterRepository.getReferenceById(id);
-        renter.setEarnings(renter.getEarnings()+amount-(amount*0.1));
+        renter.setEarnings((renter.getEarnings()+amount)-(amount*0.1));
         renterRepository.save(renter);
-
         AdminModel admin=adminRepository.getReferenceById((long) 1);
-        System.out.println(admin.toString());
         admin.setEarnings(admin.getEarnings()+(amount * 0.1));
-        System.out.println(admin.toString());
         adminRepository.save(admin);
     }
 
@@ -112,9 +109,11 @@ public class BookingService {
     public ResponseEntity<?> deleteBookingById(long id) {
 		try {
 			if(bookingRepository.findById(id).isPresent()) {
+				Booking booking=bookingRepository.getReferenceById(id);
+				RenterModel renter=renterRepository.findByUserName(booking.getRenterName());
 				bookingRepository.deleteById(id);
-                // refund(id,)
-				return new ResponseEntity<>(HttpStatus.OK);
+				refund(renter.getId(),booking.getTotalAmount());
+                return new ResponseEntity<>(HttpStatus.OK);
 			}
 			else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -125,18 +124,18 @@ public class BookingService {
         }		
 	}
 
-
     public void refund(Long id,double amount) {
         RenterModel renter=renterRepository.getReferenceById(id);
-        renter.setEarnings(renter.getEarnings()+amount-(amount*0.1));
+        renter.setEarnings(renter.getEarnings()-(amount-(amount*0.1)));
         renterRepository.save(renter);
 
         AdminModel admin=adminRepository.getReferenceById((long) 1);
-        System.out.println(admin.toString());
-        admin.setEarnings(admin.getEarnings()+(amount * 0.1));
-        System.out.println(admin.toString());
+        admin.setEarnings(admin.getEarnings()-(amount * 0.1));
         adminRepository.save(admin);
-    }
+    }   
+
+
+    
 
 
     

@@ -28,7 +28,17 @@
                           <td>{{ booking.bookingDate}}</td>
                           <td>{{ booking.endDate}}</td>
                           <td>{{ booking.totalAmount}}</td>
-                          <td> <button type="button" (click)="cancelBike(booking.booking_id )" class="btn btn-danger btn-sm">Cancel</button> </td>
+                          <td>
+                            <div *ngIf= "forOngoing(booking.bookingDate,booking.endDate)">
+                              <button type="button" disabled class="btn btn-success btn-sm">Ongoing</button>
+                            </div>
+                            <div *ngIf= "forCancel(booking.bookingDate)">
+                              <button type="button" (click)="cancelBike(booking.booking_id )" class="btn btn-danger btn-sm">Cancel</button>
+                            </div> 
+                            <div *ngIf= "forCompleted(booking.endDate)">
+                              <button type="button" disabled class="btn btn-secondary btn-sm">Completed</button>
+                             </div> 
+                          </td>  
                         </tr>
                     </tbody> 
                 </table>

@@ -22,12 +22,19 @@
         </div>
   
         <div class="form-group pb-3" [class.has-error]="gendercontrol.invalid">
-          <label for="pickUpLocation" class="control-label"><i class="fas fa-users"></i> Gender</label>
-          <input type="text" class="form-control" id="gender" required [(ngModel)]="renter.gender" name="gender" #gendercontrol="ngModel">
-        
-          <span class="help-block" *ngIf="gendercontrol.invalid && gendercontrol.touched" style="color: red;"> 
-            gender is Required
-          </span>
+          <label><i class="fas fa-users"></i>Gender</label>
+          <div class="col">
+            <label class="radio-inline">
+              <input type="radio" name="gender" value="Male" [(ngModel)]="renter.gender" #gendercontrol="ngModel"> Male
+            </label>
+            
+          </div>
+          <div class="col">
+            <label class="radio-inline">
+              <input type="radio" name="gender" value="Female" [(ngModel)]="renter.gender" #gendercontrol="ngModel">
+              Female
+            </label>
+          </div>
         </div>
         <div class="form-group pb-3" [class.has-error]="addresscontrol.invalid">
           <label for="availability" class="control-label"><i class="fas fa-address-card"></i> Address</label>

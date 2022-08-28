@@ -9,7 +9,7 @@
       
     
       <div class="row">
-        <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3"  *ngFor="let fd of bikess | filter:searchedValue">
+        <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3"  *ngFor="let fd of bikess | filter:searchedValue | paginate: { itemsPerPage: 8, currentPage: page }">
           <div class="card shadow p-3 mb-5 bg-body rounded" id="bikeCard">
             <img src="{{fd.bikeImage}}" class="card-img-top" alt="{{fd.brandName}} {{fd.modelName}}" />
             <div class="card-body">
@@ -33,6 +33,7 @@
         </div>
       </div>
       </div>
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div> 
     
     

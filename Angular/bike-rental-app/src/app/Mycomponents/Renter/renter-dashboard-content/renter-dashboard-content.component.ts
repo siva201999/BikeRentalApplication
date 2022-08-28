@@ -17,6 +17,7 @@ export class RenterDashboardContentComponent implements OnInit {
   renter:Config['RenterObj']=new Config().RenterObj;
   id=JSON.parse(localStorage.getItem('userId')!);
   earnings!:any;
+  page : number=1;
 
   SearchValue:string;
 

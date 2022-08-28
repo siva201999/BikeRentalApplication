@@ -1,8 +1,11 @@
 package com.example.bikerental.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,4 +67,9 @@ public class AdminController {
     public double getAdminEarnin(@PathVariable Long adminId){
         return adminServices.getAdminEarning(adminId);
     }
+
+    @GetMapping("/adminRevenue/{startDate}/{endDate}")
+	public ResponseEntity<Double> calculateRevenue(@PathVariable(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @PathVariable(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
+		return adminServices.calculateRevenue(startDate,endDate);
+	}
 }

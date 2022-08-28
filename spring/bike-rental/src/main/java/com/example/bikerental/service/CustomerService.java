@@ -2,9 +2,7 @@ package com.example.bikerental.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,15 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
-import com.example.bikerental.model.Booking;
-import com.example.bikerental.model.Comments;
+
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.Payment;
+import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.BikeRepository;
-import com.example.bikerental.repository.BookingRepository;
-import com.example.bikerental.repository.CommentRepository;
 import com.example.bikerental.repository.CustomerRepository;
 import com.example.bikerental.repository.PaymentRepository;
+import com.example.bikerental.repository.RenterRepository;
 
 
 
@@ -33,24 +30,30 @@ public class CustomerService {
     private BikeRepository bikeRepository;
 
 	@Autowired
+	private RenterRepository renterRepository;
+	
+	@Autowired
 	private PaymentRepository paymentRepository;
 
-	@Autowired
-	private BookingRepository bookingRepository;
-
-	@Autowired
-	private CommentRepository commentRepository;
 	
 	//To fetch all Customers
 	public ResponseEntity<List<BikeModel>> getCustomerBike()   
 	{  
+		List<RenterModel> renters = renterRepository.findAll();
+		List<BikeModel> bikes = new ArrayList<BikeModel>();
+		
 		try {
 			if(bikeRepository.findAll().isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			else
 			{
-				return new ResponseEntity<>(bikeRepository.findAll(),HttpStatus.OK);
+				for(RenterModel renter:renters){
+					if(renter.getIsActive().equals("true")){
+						bikes.addAll(renter.getBike());
+					}
+				}
+				return new ResponseEntity<>(bikes,HttpStatus.OK);
 			}
 		}
 		catch(Exception e) {
@@ -124,7 +127,7 @@ public class CustomerService {
 		}
 	}
 	
-
+	
 	
   
 }

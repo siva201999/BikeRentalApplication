@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.AdminModel;
 import com.example.bikerental.model.CustomerModel;
+import com.example.bikerental.model.PasswordDecrypt;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.AdminRepository;
 import com.example.bikerental.repository.CustomerRepository;
@@ -128,6 +130,55 @@ public class AuthService {
         return result;
        
     }
+//========================update customer password========================================
+    public ResponseEntity<CustomerModel> updateCustomerPassword(Long id, CustomerModel data){
+        try{
+            if(customerRepository.findById(id).isPresent()){
+                CustomerModel customer = customerRepository.getReferenceById(id);
+                customer.setPassword(passwordConfig.hashPassword(data.getPassword()));
+                return new ResponseEntity<>(customerRepository.save(customer),HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+                      
+        }catch (Exception e) {
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
+    public boolean customerPasswordDecrypt(Long id,PasswordDecrypt oldPassword){
+        CustomerModel customer = customerRepository.getReferenceById(id);
+        if(passwordConfig.checkPass(oldPassword.getPassword(),customer.getPassword())){
+            return true;
+        }
+        return false;
+    }
 
 
+   //========================update renter password========================================
+   public ResponseEntity<RenterModel> updateRenterPassword(Long id, RenterModel data){
+        try{
+            if(renterRepository.findById(id).isPresent()){
+                RenterModel renter = renterRepository.getReferenceById(id);
+                renter.setPassword(passwordConfig.hashPassword(data.getPassword()));
+                return new ResponseEntity<>(renterRepository.save(renter),HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+                    
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
+    public boolean renterPasswordDecrypt(Long id,PasswordDecrypt oldPassword){
+        RenterModel renter = renterRepository.getReferenceById(id);
+        if(passwordConfig.checkPass(oldPassword.getPassword(),renter.getPassword())){
+            return true;
+        }
+        return false;
+    }
 }

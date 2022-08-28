@@ -28,4 +28,8 @@ export class RenterProfileComponent implements OnInit {
   goto(){
     this.router.navigate(['renter/dashboard']);
   }
+
+  updateRenterPassword(id:any){
+    this.router.navigate(['renter/updatePassword',this.id]);
+  }
 }

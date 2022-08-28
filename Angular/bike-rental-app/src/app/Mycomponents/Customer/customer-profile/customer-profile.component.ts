@@ -29,4 +29,8 @@ export class CustomerProfileComponent implements OnInit {
   goto(){
     this.router.navigate(['customer/dashboard']);
   }
+
+  updatePassword(id:any){
+    this.router.navigate(['customer/updatePassword',this.id]);
+  }
 }

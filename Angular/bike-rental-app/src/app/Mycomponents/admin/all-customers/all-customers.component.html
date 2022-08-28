@@ -8,25 +8,26 @@
                     <thead class="table-dark text-nowrap">
                       <tr>
                         <th scope="col">S.No</th>
+                        <th scope="col">Customer id</th>
                         <th scope="col">Profile image</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Gender</th>
-                        <!-- <th scope="col">User Role</th> -->
                         <th scope="col">Active</th>
                       </tr>
                     </thead>
                   
                   <tbody>
                     <tr *ngFor="let customer of customerObj; index as i">
+                        <td>{{i+1}}</td>
                         <td>{{customer.id}}</td>
                         <td><img src="{{customer.image}}" class="rounded-circle" height="40" width="40" style="background:grey" alt=""></td>
                         <td>{{ customer.userName}}</td>
                         <td>{{ customer.email}}</td>
                         <td>{{ customer.mobileNumber}}</td>
                         <td>{{ customer.gender}}</td>
-                        <!-- <td>{{ customer.userRole}}</td> -->
+                        
                        <td>
                         <div *ngIf="customer.isActive==='false'; else elseBlock">
                           <button class="btn btn-danger" (click)="isActiveCustomer(customer.id)" >Mark as active</button>

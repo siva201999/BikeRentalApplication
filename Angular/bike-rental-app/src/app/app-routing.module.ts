@@ -28,6 +28,8 @@ import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/custome
 import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
 import { FeedbackComponent } from './Mycomponents/admin/feedback/feedback.component';
 import { CustomerCommentsComponent } from './Mycomponents/Customer/customer-comments/customer-comments.component';
+import { CustomerUpdatepasswordComponent } from './Mycomponents/Customer/customer-updatepassword/customer-updatepassword.component';
+import { RenterUpdatepasswordComponent } from './Mycomponents/Renter/renter-updatepassword/renter-updatepassword.component';
 
 const routes: Routes = [
  
@@ -56,6 +58,7 @@ const routes: Routes = [
           {path:'editProfile/:id', component:EditProfileComponent},
           {path:'comments', component:CommentsComponent},
           {path:'bookingHistory', component:RenterBookingHistoryComponent},
+          {path:'updatePassword/:id',component:RenterUpdatepasswordComponent},
   ]
 },
   {path:'customer',component:CustomerDashboardComponent,
@@ -69,7 +72,8 @@ const routes: Routes = [
             // {path:'bookingHistory',component:CustomerBookingHistoryComponent},
             {path:'payment',component:PaymentComponent},
             {path:'customerComments',component:CustomerCommentsComponent},
-            {path:'booking', component:CustomerBookingHistoryComponent}
+            {path:'booking', component:CustomerBookingHistoryComponent},
+            {path:'updatePassword/:id', component:CustomerUpdatepasswordComponent}
   ]
 
   }

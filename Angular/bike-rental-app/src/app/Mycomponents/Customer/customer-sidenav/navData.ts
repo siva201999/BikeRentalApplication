@@ -1,4 +1,6 @@
+
 export const navbarData=[
+   
     {
         routerLink:'dashboard',
         icon:'fal fa-home',
@@ -19,6 +21,7 @@ export const navbarData=[
         icon:'fas fa-comment-alt-dots',
         label:'Feedback'
     }
+   
     
     
 ];

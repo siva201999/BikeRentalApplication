@@ -1,10 +1,13 @@
 package com.example.bikerental.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bikerental.model.BikeModel;
@@ -12,8 +15,7 @@ import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
-import com.example.bikerental.repository.BikeRepository;
-import com.example.bikerental.repository.BookingRepository;
+import com.example.bikerental.repository.AdminRepository;
 import com.example.bikerental.repository.CommentRepository;
 import com.example.bikerental.repository.CustomerRepository;
 import com.example.bikerental.repository.RenterRepository;
@@ -21,15 +23,13 @@ import com.example.bikerental.repository.RenterRepository;
 @Service
 public class AdminServices {
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
     @Autowired
-    RenterRepository renterRepository;
+    private RenterRepository renterRepository;
     @Autowired
-    BikeRepository bikeRepository;
+    private CommentRepository commentRepository;
     @Autowired
-    BookingRepository bookingRepository;
-    @Autowired
-    CommentRepository commentRepository;
+    private AdminRepository adminRepository;
 
     //==========Fetch all customers====================
     public List<CustomerModel> getAllCustomers(){
@@ -94,6 +94,24 @@ public class AdminServices {
 
     //========================Get Admin Earninngs========================
 	public double getAdminEarning(Long adminId) {
-		return renterRepository.getReferenceById(adminId).getEarnings();
+		return adminRepository.getReferenceById(adminId).getEarnings();
 	}
+
+
+    public ResponseEntity<Double> calculateRevenue(LocalDate startDate, LocalDate endDate) {
+		Double revenue=0.0;
+		List<RenterModel> renter=renterRepository.findAll();
+        if(!renter.isEmpty()) {
+            for(int i=0;i<renter.size();i++) {
+                List<Booking> bookings=renter.get(i).getBooking();
+                for(int j=0;j<bookings.size();j++) {
+                    if((startDate.isBefore(bookings.get(j).getEndDate()) || startDate.isEqual(bookings.get(j).getEndDate())) && (endDate.isAfter(bookings.get(j).getEndDate()) || endDate.isEqual(bookings.get(j).getEndDate()))) {
+                        revenue+=(bookings.get(j).getTotalAmount()*0.1);
+                        
+                    }
+			}
+		}
+    }
+		return new ResponseEntity<>(revenue, HttpStatus.OK);
+	    }
 }

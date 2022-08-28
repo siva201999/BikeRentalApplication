@@ -56,6 +56,10 @@ export class ServicesService {
   getAdminEarning(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/adminEarnings/${id}`);
   }
+
+  calculateAdminRevenue(startdate:Date,enddate:Date):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/adminRevenue/${startdate}/${enddate}`);
+  }
   //============================================================renter services=====================================
   getBikeById(id:number):Observable<any>{
     return this.httpClient.get(`${this.baseUrl}/bike/${id}`);
@@ -95,6 +99,9 @@ export class ServicesService {
     return this.httpClient.get(`${this.baseUrl}/renterBookings/${id}`);
   }
 
+  calculateRenterRevenue(id:number,startdate:Date,enddate:Date):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/renterRevenue/${id}/${startdate}/${enddate}`);
+  }
 //============================================================customer services=====================================
   getCustomerBike(): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}/customer`);

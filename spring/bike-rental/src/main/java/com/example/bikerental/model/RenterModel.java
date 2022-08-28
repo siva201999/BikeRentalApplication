@@ -186,6 +186,15 @@ public class RenterModel {
        
     }
     public RenterModel() {
+    }
+
+    @Override
+    public String toString() {
+        return "RenterModel [address=" + address + ", bike=" + bike + ", booking=" + booking + ", earnings=" + earnings
+                + ", email=" + email + ", gender=" + gender + ", id=" + id + ", image=" + image + ", isActive="
+                + isActive + ", mobileNumber=" + mobileNumber + ", password=" + password + ", userName=" + userName
+                + ", userRole=" + userRole + "]";
     }  
   
+    
 }

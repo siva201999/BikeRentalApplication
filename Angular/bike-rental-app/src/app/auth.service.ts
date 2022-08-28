@@ -34,8 +34,26 @@ export class AuthService {
 
   customerSignup(customerRegistration:Config["Signup"]):Observable<object> {
     console.log(customerRegistration);
-    return this.httpClient.post(`${this.baseUrl}/customer/signup`, customerRegistration)
+    return this.httpClient.post(`${this.baseUrl}/customer/signup`, customerRegistration);
   }
+
+  getCustomerOldPassword(id:number,oldpassword:Config['OldPasswordObj']):Observable<any>{
+    console.log(oldpassword);
+    return this.httpClient.post(`${this.baseUrl}/customer/oldPassword/${id}`,oldpassword);
+  }
+  updateCustomerPassword(id:number,customer:Config['CustomerObj']):Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}/customer/updatePassword/${id}`,customer);
+  }
+
+  getRenterOldPassword(id:number,oldpassword:Config['OldPasswordObj']):Observable<any>{
+    console.log(oldpassword);
+    return this.httpClient.post(`${this.baseUrl}/renter/oldPassword/${id}`,oldpassword);
+  }
+  updateRenterPassword(id:number,renter:Config['RenterObj']):Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}/renter/updatePassword/${id}`,renter);
+  }
+
+
 
 
 }

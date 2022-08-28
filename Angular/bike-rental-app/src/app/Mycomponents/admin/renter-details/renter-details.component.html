@@ -7,6 +7,7 @@
                       <thead class="table-dark text-nowrap" height="57">
                         <tr class="text-center align-middle">
                           <th scope="col">S.No</th>
+                          <th scope="col">Renter Id</th>
                           <th scope="col">Profile image</th>
                           <th scope="col">Username</th>
                           <th scope="col">Email</th>
@@ -20,6 +21,7 @@
                     
                     <tbody class="text-center align-middle">
                           <tr *ngFor="let renter of renterObj; index as i" >
+                          <td>{{i+1}}</td>
                           <td>{{renter.id}}</td>
                           <td><img src="{{renter.image}}" class="rounded-circle" height="40" width="40" style="background:grey" alt=""></td>
                           <td>{{ renter.userName}}</td>

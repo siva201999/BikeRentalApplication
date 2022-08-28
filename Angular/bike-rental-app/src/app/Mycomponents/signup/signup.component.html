@@ -23,10 +23,13 @@
                 </div>   
                 <div class="wrap-input100 m-b-23">
                     <span class="label-input100">Password</span>
-                    <input type="password" class="input100" id="password" required [(ngModel)]="Signup.password" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter password">
+                    <input type="password" class="input100" id="password" required [(ngModel)]="Signup.password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter password">
                     <span class="focus-input100" data-symbol="&#xf190;"></span>
                     <div class="text-center">
                         <small class="text-danger" [class.d-none]="password.valid || password.untouched"> Password is required</small>
+                    </div>
+                    <div *ngIf="password.errors && (password.invalid && password.touched)" class="text-center">
+                        <small class="text-danger float-left" > Password contain atleast One UpperCase & atleast One lowerCase & atleast one digit & atleast one symbol and length is minimum 8</small>
                     </div>
               
                 </div>

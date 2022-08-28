@@ -25,7 +25,7 @@ public class BookingController {
 
     @PostMapping("/booking/{id}")
     public ResponseEntity<?> saveBookingHistory(@PathVariable("id")long id,@RequestBody Booking booking){
-        System.out.println(booking.toString());
+        // System.out.println(booking.toString());
         return bookingService.saveBookingHistory(id,booking);
     }
 

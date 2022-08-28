@@ -7,9 +7,12 @@
           <div id="credit-card" class="tab-pane fade show active pt-3">
             <div>
               <div class="form-group pb-3"> 
-                <label for="username">Card Type</label>
-                 <input type="text" name="name" [(ngModel)]="cardDetails.cardType" placeholder="CreditCard / DebitCard" required class="form-control "> 
-                </div>
+                <label>Select Card</label>
+                <select class="form-select" aria-label="Default select example" [(ngModel)] = "cardDetails.cardType" >
+                  <option  value="credit" selected>Credit Card</option>
+                  <option value="debit">Debit Card</option>
+                </select>
+              </div>
 
               <div class="form-group pb-3">
                  <label for="username">Card Owner</label>

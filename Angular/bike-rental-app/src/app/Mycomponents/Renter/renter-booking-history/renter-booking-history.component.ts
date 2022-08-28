@@ -14,6 +14,9 @@ export class RenterBookingHistoryComponent implements OnInit {
   id=JSON.parse(localStorage.getItem('userId')!);
   earnings!:any;
   SearchValue:string;
+  startdate:any;
+  enddate:any;
+  revenue: number=0.0;
   constructor(private renterService:ServicesService,private router:Router) { }
 
   ngOnInit() {
@@ -33,6 +36,14 @@ export class RenterBookingHistoryComponent implements OnInit {
   reloadData() {
     //  this.renterService.getBike(this.id).subscribe(bikes=>this.bike=bikes);
      this.renterService.getRenterEarning(this.id).subscribe(earning=>this.earnings=earning);
+  }
+
+  revenueCalculator(){
+    let date1 = new Date(this.startdate);
+    let date2 = new Date(this.enddate);
+    console.log(this.startdate+" "+this.enddate);
+    this.renterService.calculateRenterRevenue(this.id,this.startdate,this.enddate).subscribe(revenuegenerated=>this.revenue=revenuegenerated);
+    console.log(this.revenue)
   }
 
 }

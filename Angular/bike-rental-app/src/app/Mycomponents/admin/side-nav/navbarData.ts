@@ -23,5 +23,6 @@ export const navbarData=[
         routerLink:'dashboard/feedback',
         icon:'fas fa-comment-alt-dots',
         label:'Feedback'
-    }
+    },
+    
     ];

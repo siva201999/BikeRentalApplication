@@ -2,18 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Config } from 'src/app/config';
 import { ServicesService } from '../../services/services.service';
+import { DatePipe } from '@angular/common'
 declare var $: any;
 @Component({
   selector: 'app-customer-booking-history',
   templateUrl: './customer-booking-history.component.html',
-  styleUrls: ['./customer-booking-history.component.css']
+  styleUrls: ['./customer-booking-history.component.css'],
+  providers: [DatePipe]
 })
 export class CustomerBookingHistoryComponent implements OnInit {
 
   bookingObj!:Config['BookingObj'][];
+  bikeObj !: Config['BikeObj'];
+  today = new Date();
   id=JSON.parse(localStorage.getItem('userId')!);
+  date:any = new Date();
+
   constructor(private route: ActivatedRoute,private router: Router,
-    private service:ServicesService) { }
+    private service:ServicesService,
+    private datepipe: DatePipe) { 
+      this.date=this.datepipe.transform(this.date, 'yyyy-MM-dd');
+    
+    }
 
   ngOnInit(): void {
     this.service.getCustomerBooking(this.id).subscribe(data =>{
@@ -26,6 +36,33 @@ export class CustomerBookingHistoryComponent implements OnInit {
         });
       });
     })
+    console.log(this.date);
+    
+  }
+
+  forOngoing(bookingDate:string,returnDate:string) {
+   
+    console.log("booikgDate=",bookingDate<=this.date);
+    // this.bikeObj.availability = "false";
+    if ((this.date >= bookingDate) && (this.date <= returnDate))
+      return true;
+    return false;
+  }
+
+  forCancel(bookingDate:string) {
+  
+    // this.bikeObj.availability = "false";
+    if (this.date < bookingDate) 
+      return true;
+    return false;
+  }
+
+  forCompleted(returnDate:string) {
+   
+    // this.bikeObj.availability = "true";
+    if (this.date > returnDate)
+       return true;
+    return false;
   }
 
   cancelBike(id: any){

@@ -39,6 +39,10 @@ import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-book
 import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
 import { FeedbackComponent } from './Mycomponents/admin/feedback/feedback.component';
 import { CustomerCommentsComponent } from './Mycomponents/Customer/customer-comments/customer-comments.component';
+import { CustomerUpdatepasswordComponent } from './Mycomponents/Customer/customer-updatepassword/customer-updatepassword.component';
+import { RenterUpdatepasswordComponent } from './Mycomponents/Renter/renter-updatepassword/renter-updatepassword.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+// import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -77,6 +81,8 @@ import { CustomerCommentsComponent } from './Mycomponents/Customer/customer-comm
     PaymentComponent,
     FeedbackComponent,
     CustomerCommentsComponent,
+    CustomerUpdatepasswordComponent,
+    RenterUpdatepasswordComponent,
     
   ],
 
@@ -88,6 +94,8 @@ import { CustomerCommentsComponent } from './Mycomponents/Customer/customer-comm
     ReactiveFormsModule, 
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
+    NgxPaginationModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

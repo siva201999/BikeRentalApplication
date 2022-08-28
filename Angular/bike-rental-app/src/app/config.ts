@@ -86,6 +86,11 @@ export class Config {
         expiryMM:"",
         expiryYY:""
     }
+
+    OldPasswordObj={
+        password:""
+    }
+
   static Login: object;
   static CustomerObj: [];
   static RenterObj: [];

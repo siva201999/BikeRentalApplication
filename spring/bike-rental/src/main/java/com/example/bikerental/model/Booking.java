@@ -1,6 +1,6 @@
 package com.example.bikerental.model;
 
-import java.util.Date;
+import java.time.LocalDate ;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,8 +20,8 @@ public class Booking {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long booking_id;
     private Double totalAmount;
-    private Date bookingDate;
-    private Date endDate;
+    private LocalDate bookingDate;
+    private LocalDate endDate;
     private String renterName;
     private String customerName;
     private String brandName;
@@ -50,16 +50,16 @@ public class Booking {
     public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
-    public Date getBookingDate() {
+    public LocalDate  getBookingDate() {
         return bookingDate;
     }
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDate  bookingDate) {
         this.bookingDate = bookingDate;
     }
-    public Date getEndDate() {
+    public LocalDate  getEndDate() {
         return endDate;
     }
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate  endDate) {
         this.endDate = endDate;
     }
     public String getRenterName() {
@@ -113,7 +113,7 @@ public class Booking {
         this. renter =  renter;
     }
 
-    public Booking(Double totalAmount, Date bookingDate, Date endDate, String renterName,String customerName,String brandName,String modelName) {
+    public Booking(Double totalAmount, LocalDate  bookingDate, LocalDate  endDate, String renterName,String customerName,String brandName,String modelName) {
         
         this.totalAmount = totalAmount;
         this.bookingDate = bookingDate;

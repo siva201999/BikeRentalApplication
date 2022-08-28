@@ -1,9 +1,8 @@
 package com.example.bikerental.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -161,12 +159,7 @@ public class CustomerModel {
     public CustomerModel() {
     }
 
-    @Override
-    public String toString() {
-        return "CustomerModel [address=" + address + ", booking=" + booking + ", email=" + email + ", gender=" + gender
-                + ", id=" + id + ", image=" + image + ", isActive=" + isActive + ", mobileNumber=" + mobileNumber
-                + ", password=" + password + ", userName=" + userName + ", userRole=" + userRole + "]";
-    }
+   
 
     
 

@@ -15,6 +15,7 @@ export class CustomerDashboardContentComponent implements OnInit {
   bike!: Config['BikeObj'];
   bikess!:Config['BikeObj'][];
   id: any;
+  page : number=1;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private renterService: ServicesService) { }

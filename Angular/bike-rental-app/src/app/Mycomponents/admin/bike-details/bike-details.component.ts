@@ -25,6 +25,10 @@ export class BikeDetailsComponent implements OnInit {
       });
     });
   }
+
+  gotoRenterPage(){
+    this.router.navigate(['admin/dashboard/renterDetails']);
+  }
 }
 
 

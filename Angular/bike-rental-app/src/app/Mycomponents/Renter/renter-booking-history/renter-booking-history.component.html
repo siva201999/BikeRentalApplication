@@ -1,23 +1,39 @@
 <div class="row">
-    <div class="col">
-      <h1 class="text-left mb-2">Booking History</h1>
-      <div class="d-flex">
-        <input class="form-control me-2 mb-4" type="search" placeholder="Search" aria-label="Search"
-          [(ngModel)]="SearchValue">
-      </div>
-    </div>
-    <div class="col-sm-2 pb-5">
-      <div class="card car-responsive">
-        <div class="card-body text-center">
-          <h4 class="">Earnings</h4>
-          <p>{{earnings}}</p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
   <div class="container-fluid">
-    <!-- <h3 class="text-center pb-2">Booking History</h3> -->
+   
+    <h4 class="pb-2">Do you want to calculate revenue for specific date?</h4>
+    <div class="card  shadow p-2 mb-4 bg-white rounded p-3">
+      <div class="row">
+        <div class="form-group col-md-2">
+          <label for="inputStartDate" class="text-black">Start Date :</label>
+          <input type="date" [(ngModel)] = "startdate" class="form-control" id="inputPassword2" placeholder="Start Date">
+        </div> 
+        <div class="form-group col-md-2 "> 
+          <label for="inputEndDate" class="text-black">End Date :</label>
+          <input type="date" required [(ngModel)] = "enddate" class="form-control" id="inputPassword2" placeholder="End Date" >
+        </div>
+        <div class="form-group col-md-2 pt-4">
+            <button type="submit" (click)="revenueCalculator()" class="btn btn-info form-control">Calculate Revenue</button>
+        </div>
+        <div class="form-group col-md-3">
+          <h5 class="text-black mx-sm-3 pt-4">Revenue generated : ₹ {{revenue}} </h5>
+        </div>
+        <div class="form-group col-sm-3">
+          <div class="card bg-warning car-responsive">
+            <div class="card-body text-center">
+              <h5>Total Earnings : ₹ {{earnings}}</h5>
+              <!-- <p>{{earnings}}</p> -->
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+
+  <div class="container-fluid">
+    <h3 class="text-center pt-3 pb-2">Booking History</h3>
       <div class="row d-flex">
           <div class="col-lg-12">
               <div class="card shadow p-2 mb-4 bg-white rounded  table-responsive">

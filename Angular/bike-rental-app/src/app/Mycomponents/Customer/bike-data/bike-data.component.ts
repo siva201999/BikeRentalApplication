@@ -17,7 +17,7 @@ export class BikeDataComponent implements OnInit {
   dated:any;
   datef:any;
   enddate:any;
-  dayssubracted:any;
+  calculatedamount:any;
   error:any;
   price: any;
   valid=false;
@@ -41,13 +41,13 @@ export class BikeDataComponent implements OnInit {
   diff(){
   let date1 = new Date(this.startdate);
   let date2 = new Date(this.enddate);
-  this.dayssubracted = (Math.floor((Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()) - Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) ) /(1000 * 60 * 60 * 24)))*(+this.price);
+  this. calculatedamount = (Math.floor((Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()) - Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) ) /(1000 * 60 * 60 * 24)))*(+this.price);
   this.valid=true; 
-  console.log("subracted days are  " + this.dayssubracted);
+  console.log("subracted days are  " + this. calculatedamount);
 
   this.booking.bookingDate=this.startdate;
   this.booking.endDate=this.enddate;
-  this.booking.totalAmount=this.dayssubracted;
+  this.booking.totalAmount=this. calculatedamount;
   this.booking.renterName=this.bike.ownerName;
   this.booking.brandName=this.bike.brandName;
   this.booking.modelName=this.bike.modelName;
