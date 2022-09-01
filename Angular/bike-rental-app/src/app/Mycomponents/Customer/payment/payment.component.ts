@@ -46,7 +46,9 @@ export class PaymentComponent implements OnInit {
   //   this.service.saveBookingHistory(this.booking).
   //  } 
   goBack(){
-    this.router.navigate(['customer/dashboard'])
+    this.router.navigate(['customer/dashboard']).then(() => {
+      window.location.reload();
+    });
   }
   cancelPayment(){
     this.router.navigate(['customer/dashboard'])

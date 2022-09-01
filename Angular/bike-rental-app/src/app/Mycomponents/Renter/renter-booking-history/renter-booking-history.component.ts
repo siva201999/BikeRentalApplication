@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Config } from 'src/app/config';
@@ -6,7 +7,8 @@ declare var $:any;
 @Component({
   selector: 'app-renter-booking-history',
   templateUrl: './renter-booking-history.component.html',
-  styleUrls: ['./renter-booking-history.component.css']
+  styleUrls: ['./renter-booking-history.component.css'],
+  providers: [DatePipe]
 })
 export class RenterBookingHistoryComponent implements OnInit {
 
@@ -17,7 +19,11 @@ export class RenterBookingHistoryComponent implements OnInit {
   startdate:any;
   enddate:any;
   revenue: number=0.0;
-  constructor(private renterService:ServicesService,private router:Router) { }
+  date:any = new Date();
+  constructor(private renterService:ServicesService,private router:Router,
+    private datepipe: DatePipe) {
+      this.date=this.datepipe.transform(this.date, 'yyyy-MM-dd');
+     }
 
   ngOnInit() {
     this.reloadData();
@@ -43,6 +49,25 @@ export class RenterBookingHistoryComponent implements OnInit {
     console.log(this.startdate+" "+this.enddate);
     this.renterService.calculateRenterRevenue(this.id,this.startdate,this.enddate).subscribe(revenuegenerated=>this.revenue=revenuegenerated);
     console.log(this.revenue)
+  }
+
+  
+  forOngoing(bookingDate:string,returnDate:string) {
+    if ((this.date >= bookingDate) && (this.date <= returnDate))
+       return true;
+     return false;
+   }
+
+   forCancel(bookingDate:string) {
+    if (this.date < bookingDate) 
+      return true;
+    return false;
+}
+
+  forCompleted(returnDate:string) {
+    if (this.date > returnDate)
+      return true;
+    return false;
   }
 
 }

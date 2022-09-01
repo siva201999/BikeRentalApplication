@@ -48,6 +48,7 @@
                           <th scope="col">Booking Date</th>
                           <th scope="col">Booking end date</th>
                           <th scope="col">Total amount</th>
+                          <th scope="col">Status</th>
                         </tr>
                       </thead>
                     
@@ -61,6 +62,17 @@
                           <td>{{ booking.bookingDate}}</td>
                           <td>{{ booking.endDate}}</td>
                           <td>{{ booking.totalAmount}}</td>
+                          <td>
+                            <div *ngIf= "forOngoing(booking.bookingDate,booking.endDate)">
+                              <button type="button" disabled class="btn btn-success btn-sm">Ongoing</button>
+                            </div>
+                            <div *ngIf= "forCancel(booking.bookingDate)">
+                              <button type="button" disabled class="btn btn-danger btn-sm">Booked</button>
+                            </div> 
+                            <div *ngIf= "forCompleted(booking.endDate)">
+                              <button type="button" disabled class="btn btn-secondary btn-sm">Completed</button>
+                             </div> 
+                          </td>  
                         </tr>
                     </tbody> 
                 </table>

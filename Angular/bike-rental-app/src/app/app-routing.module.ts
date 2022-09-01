@@ -23,7 +23,6 @@ import { UpdateCustomerProfileComponent } from './Mycomponents/Customer/update-c
 import { CustomerProfileComponent } from './Mycomponents/Customer/customer-profile/customer-profile.component';
 import { BikeDataComponent } from './Mycomponents/Customer/bike-data/bike-data.component';
 import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-booking-history/renter-booking-history.component';
-import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.component';
 import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
 import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
 import { FeedbackComponent } from './Mycomponents/admin/feedback/feedback.component';
@@ -68,8 +67,6 @@ const routes: Routes = [
             {path:'profile', component:CustomerProfileComponent},
             {path:'editProfile/:id', component:UpdateCustomerProfileComponent},
             {path:'bikeDetails/:id', component:BikeDataComponent},
-            {path:'rentBike',component:RentBikeComponent},
-            // {path:'bookingHistory',component:CustomerBookingHistoryComponent},
             {path:'payment',component:PaymentComponent},
             {path:'customerComments',component:CustomerCommentsComponent},
             {path:'booking', component:CustomerBookingHistoryComponent},

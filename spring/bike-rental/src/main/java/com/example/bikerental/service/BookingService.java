@@ -44,6 +44,7 @@ public class BookingService {
         booking.setCustomer(new CustomerModel(id));
         bike.setAvailability("false");
         bikeRepository.save(bike);
+        
         RenterModel renter=renterRepository.findByUserName(data.getRenterName());
         booking.setRenter(new RenterModel(renter.getId()));
         updateEarnings(renter.getId(),data.getTotalAmount());

@@ -33,7 +33,6 @@ import { BikeDataComponent } from './Mycomponents/Customer/bike-data/bike-data.c
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UpdateCustomerProfileComponent } from './Mycomponents/Customer/update-customer-profile/update-customer-profile.component';
 import { CustomerProfileComponent } from './Mycomponents/Customer/customer-profile/customer-profile.component';
-import { RentBikeComponent } from './Mycomponents/Customer/rent-bike/rent-bike.component';
 import { CustomerBookingHistoryComponent } from './Mycomponents/Customer/customer-booking-history/customer-booking-history.component';
 import { RenterBookingHistoryComponent } from './Mycomponents/Renter/renter-booking-history/renter-booking-history.component';
 import { PaymentComponent } from './Mycomponents/Customer/payment/payment.component';
@@ -75,7 +74,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BikeDataComponent,
     UpdateCustomerProfileComponent,
     CustomerProfileComponent,
-    RentBikeComponent,
     CustomerBookingHistoryComponent,
     RenterBookingHistoryComponent,
     PaymentComponent,
