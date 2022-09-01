@@ -37,20 +37,16 @@ public class BookingService {
     private CustomerRepository customerRepository;
 
     
-
-    public ResponseEntity<?> saveBookingHistory(Long id,Booking data) {
-        System.out.println("this id : "+id);
+    //======================== Booking History ==========================
+    public ResponseEntity<Booking> saveBookingHistory(Long id,Booking data) {
         BikeModel bike=bikeRepository.getReferenceById(data.getBikeId());
         Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName(),data.getBrandName(),data.getModelName(),data.getBikeId());
         booking.setCustomer(new CustomerModel(id));
         bike.setAvailability("false");
         bikeRepository.save(bike);
         RenterModel renter=renterRepository.findByUserName(data.getRenterName());
-        // System.out.println(renter.toString());
         booking.setRenter(new RenterModel(renter.getId()));
-        
         updateEarnings(renter.getId(),data.getTotalAmount());
-
         return new ResponseEntity<>(bookingRepository.save(booking),HttpStatus.OK);
     }
 
@@ -75,7 +71,7 @@ public class BookingService {
 			}
 		}
 		catch(Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}  
        
     } 
@@ -92,7 +88,7 @@ public class BookingService {
 			}
 		}
 		catch(Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}  
        
     }
@@ -110,12 +106,13 @@ public class BookingService {
 			}
 		}
 		catch(Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}  
        
     }
     
-    public ResponseEntity<?> deleteBookingById(long id) {
+    //======================== Delete Booking======================
+    public ResponseEntity<Booking> deleteBookingById(long id) {
 		try {
 			if(bookingRepository.findById(id).isPresent()) {
 				Booking booking=bookingRepository.getReferenceById(id);
@@ -132,7 +129,7 @@ public class BookingService {
 			}
 		}
         catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }		
 	}
 
@@ -145,10 +142,4 @@ public class BookingService {
         admin.setEarnings(admin.getEarnings()-(amount * 0.1));
         adminRepository.save(admin);
     }   
-
-
-    
-
-
-    
 }

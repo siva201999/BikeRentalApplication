@@ -14,6 +14,7 @@ export class AllCustomersComponent implements OnInit {
   activeMessage="";
   active=true;
   activeStatus:any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -34,7 +35,7 @@ export class AllCustomersComponent implements OnInit {
   
   isActiveCustomer(id:any) {
     this.service.isActiveCustomer(id).subscribe(response=>{
-      console.log(response);
+      // console.log(response);
       if(JSON.parse(JSON.stringify(response)).isActive==='true'){
         this.activeMessage="Customer mark an active!!!"
         alert(this.activeMessage);

@@ -25,7 +25,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.role);
     this.id=JSON.parse(localStorage.getItem("userId")!);
-    console.log(this.id)
+    // console.log(this.id)
    
     if(this.role==='renter'){
       this.service.getRenterById(this.id).subscribe(data => {

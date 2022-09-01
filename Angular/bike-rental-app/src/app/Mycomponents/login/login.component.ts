@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
   
 
   handleLogin(){
-    console.log(this.Login);
-    console.log(this.userRole);
+    // console.log(this.Login);
+    // console.log(this.userRole);
     if(this.userRole.userType === 'renter'){
       this.authService.isRenterLogin(this.Login).subscribe((response)=>{
-        console.log("After login",this.Login);
-        console.log("response=",response);
+        // console.log("After login",this.Login);
+        // console.log("response=",response);
         this.status=JSON.parse(JSON.stringify(response)).status;
         this.active=JSON.parse(JSON.stringify(response)).active;
           if(this.status==="Success" && this.active==="true"){
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
     }
     else if(this.userRole.userType === 'customer'){
       this.authService.isCustomerLogin(this.Login).subscribe(response => {
-        console.log(response);
+        // console.log(response);
         this.status=JSON.parse(JSON.stringify(response)).status;
         this.active=JSON.parse(JSON.stringify(response)).active;
           if(this.status==="Success" && this.active==="true"){

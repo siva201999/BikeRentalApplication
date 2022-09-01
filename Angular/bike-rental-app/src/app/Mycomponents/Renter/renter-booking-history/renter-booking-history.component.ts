@@ -34,8 +34,7 @@ export class RenterBookingHistoryComponent implements OnInit {
   }
 
   reloadData() {
-    //  this.renterService.getBike(this.id).subscribe(bikes=>this.bike=bikes);
-     this.renterService.getRenterEarning(this.id).subscribe(earning=>this.earnings=earning);
+    this.renterService.getRenterEarning(this.id).subscribe(earning=>this.earnings=earning);
   }
 
   revenueCalculator(){

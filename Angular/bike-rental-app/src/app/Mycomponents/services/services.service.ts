@@ -118,7 +118,7 @@ export class ServicesService {
   }
 
   validatePayment(cardDetails:Config['CardDetails']):Observable<any>{
-    return this.httpClient.post(`${this.baseUrl}/payment/`,cardDetails );
+    return this.httpClient.post(`${this.baseUrl}/payment`,cardDetails );
   }
 
   saveBookingHistory(id:number,booking:Config['BookingObj']):Observable<any>{

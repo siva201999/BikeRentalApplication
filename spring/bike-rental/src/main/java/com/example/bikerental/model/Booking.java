@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Booking {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private Long booking_id;
+    private Long bookingId;
     private Double totalAmount;
     private LocalDate bookingDate;
     private LocalDate endDate;
@@ -40,11 +40,11 @@ public class Booking {
     private RenterModel renter;
 
    
-    public Long getBooking_id() {
-        return booking_id;
+    public Long getBookingId() {
+        return bookingId;
     }
-    public void setBooking_id(Long booking_id) {
-        this.booking_id = booking_id;
+    public void setBookingIid(Long bookingId) {
+        this.bookingId = bookingId;
     }
     public Double getTotalAmount() {
         return totalAmount;
@@ -141,12 +141,7 @@ public class Booking {
     public Booking() {
     }
 
-    @Override
-    public String toString() {
-        return "Booking [booking_id=" + booking_id + ", totalAmount=" + totalAmount + ", bookingDate=" + bookingDate
-        + ", endDate=" + endDate + ", renterName=" + renterName + ", customerName=" + customerName
-        + ", customer=" + customer + ", renter=" + renter + "]";
-    }
+    
     
    
     

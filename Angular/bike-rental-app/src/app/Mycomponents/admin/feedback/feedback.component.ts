@@ -17,7 +17,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getComment().subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       this.feedbackObj=data;
       $(document).ready(function(){
         $('#FeedbackTable').DataTable({

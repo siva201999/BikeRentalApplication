@@ -36,11 +36,11 @@ public class CustomerService {
 	private PaymentRepository paymentRepository;
 
 	
-	//To fetch all Customers
+	//=======================To fetch all bike==========================
 	public ResponseEntity<List<BikeModel>> getCustomerBike()   
 	{  
 		List<RenterModel> renters = renterRepository.findAll();
-		List<BikeModel> bikes = new ArrayList<BikeModel>();
+		List<BikeModel> bikes = new ArrayList<>();
 		
 		try {
 			if(bikeRepository.findAll().isEmpty()) {
@@ -63,12 +63,12 @@ public class CustomerService {
 			}
 		}
 		catch(Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}  
 	}  
  
-    //  delete customer
-	public ResponseEntity<?> delete(Long id)   
+    //================  delete customer =======================
+	public ResponseEntity<CustomerModel> delete(Long id)   
 	{  
 		try {
 			if(customerRepository.findById(id).isPresent()) {
@@ -80,12 +80,12 @@ public class CustomerService {
 			}
 			}
 			catch (Exception e) {
-			      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}		
 	}  
 	  
-    // update customer
-	public ResponseEntity<?> update(Long id, CustomerModel customer) {
+    //======================= update customer============================
+	public ResponseEntity<CustomerModel> update(Long id, CustomerModel customer) {
 		try {
 			if (customerRepository.findById(id).isPresent()) {
 				CustomerModel edit = customerRepository.getReferenceById(id);
@@ -99,12 +99,12 @@ public class CustomerService {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-    //get customer by id
-    public ResponseEntity<?> getCustomerById(Long id) {
+    //=====================get customer by id=============================
+    public ResponseEntity<CustomerModel> getCustomerById(Long id) {
         try{
             if (customerRepository.findById(id).isPresent()) {
                 return new ResponseEntity<>(customerRepository.getReferenceById(id),HttpStatus.OK);
@@ -112,10 +112,11 @@ public class CustomerService {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-          
+      
+	//=====================Verify payement===============================
 	public ResponseEntity<Payment> validatePayment(Payment payment) {
 		Payment p = paymentRepository.findByCardNumber(payment.getCardNumber());
 		if (p==null) {
@@ -133,7 +134,4 @@ public class CustomerService {
 		}
 	}
 	
-	
-	
-  
 }

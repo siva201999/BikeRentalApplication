@@ -31,7 +31,7 @@ export class BookingHistoryComponent implements OnInit {
   revenueCalculator(){
     let date1 = new Date(this.startdate);
     let date2 = new Date(this.enddate);
-    console.log(this.startdate+" "+this.enddate);
+    // console.log(this.startdate+" "+this.enddate);
     this.service.calculateAdminRevenue(this.startdate,this.enddate).subscribe(revenuegenerated=>this.revenue=revenuegenerated);
     console.log(this.revenue)
   }

@@ -18,12 +18,12 @@ public class RenterService {
 	@Autowired
 	private RenterRepository renterRepository;
 	
-	//Get Renter Earninngs
+	//==================Get Renter Earninngs==================
 	public double getRenterEarning(Long renterId) {
 		return renterRepository.getReferenceById(renterId).getEarnings();
 	}
 	
-	// Get Renter By Id
+	//===================== Get Renter By Id=====================
 	public ResponseEntity<RenterModel> getRenterById(Long renterId) {
 		try {
 			if(renterRepository.findById(renterId).isPresent()) {
@@ -34,16 +34,15 @@ public class RenterService {
 			}
 		}
 		catch (Exception e) {
-		    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-    }	
+		    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
 	}
 
-	//edit profile
-	public ResponseEntity<?> updateProfile(long id, RenterModel renter) {
+	//=======================edit profile===========================
+	public ResponseEntity<RenterModel> updateProfile(long id, RenterModel renter) {
 		try {
             if(renterRepository.findById(id).isPresent()) {
                 RenterModel editRenter=renterRepository.getReferenceById(id);
-               // editRenter.setEmail(renter.getEmail());
                 editRenter.setMobileNumber(renter.getMobileNumber());
                 editRenter.setUserName(renter.getUserName());
                 editRenter.setGender(renter.getGender());
@@ -56,10 +55,11 @@ public class RenterService {
             }
 		}
 		catch (Exception e) {
-		      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		    }	
+		    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
 	}
 
+	//================================ Calculate renter revenue========================================
 	public ResponseEntity<Double> calculateRevenue(Long id,LocalDate startDate, LocalDate endDate) {
 		Double revenue=0.0;
 		Optional<RenterModel> renter=renterRepository.findById(id);
@@ -68,14 +68,10 @@ public class RenterService {
 			for(int i=0;i<bookings.size();i++) {
 				if((startDate.isBefore(bookings.get(i).getEndDate()) || startDate.isEqual(bookings.get(i).getEndDate())) && (endDate.isAfter(bookings.get(i).getEndDate()) || endDate.isEqual(bookings.get(i).getEndDate()))) {
 					revenue+=(bookings.get(i).getTotalAmount()-(bookings.get(i).getTotalAmount()*0.1));
-					
 				}
 			}
 		}
 		return new ResponseEntity<>(revenue, HttpStatus.OK);
-	    }
+	}
 
-	
-
-    
 }

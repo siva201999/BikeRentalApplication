@@ -1,9 +1,7 @@
 package com.example.bikerental.model;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -29,6 +27,7 @@ public class Payment {
 		this.expiryMM = expiryMM;
 		this.expiryYY = expiryYY;
 	}
+	
 	public long getCardNumber() {
 		return cardNumber;
 	}

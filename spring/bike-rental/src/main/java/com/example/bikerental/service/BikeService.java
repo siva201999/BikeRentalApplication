@@ -3,12 +3,12 @@ package com.example.bikerental.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.repository.BikeRepository;
 import com.example.bikerental.repository.RenterRepository;
+import java.util.Collections;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class BikeService {
 	@Autowired
 	private RenterRepository renterRepository;
 	
-//fetch all bikes
+	//==================fetch all bikes=====================
 	public ResponseEntity<List<BikeModel>> getAllBikes() {
 		try {
 			if(bikeRepository.findAll().isEmpty()) {
@@ -34,33 +34,30 @@ public class BikeService {
 			}
 		}
 		catch (Exception e) {
-	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
 	
-//adding new bikes
-public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
-	try {
-	if(bikeRepository.existsByBikeNumber(bike.getBikeNumber())) {
-	return new ResponseEntity<>(HttpStatus.CONFLICT);
+	//=======================adding new bikes========================
+	public ResponseEntity<BikeModel> addBikes(Long id, BikeModel bike) {
+		try {
+			if(bikeRepository.existsByBikeNumber(bike.getBikeNumber())) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			}
+			else if(renterRepository.findById(id).isPresent()) {
+				BikeModel bikes= new BikeModel(bike.getBrandName(),bike.getModelName(),bike.getBikeNumber(),bike.getBikeImage(),bike.getDescription(),bike.getRentAmount(),bike.getPickUpLocation(),bike.getAvailability(),bike.getOwnerName());
+				bikes.setRenter(new RenterModel(id));
+				return new ResponseEntity<>(bikeRepository.save(bikes),HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+		}catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-	else if(renterRepository.findById(id).isPresent()) {
-		// renterRepository.findById(id).map(bikeDetail->
-		// bikeDetail.getBike().add(bike));
-		BikeModel bikes= new BikeModel(bike.getBrandName(),bike.getModelName(),bike.getBikeNumber(),bike.getBikeImage(),bike.getDescription(),bike.getRentAmount(),bike.getPickUpLocation(),bike.getAvailability(),bike.getOwnerName());
-		bikes.setRenter(new RenterModel(id));
-		return new ResponseEntity<>(bikeRepository.save(bikes),HttpStatus.OK);
-	}
-	else {
-	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
-	 }
-	catch (Exception e) {
-		 return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	   }
-	}
-	//edit bikes
-	public ResponseEntity<?> updateBike(Long id, BikeModel bike) {
+
+	//==================edit bikes===============================
+	public ResponseEntity<BikeModel> updateBike(Long id, BikeModel bike) {
 		try {
             if(bikeRepository.findById(id).isPresent()) {
                 BikeModel editBike=bikeRepository.getReferenceById(id);
@@ -70,7 +67,6 @@ public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
                 editBike.setPickUpLocation(bike.getPickUpLocation());
                 editBike.setRentAmount(bike.getRentAmount());
                 editBike.setAvailability(bike.getAvailability());
-    //			editBike.setBikeImage(bike.getBikeImage());
                 editBike.setBikeImage(bike.getBikeImage());
                 editBike.setDescription(bike.getDescription());
                 return new ResponseEntity<>(bikeRepository.save(editBike), HttpStatus.OK);
@@ -80,12 +76,12 @@ public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
             }
 		}
 		catch (Exception e) {
-		      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		    }	
+		    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
 	}
 
-//delete bike by id
-	public ResponseEntity<?> deleteBikeById(long id) {
+	//======================delete bike by id========================
+	public ResponseEntity<BikeModel> deleteBikeById(long id) {
 		try {
 		if(bikeRepository.findById(id).isPresent()) {
 			bikeRepository.deleteById(id);
@@ -96,10 +92,10 @@ public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
 		}
 		}
 		catch (Exception e) {
-		      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		    }		
     }
-//get bike by id
+	//====================get bike by id =========================
 	public ResponseEntity<BikeModel> getBikeById(Long id) {
 		try {
 			if(bikeRepository.findById(id).isPresent()) {	
@@ -110,22 +106,17 @@ public ResponseEntity<?> addBikes(Long id, BikeModel bike) {
 			}
 		}
 		catch (Exception e) {
-			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }	
     }
 
- //get renter bike by id
-
-	// public List<BikeModel> getRenterBikes(List<BikeModel> set){
-    //     return set;
-    // }
-
+ 	//===================get renter bike by id======================
     public List<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
         if(renter.isPresent()){
             return renter.get().getBike();
         }
-        return null;
+        return Collections.emptyList();
     }
 
 }

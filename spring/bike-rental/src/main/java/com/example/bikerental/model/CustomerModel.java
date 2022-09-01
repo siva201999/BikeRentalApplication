@@ -140,7 +140,6 @@ public class CustomerModel {
 
     public CustomerModel(String email, String password, String mobileNumber, String userName, String gender,
             String userRole, String image, String address,String isActive,List<Booking> booking) {
-        // this.id = id;
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;

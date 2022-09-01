@@ -24,7 +24,6 @@ export class CustomerDashboardContentComponent implements OnInit {
     this.bike= new Config().BikeObj;
 
     this.id = this.route.snapshot.params['id'];
-    
     this.renterService.getCustomerBike().subscribe(data => {
         console.log(data)
         this.bikess= data;

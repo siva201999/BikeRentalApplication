@@ -24,8 +24,7 @@ public class BookingController {
     BookingService bookingService;  
 
     @PostMapping("/booking/{id}")
-    public ResponseEntity<?> saveBookingHistory(@PathVariable("id")long id,@RequestBody Booking booking){
-        // System.out.println(booking.toString());
+    public ResponseEntity<Booking> saveBookingHistory(@PathVariable("id")long id,@RequestBody Booking booking){
         return bookingService.saveBookingHistory(id,booking);
     }
 
@@ -45,7 +44,7 @@ public class BookingController {
     }
 
     @DeleteMapping("/booking/{id}")
-	public ResponseEntity<?> deleteBookingById(@PathVariable("id")long id){
+	public ResponseEntity<Booking> deleteBookingById(@PathVariable("id")long id){
 		return bookingService.deleteBookingById(id);
 	}
 

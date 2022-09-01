@@ -3,7 +3,7 @@
         <button class="logo" (click)="toggleCollapse()">B</button>
         <div class="logo-text" @fadeInOut *ngIf="collapsed">Bike Rental</div>
         <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
-            <i class="fal fa-times close-icon"></i>
+            <em class="fal fa-times close-icon"></em>
         </button>
     </div>
     <ul class="sidenav-nav">
@@ -11,7 +11,7 @@
                 <a class="sidenav-nav-link" [routerLink]="[data.routerLink]"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact: true}">
-                    <i class="sidenav-link-icon" [class]="data.icon"></i>
+                    <em class="sidenav-link-icon" [class]="data.icon"></em>
                     <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
                 </a>
         </li>

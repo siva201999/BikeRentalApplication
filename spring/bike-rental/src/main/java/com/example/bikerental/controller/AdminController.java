@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.model.BikeModel;
-import com.example.bikerental.model.Booking;
 import com.example.bikerental.model.Comments;
 import com.example.bikerental.service.AdminServices;
 

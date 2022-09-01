@@ -7,15 +7,7 @@
           [(ngModel)]="SearchValue">
       </div>
     </div>
-    <!-- <div class="col-sm-2 pb-5">
-      <div class="card car-responsive">
-        <div class="card-body text-center">
-          <h4 class="">Earnings</h4>
-          <p>{{earnings}}</p>
-        </div>
-      </div>
-    </div> -->
-  </div>
+ </div>
 
   <div class="row">
     <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let fd of bike | BikeFilter:SearchValue | paginate: { itemsPerPage: 8, currentPage: page }">
@@ -25,18 +17,17 @@
           <h3 class="card-title">{{fd.brandName}}</h3>
           <h4 class="pb-2">{{fd.modelName}}</h4>
           <table>
+            <Caption></Caption>
+            <th></th>
+            <Caption></Caption>
             <tr>
-              <td><b>Rent Amount:</b> {{fd.rentAmount}}</td>
+              <td><strong>Rent Amount:</strong> {{fd.rentAmount}}</td>
             </tr>
             <tr>
-              <td><b>Pickup Location:</b> {{fd.pickUpLocation}}</td>
+              <td><strong>Pickup Location:</strong>{{fd.pickUpLocation}}</td>
             </tr>
             <tr>
-              <td><b>Availability:</b> {{fd.availability}}</td>
-            </tr>
-            <!-- <tr>
-              <td>Renter Id: {{fd.ownerName}}</td>
-            </tr> -->
+              <td><strong>Availability:</strong>{{fd.availability}}</td>
           </table>
           <div class="btn-group-justified text-center pt-2">
             <button type="button" (click)='getBikeById(fd.id)'
@@ -52,4 +43,4 @@
   </div>
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
-<!-- </div> -->
+

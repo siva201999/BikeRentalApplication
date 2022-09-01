@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 interface SideNavToggle{
   screenWidth:number;
   collapsed:boolean;
@@ -12,9 +13,11 @@ export class CustomerDashboardComponent implements OnInit {
 
   isSideNavCollapsed=false;
   screenWidth=0;
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
+    
   }
 
   onToggleSideNav(data: SideNavToggle):void{

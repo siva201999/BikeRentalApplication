@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
     
     if(this.Signup.userRole==='Renter') {
       this.authService.renterSingnup(this.Signup).subscribe(response=>{
-        console.log(response);
+        // console.log(response);
         if(response){
           this.registerSuccess = true;
           this.invalidRegister=false;
@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
     }
     else if(this.Signup.userRole==='Customer'){
       this.authService.customerSignup(this.Signup).subscribe(response => {
-        console.log(response);
+        // console.log(response);
         if(response){
           this.registerSuccess = true;
           this.invalidRegister=false;

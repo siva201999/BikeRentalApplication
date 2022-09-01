@@ -1,4 +1,4 @@
-<!-- <router-outlet></router-outlet> -->
+
 <div class="container-limit">
   <div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
     <div class="wrap-login100 p-l-55 p-r-55 p-t-60 p-b-54">
@@ -22,9 +22,7 @@
           <div [hidden]="Login.password" *ngIf="Login.password===''&& invalidLogin "
             class="alert alert-danger text-center">Password is required!!!</div>
         </div>
-        <!-- <div class="text-right p-t-8 p-b-31">
-				<a href="#">Forgot password?</a>
-			</div> -->
+       
         <span class="label-input100">Login as :</span>
         <div class="form-check validate-input m-t-13">
           <input type="radio" class="form-check-input" value="renter" name="userType" [(ngModel)]="userRole.userType"

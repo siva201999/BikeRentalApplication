@@ -1,6 +1,7 @@
 package com.example.bikerental.service;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,8 @@ public class AdminServices {
     @Autowired
     private AdminRepository adminRepository;
 
+    String falseUser="false";
+    String trueUser="true";
     //==========Fetch all customers====================
     public List<CustomerModel> getAllCustomers(){
         return customerRepository.findAll();
@@ -42,29 +45,24 @@ public class AdminServices {
     }
 
     //===========Fetch renter bikes======================
-    // public Set<BikeModel> getRenterBikes(Set<BikeModel> bike){
-    //     return bike;
-    // }
-
     public List<BikeModel> getRenterById(Long id){
         Optional<RenterModel> renter=renterRepository.findById(id);
         if(renter.isPresent()){
             return renter.get().getBike();
         }
-        return null;
+        return Collections.emptyList();
     }
-
 
     //============Check if renter is active or not=================
     public RenterModel isRenterActive(Long id){
-        RenterModel renter=renterRepository.findById(id).get();
-        if(!renter.getIsActive().equals("false")){
-            renter.setIsActive("false");
+        RenterModel renter=renterRepository.getReferenceById(id);
+        if(!renter.getIsActive().equals(falseUser)){
+            renter.setIsActive(falseUser);
             renter=renterRepository.save(renter);
             
         }
-        else if(!renter.getIsActive().equals("true")){
-            renter.setIsActive("true");
+        else if(!renter.getIsActive().equals(trueUser)){
+            renter.setIsActive(trueUser);
             renter=renterRepository.save(renter);
         }
         return renter;
@@ -72,20 +70,19 @@ public class AdminServices {
 
     //============Check if customer is active or not=================
     public CustomerModel isCustomerActive(Long id){
-        CustomerModel customer=customerRepository.findById(id).get();
-        if(!customer.getIsActive().equals("false")){
-            customer.setIsActive("false");
+        CustomerModel customer=customerRepository.getReferenceById(id);
+        if(!customer.getIsActive().equals(falseUser)){
+            customer.setIsActive(falseUser);
             customer=customerRepository.save(customer);
             
         }
-        else if(!customer.getIsActive().equals("true")){
-            customer.setIsActive("true");
+        else if(!customer.getIsActive().equals(trueUser)){
+            customer.setIsActive(trueUser);
             customer=customerRepository.save(customer);
             
         }
         return customer;
     }
-
     
     //========================getFeedback===========================
     public List<Comments> getAllComments(){
@@ -97,7 +94,7 @@ public class AdminServices {
 		return adminRepository.getReferenceById(adminId).getEarnings();
 	}
 
-
+    //========================Calculate admin revenue========================
     public ResponseEntity<Double> calculateRevenue(LocalDate startDate, LocalDate endDate) {
 		Double revenue=0.0;
 		List<RenterModel> renter=renterRepository.findAll();
@@ -107,11 +104,10 @@ public class AdminServices {
                 for(int j=0;j<bookings.size();j++) {
                     if((startDate.isBefore(bookings.get(j).getEndDate()) || startDate.isEqual(bookings.get(j).getEndDate())) && (endDate.isAfter(bookings.get(j).getEndDate()) || endDate.isEqual(bookings.get(j).getEndDate()))) {
                         revenue+=(bookings.get(j).getTotalAmount()*0.1);
-                        
                     }
-			}
-		}
-    }
+                }
+            }
+        }
 		return new ResponseEntity<>(revenue, HttpStatus.OK);
-	    }
+	}
 }

@@ -6,7 +6,7 @@
           <form  #addForm="ngForm" (ngSubmit)="onSubmit()">
     
             <div class="form-group pb-3" [class.has-error]="control.invalid">
-              <label for="name" class="control-label"><i class="fas fa-envelope"></i> Email</label>
+              <label for="name" class="control-label"><em class="fas fa-envelope"></em> Email</label>
               <input type="text" class="form-control" id="email" required  [(ngModel)]="comment.email" name="email" #control="ngModel">
              
               <span class="help-block" *ngIf="control.invalid && control.touched" style="color: red;"> 
@@ -15,7 +15,7 @@
             </div>
       
             <div class="form-group pb-3" [class.has-error]="namecontrol.invalid">
-              <label for="modelName" class="control-label"><i class="fas fa-user"></i> Name</label>
+              <label for="modelName" class="control-label"><em class="fas fa-user"></em> Name</label>
               <input type="text" class="form-control" id="name" required [(ngModel)]="comment.name" name="name" #namecontrol="ngModel">
              
               <span class="help-block" *ngIf="namecontrol.invalid && namecontrol.touched" style="color: red;"> 
@@ -24,7 +24,7 @@
             </div>
     
             <div class="form-group pb-3" [class.has-error]="commentControl.invalid">
-                <label for="modelName" class="control-label"><i class="fas fa-comment"></i> Comment</label>
+                <label for="modelName" class="control-label"><em class="fas fa-comment"></em> Comment</label>
                 <textarea type="text" row="15" class="form-control" id="comment" required [(ngModel)]="comment.feedback" name="comment" #commentControl="ngModel"></textarea>
                 <span class="help-block" *ngIf="namecontrol.invalid && namecontrol.touched" style="color: red;"> 
                   comment is Required

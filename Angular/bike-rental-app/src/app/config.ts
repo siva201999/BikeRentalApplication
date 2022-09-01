@@ -61,7 +61,7 @@ export class Config {
         ownerName:JSON.parse(localStorage.getItem('userName')!)
     }
     BookingObj={
-        booking_id:0,
+        bookingId:0,
         totalAmount:0.0,
         bookingDate:"",
         endDate:"",

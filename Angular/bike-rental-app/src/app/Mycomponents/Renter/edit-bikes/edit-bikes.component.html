@@ -49,19 +49,11 @@
           Availability is Required
         </span>
       </div>
-
-      <!-- <div class="form-group" [class.has-error]="bikeImageUrlcontrol.invalid">
-        <label for="bikeImageUrl" class="control-label">Image Url</label>
-        <input type="text" class="form-control" id="bikeImageUrl" required [(ngModel)]="bike.bikeImageUrl" name="bikeImageUrl" #bikeImageUrlcontrol="ngModel">
-        <span class="help-block" *ngIf="bikeImageUrlcontrol.invalid && bikeImageUrlcontrol.touched" style="color: red;"> 
-          Image Url is Required
-        </span>
-      </div> -->
+      
       <div class="wrap-input100 m-b-23 pb-4">
         <span class="label-input100">Upload Profile Image </span>
         <input type="file" class="form-control mt-2" id="bikeImage" (change)="onChange($event)" name="bikeImage"  placeholder="Upload your profile image" >
-        <!-- <span class="focus-input100" data-symbol="&#xf14c;"></span> -->
-    </div>
+      </div>
 
       <div class="form-group" [class.has-error]="rentAmountcontrol.invalid">
         <label for="rentAmount" class="control-label">rentAmount</label>
@@ -92,7 +84,4 @@
   </div>
 </div>
 
-    <!-- <div class="form-group">
-        <label for="name">Bike Image</label>
-        <input type="file" class="form-control mt-2" id="image" (change)="onChange($event)" [(ngModel)]="bikes.bikeImageUrl" name="bikeImageUrl" placeholder="Upload Bike image" >
-    </div> -->
+  

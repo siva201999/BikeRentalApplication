@@ -27,6 +27,15 @@ public class AuthService {
     CustomerRepository customerRepository;
     @Autowired
     PasswordConfig passwordConfig;
+
+    String userId ="userId";
+    String username ="username";
+    String email="email";
+    String status="status";
+    String active="active";
+    String success="Success";
+    String failure="Failure";
+    
     //==================================SIGN-UP=========================
     //============================Renter================================
     public RenterModel setCurrentRenter(RenterModel data){
@@ -69,21 +78,22 @@ public class AuthService {
         }
         return null;
     }
-
+ 
     //==================================LOGIN=======================================
     public Map<String, String> isAdminPresent(AdminModel data){
         List<AdminModel> admins = adminRepository.findAll();
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = new HashMap<>();
+       
         for(AdminModel admin: admins){
             if(admin.getEmail().equals(data.getEmail()) && admin.getPassword().equals(data.getPassword())){
-                result.put("userId", Long.toString(admin.getId()));
-                result.put("username", admin.getUserName());
-                result.put("email", admin.getEmail());
-                result.put("status","Success");
+                result.put(userId, Long.toString(admin.getId()));
+                result.put(username, admin.getUserName());
+                result.put(email, admin.getEmail());
+                result.put(status,success);
                 break;
             }
             else{
-                result.put("status", "Failure");
+                result.put(status, failure);
             }
         }
         return result;
@@ -91,19 +101,18 @@ public class AuthService {
 
     public Map<String, Object> isRenterPresent(RenterModel data){
         List<RenterModel> renters = renterRepository.findAll();
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         for(RenterModel renter:renters){
             if(renter.getEmail().equals(data.getEmail()) && passwordConfig.checkPass(data.getPassword(),renter.getPassword())){
-                result.put("userId", renter.getId());
-                result.put("username", renter.getUserName());
-                result.put("email", renter.getEmail());
-                // result.put("role", renter.getUserRole());
-                result.put("status","Success");
-                result.put("active",renter.getIsActive());
+                result.put(userId, renter.getId());
+                result.put(username, renter.getUserName());
+                result.put(email, renter.getEmail());
+                result.put(status,success);
+                result.put(active,renter.getIsActive());
                 break;
             }
             else{
-                result.put("status", "Failure");
+                result.put(status, failure);
             }
         }
         return result;
@@ -112,19 +121,18 @@ public class AuthService {
 
     public Map<String, Object> isCustomerPresent(CustomerModel data){
         List<CustomerModel> customers = customerRepository.findAll();
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         for(CustomerModel customer:customers){
             if(customer.getEmail().equals(data.getEmail()) && passwordConfig.checkPass(data.getPassword(),customer.getPassword())){
-                result.put("userId", customer.getId());
-                result.put("username", customer.getUserName());
-                result.put("email", customer.getEmail());
-                // result.put("role", customer.getUserRole());
-                result.put("status","Success");
-                result.put("active",customer.getIsActive());
+                result.put(userId, customer.getId());
+                result.put(username, customer.getUserName());
+                result.put(email, customer.getEmail());
+                result.put(status,success);
+                result.put(active,customer.getIsActive());
                 break;
             }
             else{
-                result.put("status", "Failure");
+                result.put(status, failure);
             }
         }
         return result;
@@ -142,17 +150,17 @@ public class AuthService {
             }
                       
         }catch (Exception e) {
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }
 
     public boolean customerPasswordDecrypt(Long id,PasswordDecrypt oldPassword){
         CustomerModel customer = customerRepository.getReferenceById(id);
-        if(passwordConfig.checkPass(oldPassword.getPassword(),customer.getPassword())){
-            return true;
-        }
-        return false;
+        return passwordConfig.checkPass(oldPassword.getPassword(),customer.getPassword());
+           
+        
+       
     }
 
 
@@ -169,16 +177,14 @@ public class AuthService {
                     
         }
         catch (Exception e) {
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }
 
     public boolean renterPasswordDecrypt(Long id,PasswordDecrypt oldPassword){
         RenterModel renter = renterRepository.getReferenceById(id);
-        if(passwordConfig.checkPass(oldPassword.getPassword(),renter.getPassword())){
-            return true;
-        }
-        return false;
+        return passwordConfig.checkPass(oldPassword.getPassword(),renter.getPassword());
+           
     }
 }

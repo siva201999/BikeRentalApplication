@@ -36,7 +36,7 @@ export class RenterDetailsComponent implements OnInit {
   
   isActiveRenter(id:any) {
     this.service.isActiveRenter(id).subscribe(response=>{
-      console.log(response);
+      // console.log(response);
       
       if(JSON.parse(JSON.stringify(response)).isActive==='true'){
         this.activeMessage="Renter mark an active!!!"
@@ -55,9 +55,9 @@ export class RenterDetailsComponent implements OnInit {
       
   getRenterBikes(id:any){
     this.service.getRenterBikes(id).subscribe(response=>{
-    console.log(response);
+    // console.log(response);
     this.bikeObj=response;
-    console.log(this.bikeObj);
+    // console.log(this.bikeObj);
     localStorage.setItem('RenterBikes', JSON.stringify(this.bikeObj));
     this.router.navigate(['admin/dashboard/bikeDetails',id]);
     });

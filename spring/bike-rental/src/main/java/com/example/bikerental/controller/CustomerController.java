@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bikerental.model.BikeModel;
-import com.example.bikerental.model.Booking;
-import com.example.bikerental.model.Comments;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.Payment;
 import com.example.bikerental.service.CustomerService;
@@ -41,13 +39,13 @@ public class CustomerController {
       
     //update customer
 	@PutMapping("/customer/{id}")  
-	public ResponseEntity<?> update(@PathVariable("id")long id, @RequestBody CustomerModel customer)   
+	public ResponseEntity<CustomerModel> update(@PathVariable("id")long id, @RequestBody CustomerModel customer)   
 	{   
 		return customerService.update(id, customer); 
 	}
     
     @GetMapping("/customer/{id}")
-    public ResponseEntity<?> getCustomerById(@PathVariable("id")long id){
+    public ResponseEntity<CustomerModel> getCustomerById(@PathVariable("id")long id){
         return customerService.getCustomerById(id);
     }
 

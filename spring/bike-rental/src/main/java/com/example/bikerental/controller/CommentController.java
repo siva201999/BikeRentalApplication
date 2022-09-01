@@ -2,8 +2,6 @@ package com.example.bikerental.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +18,7 @@ public class CommentController {
 	private CommentService commentService;
 	
 	@PostMapping("/comments")
-	public ResponseEntity<?> addComments(@RequestBody Comments comments){
+	public ResponseEntity<Comments> addComments(@RequestBody Comments comments){
 		return commentService.addComments(comments);
 	}
 }

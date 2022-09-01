@@ -1,6 +1,5 @@
 package com.example.bikerental.controller;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,19 +27,22 @@ public class BikeController {
 	public ResponseEntity<List<BikeModel>> getAllBikes(){
 		return bikeService.getAllBikes();
 	}
+	
 	@PostMapping("/bike/{id}")
-	public ResponseEntity<?> addBikes(@PathVariable("id")long id, @RequestBody BikeModel bike){
-	//System.out.println(bike.getBikeId());
-	return bikeService.addBikes(id,bike);
+	public ResponseEntity<BikeModel> addBikes(@PathVariable("id")long id, @RequestBody BikeModel bike){
+		return bikeService.addBikes(id,bike);
 	}
+
 	@PutMapping("/bike/{id}")
-	public ResponseEntity<?> updateBikes(@PathVariable("id")long id,@RequestBody BikeModel bike){
+	public ResponseEntity<BikeModel> updateBikes(@PathVariable("id")long id,@RequestBody BikeModel bike){
 		return bikeService.updateBike(id,bike);
 	}
+
 	@DeleteMapping("/bike/{id}")
-	public ResponseEntity<?> deleteBikeById(@PathVariable("id")long id){
+	public ResponseEntity<BikeModel> deleteBikeById(@PathVariable("id")long id){
 		return bikeService.deleteBikeById(id);
 	}
+
 	@GetMapping("/bike/{id}")
 	public ResponseEntity<BikeModel> getBikeById(@PathVariable("id")Long id){
 		return bikeService.getBikeById(id);

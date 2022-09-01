@@ -25,7 +25,6 @@
           <div class="card bg-warning car-responsive">
             <div class="card-body text-center">
               <h5>Total Earnings : ₹ {{earnings}}</h5>
-              <!-- <p>{{earnings}}</p> -->
             </div>
           </div>
         </div>
@@ -38,8 +37,10 @@
           <div class="col-lg-12">
               <div class="card shadow p-2 mb-4 bg-white rounded  table-responsive">
                 <table class="table table-striped table-hover table-responsive" id="bookingTable">
+                  <Caption></Caption>
                       <thead class="table-dark text-nowrap">
                         <tr class="text-center">
+                          <th scope="col">S.No</th>
                           <th scope="col">Booking Id</th>
                           <th scope="col">Customer name</th>
                           <th scope="col">Brand name</th>
@@ -52,7 +53,8 @@
                     
                     <tbody class="text-center">
                         <tr *ngFor="let booking of bookingObj; index as i" >
-                          <td>{{booking.booking_id}}</td>
+                          <td>{{i+1}}</td>
+                          <td>{{booking.bookingId}}</td>
                           <td>{{ booking.customerName}}</td>
                           <td>{{ booking.brandName}}</td>
                           <td>{{ booking.modelName}}</td>
