@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group pb-3" [class.has-error]="bikeNumbercontrol.invalid">
-        <label for="bikeNumber" class="control-label"><em class="fas fa-id-card-alt"></em>> Bike Number</label>
+        <label for="bikeNumber" class="control-label"><em class="fas fa-id-card-alt"></em> Bike Number</label>
         <input type="text" class="form-control" id="bikeNumber" required  [(ngModel)]="bike.bikeNumber" name="bikeNumber" #bikeNumbercontrol="ngModel">
       
         <span class="help-block" *ngIf="bikeNumbercontrol.invalid && bikeNumbercontrol.touched" style="color: red;"> 

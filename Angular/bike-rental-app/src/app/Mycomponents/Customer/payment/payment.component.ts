@@ -27,24 +27,21 @@ export class PaymentComponent implements OnInit {
   }
 
   validateCredentials(){
-    if(confirm('Are you sure that you want to confirm  the payment?'))
-    console.log(this.cardDetails)
-    this.service.validatePayment(this.cardDetails).subscribe(data => {
-      
-      console.log(this.cardDetails);
-      alert("Payment successfull");
-
-      this.service.saveBookingHistory(this.id,this.booking).subscribe(data=>{
-        console.log(data);
-      })
-      this.goBack();
-     } ,error=>alert("Payment unsuccessfull"));
+    if(confirm('Are you sure that you want to confirm  the payment?')){
+      console.log(this.cardDetails)
+      this.service.validatePayment(this.cardDetails).subscribe(data => {
+        console.log(this.cardDetails);
+        alert("Payment successfull");
+          this.service.saveBookingHistory(this.id,this.booking).subscribe(data=>{
+          console.log(data);
+         
+        })
+        this.goBack();
+      },error =>alert("Payment unsuccessfull"));
     }
+  }
 
-  //  bookingHistory(){
-  //   this.booking.bookingDate
-  //   this.service.saveBookingHistory(this.booking).
-  //  } 
+  
   goBack(){
     this.router.navigate(['customer/dashboard']).then(() => {
       window.location.reload();

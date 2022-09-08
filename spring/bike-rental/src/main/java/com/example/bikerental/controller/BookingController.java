@@ -2,6 +2,7 @@ package com.example.bikerental.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.bikerental.dto.BookingDto;
 import com.example.bikerental.model.Booking;
 import com.example.bikerental.service.BookingService;
 
@@ -21,10 +22,18 @@ import com.example.bikerental.service.BookingService;
 @CrossOrigin(origins="http://localhost:4200")
 public class BookingController {
     @Autowired  
-    BookingService bookingService;  
+    BookingService bookingService; 
+    
+    @Autowired
+	private ModelMapper modelMapper;
+
+    private Booking convertToBooking(BookingDto bookingDto) {
+        return modelMapper.map(bookingDto, Booking.class);
+    }
 
     @PostMapping("/booking/{id}")
-    public ResponseEntity<Booking> saveBookingHistory(@PathVariable("id")long id,@RequestBody Booking booking){
+    public ResponseEntity<Booking> saveBookingHistory(@PathVariable("id")long id,@RequestBody BookingDto data){
+        Booking booking = convertToBooking(data);
         return bookingService.saveBookingHistory(id,booking);
     }
 

@@ -2,6 +2,7 @@ package com.example.bikerental.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bikerental.dto.CustomerDto;
+import com.example.bikerental.dto.PaymentDto;
 import com.example.bikerental.model.BikeModel;
 import com.example.bikerental.model.CustomerModel;
 import com.example.bikerental.model.Payment;
@@ -23,6 +26,18 @@ import com.example.bikerental.service.CustomerService;
 public class CustomerController {
     @Autowired  
 	CustomerService customerService;  
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+    private CustomerModel convertToCustomer(CustomerDto customerDto) {
+        return modelMapper.map(customerDto, CustomerModel.class);
+    }
+
+	private Payment convertToPayment(PaymentDto paymentDto) {
+        return modelMapper.map(paymentDto,  Payment.class);
+    }
+
  
 	@GetMapping("/customer")  
 	//getAllCustomers
@@ -32,16 +47,15 @@ public class CustomerController {
 	} 
     // deleteCustomer
 	@DeleteMapping("/customer/{id}")  
-	public ResponseEntity<?> deleteCustomer(@PathVariable("id") long id)   
-	{  
+	public ResponseEntity<CustomerModel> deleteCustomer(@PathVariable("id") long id){  
 		return customerService.delete(id);  
 	}  
       
     //update customer
 	@PutMapping("/customer/{id}")  
-	public ResponseEntity<CustomerModel> update(@PathVariable("id")long id, @RequestBody CustomerModel customer)   
-	{   
-		return customerService.update(id, customer); 
+	public ResponseEntity<CustomerModel> update(@PathVariable("id")long id, @RequestBody CustomerDto data){
+        CustomerModel customer = convertToCustomer(data);   
+	  	return customerService.update(id, customer); 
 	}
     
     @GetMapping("/customer/{id}")
@@ -51,9 +65,9 @@ public class CustomerController {
 
 	//payment validation
 	@PostMapping("/payment")
-	public ResponseEntity<Payment> validatePayment(@RequestBody Payment paymentModel){
-		
-		return customerService.validatePayment(paymentModel);
+	public ResponseEntity<Payment> validatePayment(@RequestBody PaymentDto data){
+		Payment payment = convertToPayment(data);
+		return customerService.validatePayment(payment);
 		
 	}
 

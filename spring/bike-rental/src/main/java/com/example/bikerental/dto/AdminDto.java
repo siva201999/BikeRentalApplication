@@ -1,23 +1,9 @@
-package com.example.bikerental.model;
+package com.example.bikerental.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Admin")
-public class AdminModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AdminDto {
     private Long id;
-    @Column(name = "userName")
     private String userName;
-    @Column(name = "email")
     private String email;
-    @Column(name = "password")
     private String password;
     private double earnings;
     
@@ -52,16 +38,13 @@ public class AdminModel {
     public void setEarnings(double earnings) {
         this.earnings = earnings;
     }
-    public AdminModel(Long id, String userName, String email, String password,double earnings) {
+    public AdminDto(Long id, String userName, String email, String password,double earnings) {
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.earnings= earnings;
     }
-    public AdminModel() {
+    public AdminDto() {
     }
-    
-    
-    
 }

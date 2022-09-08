@@ -1,6 +1,7 @@
 package com.example.bikerental.controller;
 import java.time.LocalDate;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bikerental.dto.RenterDto;
 import com.example.bikerental.model.RenterModel;
 import com.example.bikerental.service.RenterService;
 
@@ -19,6 +21,13 @@ import com.example.bikerental.service.RenterService;
 public class RenterController {
 	@Autowired
 	private RenterService renterService;
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+    private RenterModel convertToRenter(RenterDto renterDto) {
+        return modelMapper.map(renterDto, RenterModel.class);
+    }
 	
 	 @GetMapping("/renterEarning/{renterId}")
 	    public double getRenterEarning(@PathVariable Long renterId){
@@ -31,7 +40,8 @@ public class RenterController {
 	    }
 	 
 	 @PutMapping("/renterProfile/{id}")
-		public ResponseEntity<?> updateProfile(@PathVariable("id")long id,@RequestBody RenterModel renter){
+		public ResponseEntity<RenterModel> updateProfile(@PathVariable("id")long id,@RequestBody RenterDto data){
+			RenterModel renter = convertToRenter(data);
 			return renterService.updateProfile(id,renter);
 		}
 
