@@ -48,17 +48,7 @@ public class CustomerService {
 			}
 			else
 			{
-				for(RenterModel renter:renters){
-					if(renter.getIsActive().equals("true")){
-						List<BikeModel> bike = renter.getBike();
-						for(int i = 0; i<bike.size();i++){
-							if(bike.get(i).getAvailability().equals("true")){
-								bikes.add(bike.get(i));
-							}
-						}
-						
-					}
-				}
+				bikes=getActiveBikes(renters,bikes);
 				return new ResponseEntity<>(bikes,HttpStatus.OK);
 			}
 		}
@@ -66,8 +56,27 @@ public class CustomerService {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}  
 	}  
+
+
  
-    //================  delete customer =======================
+    private List<BikeModel> getActiveBikes(List<RenterModel> renters, List<BikeModel> bikes) {
+		for(RenterModel renter:renters){
+			if(renter.getIsActive().equals("true")){
+				List<BikeModel> bike = renter.getBike();
+				for(int i = 0; i<bike.size();i++){
+					if(bike.get(i).getAvailability().equals("true")){
+						bikes.add(bike.get(i));
+					}
+				}
+				
+			}
+		}
+		return bikes;
+	}
+
+
+
+	//================  delete customer =======================
 	public ResponseEntity<CustomerModel> delete(Long id)   
 	{  
 		try {

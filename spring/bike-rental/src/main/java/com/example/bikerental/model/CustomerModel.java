@@ -138,16 +138,13 @@ public class CustomerModel {
 
     
 
-    public CustomerModel(String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address,String isActive,List<Booking> booking) {
+    public CustomerModel(String email, String password, String mobileNumber, String userName,
+            String userRole,String isActive,List<Booking> booking) {
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
         this.userName = userName;
-        this.gender = gender;
         this.userRole = userRole;
-        this.image = image;
-        this.address = address;
         this.isActive = isActive;
         this.booking =booking;
     }

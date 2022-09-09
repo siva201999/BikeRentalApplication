@@ -45,7 +45,9 @@ public class BikeService {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 			}
 			else if(renterRepository.findById(id).isPresent()) {
-				BikeModel bikes= new BikeModel(bike.getBrandName(),bike.getModelName(),bike.getBikeNumber(),bike.getBikeImage(),bike.getDescription(),bike.getRentAmount(),bike.getPickUpLocation(),bike.getAvailability(),bike.getOwnerName());
+				BikeModel bikes = new BikeModel(bike.getBrandName(),bike.getModelName(),bike.getBikeNumber(),bike.getRentAmount(),bike.getPickUpLocation(),bike.getAvailability(),bike.getOwnerName());
+				bikes.setBikeImage(bike.getBikeImage());
+				bikes.setDescription(bike.getDescription());
 				bikes.setRenter(new RenterModel(id));
 				return new ResponseEntity<>(bikeRepository.save(bikes),HttpStatus.OK);
 			}else{

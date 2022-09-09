@@ -40,7 +40,8 @@ public class BookingService {
     //======================== Booking History ==========================
     public ResponseEntity<Booking> saveBookingHistory(Long id,Booking data) {
         BikeModel bike=bikeRepository.getReferenceById(data.getBikeId());
-        Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName(),data.getBrandName(),data.getModelName(),data.getBikeId());
+        Booking booking = new Booking(data.getTotalAmount(),data.getBookingDate(),data.getEndDate(),data.getRenterName(),data.getCustomerName(),data.getModelName(),data.getBikeId());
+       booking.setBrandName(data.getBrandName());
         booking.setCustomer(new CustomerModel(id));
         bike.setAvailability("false");
         bikeRepository.save(bike);

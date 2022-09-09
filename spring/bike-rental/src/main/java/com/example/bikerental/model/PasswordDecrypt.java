@@ -11,7 +11,6 @@ public class PasswordDecrypt {
         this.password = password;
     }
 
-    public PasswordDecrypt() {
-    }
+   
     
 }

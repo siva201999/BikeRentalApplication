@@ -107,16 +107,13 @@ public class CustomerDto {
 
     
 
-    public CustomerDto(String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address,String isActive,List<BookingDto> booking) {
+    public CustomerDto(String email, String password, String mobileNumber, String userName, 
+            String userRole,String isActive,List<BookingDto> booking) {
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
         this.userName = userName;
-        this.gender = gender;
         this.userRole = userRole;
-        this.image = image;
-        this.address = address;
         this.isActive = isActive;
         this.booking =booking;
     }

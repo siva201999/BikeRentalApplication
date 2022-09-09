@@ -101,14 +101,13 @@ public class BookingDto {
     }
     
     
-    public BookingDto(Double totalAmount, LocalDate  bookingDate, LocalDate  endDate, String renterName,String customerName,String brandName,String modelName,Long bikeId) {
+    public BookingDto(Double totalAmount, LocalDate  bookingDate, LocalDate  endDate, String renterName,String customerName,String modelName,Long bikeId) {
         
         this.totalAmount = totalAmount;
         this.bookingDate = bookingDate;
         this.endDate = endDate;
         this.renterName = renterName;
         this.customerName = customerName;
-        this.brandName = brandName;
         this.modelName = modelName;
         this.bikeId= bikeId;
     }

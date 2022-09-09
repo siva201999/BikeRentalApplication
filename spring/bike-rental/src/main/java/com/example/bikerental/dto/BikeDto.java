@@ -124,14 +124,11 @@ public class BikeDto {
         this. renter = renter;
     }
 
-    public BikeDto(String brandName, String modelName, String bikeNumber, String bikeImage,
-            String description, String rentAmount, String pickUpLocation, String availability,String ownerName) {
+    public BikeDto(String brandName, String modelName, String bikeNumber, String rentAmount, String pickUpLocation, String availability,String ownerName) {
        
         this.brandName = brandName;
         this.modelName = modelName;
         this.bikeNumber = bikeNumber;
-        this.bikeImage = bikeImage;
-        this.description = description;
         this.rentAmount = rentAmount;
         this.pickUpLocation = pickUpLocation;
         this.availability = availability;

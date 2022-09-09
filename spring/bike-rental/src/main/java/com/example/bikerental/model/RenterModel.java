@@ -168,16 +168,12 @@ public class RenterModel {
         this.id = id;
     }
 
-    public RenterModel(String email, String password, String mobileNumber, String userName, String gender,
-            String userRole, String image, String address, double earnings, String isActive) {
+    public RenterModel(String email, String password, String mobileNumber, String userName,String userRole, double earnings, String isActive) {
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
         this.userName = userName;
-        this.gender = gender;
         this.userRole = userRole;
-        this.image = image;
-        this.address = address;
         this.earnings = earnings;
         this.isActive = isActive;
        
